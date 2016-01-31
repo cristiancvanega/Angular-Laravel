@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::any('/user/token/gettoken', 'AuthenticateController@authenticate');
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
