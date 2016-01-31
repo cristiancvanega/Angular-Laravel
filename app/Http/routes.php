@@ -29,6 +29,10 @@ Route::any('/user/token/testtoken', 'AuthenticateController@getAuthenticatedUser
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
-    //
+Route::group(['middleware' => ['jwt.auth']], function () {
+    Route::any('/tes_middleware', 'AuthenticateController@testMiddleware');
+});
+
+Route::group(['middleware' => ['jwt.refresh']], function () {
+    Route::any('/tes_middleware_refresh', 'AuthenticateController@testMiddleware');
 });
