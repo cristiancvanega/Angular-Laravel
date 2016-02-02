@@ -12,7 +12,7 @@ class CreateIntervencionIntervenidosTable extends Migration
      */
     public function up()
     {
-        Schema::create('intervencion_intervenidos', function (Blueprint $table) {
+        Schema::create('intervencion_intervenido', function (Blueprint $table) {
             $table->increments('id');
 
             $table->integer('id_intervencions')->unsigned();
@@ -32,6 +32,6 @@ class CreateIntervencionIntervenidosTable extends Migration
      */
     public function down()
     {
-        Schema::drop('intervencion_intervenidos');
+        Schema::drop('intervencion_intervenido');
     }
 }

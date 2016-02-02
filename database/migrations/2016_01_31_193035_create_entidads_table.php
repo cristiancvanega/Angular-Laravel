@@ -16,6 +16,9 @@ class CreateEntidadsTable extends Migration
         {
             $table->increments('id');
             $table->text('nombre')->notnull();
+            $table->string('nombre');
+            $table->string('telefono');
+            $table->string('correo');
             $table->timestamps();
         });
     }

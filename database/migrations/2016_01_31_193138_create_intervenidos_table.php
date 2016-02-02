@@ -19,7 +19,16 @@ class CreateIntervenidosTable extends Migration
             $table->enum('tipo_documento', ['Cédula de ciudadanía', 'Tarjeta de identidad', 'Registro civil de nacimiento',
                 'Cédula de extranjería'])->notnull();
             $table->text('documento')->notnull();
-            $table->text('datos_de_contacto')->notnull();
+            $table->string('direccion');
+            $table->string('telefono');
+            $table->string('correo');
+            $table->enum('escolaridad', [
+                'ninguna',
+                'preescolar',
+                'basica',
+                'media',
+                'superior'
+            ]);
             $table->timestamps();
         });
     }
