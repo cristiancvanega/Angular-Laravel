@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::any('/user/token/gettoken', 'AuthenticateController@success');
-Route::post('/test', 'AuthenticateController@authenticate');
+Route::any('/test', 'AuthenticateController@authenticate');
 Route::any('/user/token/testtoken', 'AuthenticateController@getAuthenticatedUser');
 
 /*
