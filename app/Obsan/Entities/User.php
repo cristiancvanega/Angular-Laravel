@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App/Obsan/Entities;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 

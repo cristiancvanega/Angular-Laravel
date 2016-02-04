@@ -14,6 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+require ('Routes/BaseRoutes.php');
 
 Route::any('/user/token/gettoken', 'AuthenticateController@authenticate');
 Route::any('/test', 'AuthenticateController@success');
