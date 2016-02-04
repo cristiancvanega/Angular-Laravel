@@ -15,8 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::any('/user/token/gettoken', 'AuthenticateController@success');
-Route::any('/test', 'AuthenticateController@authenticate');
+Route::any('/user/token/gettoken', 'AuthenticateController@authenticate');
+Route::any('/test', 'AuthenticateController@success');
 Route::any('/user/token/testtoken', 'AuthenticateController@getAuthenticatedUser');
 
 /*
