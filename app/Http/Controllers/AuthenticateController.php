@@ -63,4 +63,9 @@ class AuthenticateController extends Controller
     {
         return response()->json(['message' => 'funciona']);
     }
+
+    public function success()
+    {
+        return response()->json(['message' => 'funciona']);
+    }
 }
