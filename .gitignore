@@ -3,6 +3,5 @@
 Homestead.yaml
 Homestead.json
 .env
-.idea/*
 composer.lock
-.idea/workspace.xml
+.idea/*
