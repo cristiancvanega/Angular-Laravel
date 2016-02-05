@@ -49,7 +49,7 @@ class BaseController extends Controller
 	public function update()
 	{
 		// Se le pide al repositorio de datos obtener la clase buscada por el id.
-		$entity  = $this->repository->findOrFail( Input::get("id") );
+		$entity  = $this->repository->findOrFail( Request::get("id") );
 		// Se crea un administrador de la entidad.
 		$manager = $this->getManager($entity, $this->data);
 		// Se le pide al administrador actualizar los datos.
