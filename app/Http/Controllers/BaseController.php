@@ -10,7 +10,6 @@ use \Request, \Response;
 
 class BaseController extends Controller
 {
-
 	protected $repository;
 
 	protected $manager;
@@ -22,30 +21,26 @@ class BaseController extends Controller
 		$this->data = Request::capture();
 	}
 
+    /**
+     * @return mixed
+     */
 	public function create()
 	{
-		// Se le pide al repositorio de datos retornar una entidad nueva.
-		$entity  = $this->repository->newEntity();
-		// Se crea un administrador de la entidad.
-		$manager = $this->getManager($entity, $this->data);
-		// Se le pide almacenar los datos
-		if( $manager->save() )
-		{
-			// Respuesta llamada cuando la clase puede reliazar de manera correcta la asignacion.
-			return Response::json([
-				'state'=>'true'
-			]);
-		}
-		// Respuesta obtenida cuando la clase no pudo relizar la transacción.
-		return Response::json([
-			'state'	=> 'false',
-			'errors' => $manager->getErrors()->toArray()
-		]);
+        if($this->manager->create()) {
+            return $this->responseEntityStore($this->manager->getEntity());
+        }
+        return $this->responseBadRequest($this->manager->getErrors());
 	}
-	/**
-	 * Funcion usada para actualizar los datos de la entidad.
-	 * @return Array Respuesta al usuario sobre el flujo de la clase.
-	 */
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function find($id)
+    {
+        return $this->repository->find($id);
+    }
+
 	public function update()
 	{
 		// Se le pide al repositorio de datos obtener la clase buscada por el id.
@@ -67,8 +62,30 @@ class BaseController extends Controller
 		]);
 	}
 
-	public function show($id)
-	{
-		return $this->repository->find($id);
-	} 
+    /**
+     * @param $data
+     * @return mixed
+     */
+    protected function responseEntityStore($data)
+    {
+        return Response::json($data,201);
+    }
+
+    /**
+     * @param $data
+     * @return mixed
+     */
+    protected function responseObject($data)
+    {
+        return Response::json($data,200);
+    }
+
+    /**
+     * @param $data
+     * @return mixed
+     */
+    protected function responseBadRequest($data)
+    {
+        return Response::json($data, 400);
+    }
 }
