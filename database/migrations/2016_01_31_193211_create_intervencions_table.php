@@ -15,14 +15,14 @@ class CreateIntervencionsTable extends Migration
         Schema::create('intervencions', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->integer('entidad_id')->unsigned();
-            $table->integer('municipio_id')->unsigned();
+            $table->integer('entity_id')->unsigned();
+            $table->integer('municipality_id')->unsigned();
             $table->integer('user_id')->unsigned();
-            $table->text('nombre')->notnull();
-            $table->date('fecha_inicio')->notnull();
-            $table->date('fecha_fin')->nullable();
-            $table->text('direccion')->notnull();
-            $table->longText('descripcion')->notnull();
+            $table->text('name')->notnull();
+            $table->date('start_date')->notnull();
+            $table->date('end_date')->nullable();
+            $table->text('address')->notnull();
+            $table->longText('description')->notnull();
             $table->enum('diversidad_dieta_inicio', ['Completa', 'Moderada', 'Incompleta'])->notnull();
             $table->enum('diversidad_dieta_fin', ['Completa', 'Moderada', 'Incompleta'])->nullable();
             $table->enum('variedad_dieta_inicio', ['Variada', 'Poco variada', 'Monótona'])->notnull();

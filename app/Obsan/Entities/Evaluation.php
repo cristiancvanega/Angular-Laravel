@@ -8,6 +8,5 @@ class Evaluation extends Model
 {
     protected $table = 'evaluations';
     protected $fillable =[];
-    
-}
+
 }

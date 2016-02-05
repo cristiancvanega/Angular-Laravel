@@ -6,8 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class IntervencionIntervenido extends Model
 {
-    protected $table = 'intervencion_intervenido';
+    protected $table = 'intervened_intervention';
     protected $fillable =[];
-    
-}
+
 }

@@ -12,10 +12,10 @@ class CreateMunicipiosTable extends Migration
      */
     public function up()
     {
-        Schema::create('municipios', function(Blueprint $table)
+        Schema::create('municiplities', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->text('nombre')->notnull();
+            $table->text('name')->notnull();
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class CreateMunicipiosTable extends Migration
      */
     public function down()
     {
-        Schema::drop('municipios');
+        Schema::drop('municiplities');
     }
 }

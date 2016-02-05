@@ -12,7 +12,7 @@ class CreateEvaluacionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('evaluacions', function(Blueprint $table)
+        Schema::create('evaluations', function(Blueprint $table)
         {
             $table->increments('id');
             $table->integer('intervencion_id')->unsigned();
@@ -53,6 +53,6 @@ class CreateEvaluacionsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('evaluacions');
+        Schema::drop('evaluations');
     }
 }

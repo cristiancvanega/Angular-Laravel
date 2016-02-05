@@ -12,17 +12,17 @@ class CreateIntervenidosTable extends Migration
      */
     public function up()
     {
-        Schema::create('intervenidos', function(Blueprint $table)
+        Schema::create('operated', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->text('nombre')->notnull();
-            $table->enum('tipo_documento', ['Cédula de ciudadanía', 'Tarjeta de identidad', 'Registro civil de nacimiento',
+            $table->text('name')->notnull();
+            $table->enum('document_type', ['Cédula de ciudadanía', 'Tarjeta de identidad', 'Registro civil de nacimiento',
                 'Cédula de extranjería'])->notnull();
-            $table->text('documento')->notnull();
-            $table->string('direccion');
-            $table->string('telefono');
-            $table->string('correo');
-            $table->enum('escolaridad', [
+            $table->text('document')->notnull();
+            $table->string('address');
+            $table->string('tel');
+            $table->string('email');
+            $table->enum('pupilage', [
                 'ninguna',
                 'preescolar',
                 'basica',
@@ -40,6 +40,6 @@ class CreateIntervenidosTable extends Migration
      */
     public function down()
     {
-        Schema::drop('intervenidos');
+        Schema::drop('operated');
     }
 }

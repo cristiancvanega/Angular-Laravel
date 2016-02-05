@@ -12,12 +12,12 @@ class CreateEntidadsTable extends Migration
      */
     public function up()
     {
-        Schema::create('entidads', function(Blueprint $table)
+        Schema::create('entities', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->text('nombre')->notnull();
-            $table->string('telefono');
-            $table->string('correo');
+            $table->text('name')->notnull();
+            $table->string('tel');
+            $table->string('email');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateEntidadsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('entidads');
+        Schema::drop('entities');
     }
 }

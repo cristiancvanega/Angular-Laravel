@@ -12,14 +12,11 @@ class CreateIntervencionIntervenidosTable extends Migration
      */
     public function up()
     {
-        Schema::create('intervencion_intervenido', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('intervened_intervention', function (Blueprint $table) {
 
-            $table->integer('id_intervencions')->unsigned();
-            $table->foreign('id_intervencions')->references('id')->on('intervencions')->onDelete('cascade');
+            $table->integer('id_interventions');
 
-            $table->integer('id_intervenidos')->unsigned();
-            $table->foreign('id_intervenidos')->references('id')->on('intervenidos')->onDelete('cascade');
+            $table->integer('id_operated');
 
             $table->timestamps();
         });
@@ -32,6 +29,6 @@ class CreateIntervencionIntervenidosTable extends Migration
      */
     public function down()
     {
-        Schema::drop('intervencion_intervenido');
+        Schema::drop('intervened_intervention');
     }
 }
