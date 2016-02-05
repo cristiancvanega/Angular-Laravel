@@ -1,6 +1,6 @@
 <?php
 
-namespace App/Obsan/Entities;;
+namespace App\Obsan\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 
