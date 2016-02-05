@@ -1,5 +1,5 @@
 <?php
-Route::post('create_user','userController@create');
-Route::put('update_user','userController@update');
-Route::delete('delete_user','userController@delete');
-Route::get('search_user/{id}','userController@search');
+Route::post('create','UserController@create');
+Route::put('update','UserController@update');
+Route::delete('delete','UserController@delete');
+Route::get('search/{id}','UserController@search');
