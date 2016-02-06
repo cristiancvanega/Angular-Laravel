@@ -9,5 +9,10 @@ class Entity extends Model
     protected $table = 'entities';
 
     protected $fillable =['name'];
+
+    public function interventions()
+    {
+        return $this->hasMany('interventions');
+    }
     
 }
