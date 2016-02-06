@@ -12,7 +12,7 @@ class CreateIntervencionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('intervencions', function(Blueprint $table)
+        Schema::create('interventions', function(Blueprint $table)
         {
             $table->increments('id');
             $table->integer('entity_id')->unsigned();
@@ -23,12 +23,44 @@ class CreateIntervencionsTable extends Migration
             $table->date('end_date')->nullable();
             $table->text('address')->notnull();
             $table->longText('description')->notnull();
-            $table->enum('diversidad_dieta_inicio', ['Completa', 'Moderada', 'Incompleta'])->notnull();
-            $table->enum('diversidad_dieta_fin', ['Completa', 'Moderada', 'Incompleta'])->nullable();
-            $table->enum('variedad_dieta_inicio', ['Variada', 'Poco variada', 'Monótona'])->notnull();
-            $table->enum('variedad_dieta_fin', ['Variada', 'Poco variada', 'Monótona'])->nullable();
-            $table->enum('inseguridad_alimentaria_inicio', ['Segura', 'Leve', 'Moderada', 'Severa'])->notnull();
-            $table->enum('inseguridad_alimentaria_fin', ['Segura', 'Leve', 'Moderada', 'Severa'])->nullable();
+            $table->enum('diversidad_dieta_inicio',
+                [
+                    'Completa',
+                    'Moderada',
+                    'Incompleta'
+                ])->notnull();
+            $table->enum('diversidad_dieta_fin',
+                [
+                    'Completa',
+                    'Moderada',
+                    'Incompleta'
+                ])->nullable();
+            $table->enum('variedad_dieta_inicio',
+                [
+                    'Variada',
+                    'Poco variada',
+                    'Monótona'
+                ])->notnull();
+            $table->enum('variedad_dieta_fin',
+                [
+                    'Variada',
+                    'Poco variada',
+                    'Monótona'
+                ])->nullable();
+            $table->enum('inseguridad_alimentaria_inicio',
+                [
+                    'Segura',
+                    'Leve',
+                    'Moderada',
+                    'Severa'
+                ])->notnull();
+            $table->enum('inseguridad_alimentaria_fin',
+                [
+                    'Segura',
+                    'Leve',
+                    'Moderada',
+                    'Severa'
+                ])->nullable();
             $table->timestamps();
         });
     }
@@ -40,6 +72,6 @@ class CreateIntervencionsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('intervencions');
+        Schema::drop('interventions');
     }
 }
