@@ -16,5 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call(MunicipalityTableSeeder::class);
         $this->call(InterventionTableSeeder::class);
         $this->call(IntervenedTableSeeder::class);
+        $this->call(IntervenedInterventionTableSeeder::class);
+        $this->call(EvaluationTableSeeder::class);
     }
 }

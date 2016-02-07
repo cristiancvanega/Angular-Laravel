@@ -25,7 +25,7 @@ class CreateIntervenidosTable extends Migration
                 ])->notnull();
             $table->text('document')->notnull();
             $table->string('address');
-            $table->string('tel');
+            $table->string('phone');
             $table->string('email');
             $table->enum('pupilage',
                 [

@@ -23,7 +23,7 @@ $factory->define(App\Obsan\Entities\User::class, function (Faker\Generator $fake
 $factory->define(App\Obsan\Entities\Entity::class, function (Faker\Generator $faker) {
     return [
         'email' => $faker->email,
-        'tel'   => $faker->phoneNumber
+        'phone'   => $faker->phoneNumber
     ];
 });
 
@@ -51,22 +51,32 @@ $factory->define(App\Obsan\Entities\Intervention::class, function (Faker\Generat
 
 $factory->define(App\Obsan\Entities\Intervened::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->name,
+        'name'          => $faker->name,
         'document_type' => $faker->numberBetween(0, 3),
-        'document' => $faker->randomNumber(10),
-        'address' => $faker->address,
-        'tel' => $faker->phoneNumber,
-        'email' => $faker->email,
-        'pupilage' => $faker->numberBetween(0, 4)
-    ];
-});
-
-$factory->define(App\Obsan\Entities\Evaluation::class, function (Faker\Generator $faker) {
-    return [
+        'document'      => $faker->randomNumber(9),
+        'address'       => $faker->address,
+        'phone'         => $faker->phoneNumber,
+        'email'         => $faker->email,
+        'pupilage'      => $faker->numberBetween(0, 4)
     ];
 });
 
 $factory->define(App\Obsan\Entities\IntervenedIntervention::class, function (Faker\Generator $faker) {
     return [
+        'interventions_id'  => $faker->numberBetween(1, 15),
+        'intervened_id'     => $faker->numberBetween(1, 15)
+    ];
+});
+
+$factory->define(App\Obsan\Entities\Evaluation::class, function (Faker\Generator $faker) {
+    return [
+        'intervention_id' => $faker->numberBetween(1, 45),
+        'user_id' => $faker->numberBetween(1, 15),
+        'date' => $faker->date('y-m-d'),
+        'descripcion_evidencia' => $faker->paragraph,
+        'impacto' => $faker->numberBetween(0, 8),
+        'estado_final' => $faker->numberBetween(0, 3),
+        'description' => $faker->paragraph,
+        'recomendaciones' => $faker->paragraph(3)
     ];
 });

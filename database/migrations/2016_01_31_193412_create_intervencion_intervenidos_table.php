@@ -14,9 +14,9 @@ class CreateIntervencionIntervenidosTable extends Migration
     {
         Schema::create('intervened_intervention', function (Blueprint $table) {
 
-            $table->integer('id_interventions');
+            $table->integer('interventions_id');
 
-            $table->integer('id_operated');
+            $table->integer('intervened_id');
 
             $table->timestamps();
         });
