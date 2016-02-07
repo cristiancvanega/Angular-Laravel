@@ -1,9 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Obsan\Entities\User;
 
-class UserTableSeeder extends Seeder
+class EntityTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,7 +11,6 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-
-        factory(User::class, 50)->create();
+        //
     }
 }
