@@ -49,12 +49,19 @@ $factory->define(App\Obsan\Entities\Intervention::class, function (Faker\Generat
     ];
 });
 
-$factory->define(App\Obsan\Entities\Evaluation::class, function (Faker\Generator $faker) {
+$factory->define(App\Obsan\Entities\Intervened::class, function (Faker\Generator $faker) {
     return [
+        'name' => $faker->name,
+        'document_type' => $faker->numberBetween(0, 3),
+        'document' => $faker->randomNumber(10),
+        'address' => $faker->address,
+        'tel' => $faker->phoneNumber,
+        'email' => $faker->email,
+        'pupilage' => $faker->numberBetween(0, 4)
     ];
 });
 
-$factory->define(App\Obsan\Entities\Intervened::class, function (Faker\Generator $faker) {
+$factory->define(App\Obsan\Entities\Evaluation::class, function (Faker\Generator $faker) {
     return [
     ];
 });
