@@ -70,13 +70,13 @@ $factory->define(App\Obsan\Entities\IntervenedIntervention::class, function (Fak
 
 $factory->define(App\Obsan\Entities\Evaluation::class, function (Faker\Generator $faker) {
     return [
-        'intervention_id' => $faker->numberBetween(1, 45),
-        'user_id' => $faker->numberBetween(1, 15),
-        'date' => $faker->date('y-m-d'),
+        'intervention_id'       => $faker->numberBetween(1, 45),
+        'user_id'               => $faker->numberBetween(1, 15),
+        'date'                  => $faker->date('y-m-d'),
         'descripcion_evidencia' => $faker->paragraph,
-        'impacto' => $faker->numberBetween(0, 8),
-        'estado_final' => $faker->numberBetween(0, 3),
-        'description' => $faker->paragraph,
-        'recomendaciones' => $faker->paragraph(3)
+        'impacto'               => $faker->numberBetween(0, 8),
+        'estado_final'          => $faker->numberBetween(0, 3),
+        'description'           => $faker->paragraph,
+        'recomendaciones'       => $faker->paragraph(3)
     ];
 });
