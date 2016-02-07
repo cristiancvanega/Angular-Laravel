@@ -17,7 +17,6 @@ class CreateIntervencionsTable extends Migration
             $table->increments('id');
             $table->integer('entity_id')->unsigned();
             $table->integer('municipality_id')->unsigned();
-            $table->integer('user_id')->unsigned();
             $table->text('name')->notnull();
             $table->date('start_date')->notnull();
             $table->date('end_date')->nullable();

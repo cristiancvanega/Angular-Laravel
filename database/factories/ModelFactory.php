@@ -23,13 +23,29 @@ $factory->define(App\Obsan\Entities\User::class, function (Faker\Generator $fake
 $factory->define(App\Obsan\Entities\Entity::class, function (Faker\Generator $faker) {
     return [
         'email' => $faker->email,
-        'tel'   => $faker->randomNumber(8)
+        'tel'   => $faker->phoneNumber
     ];
 });
 
 $factory->define(App\Obsan\Entities\Municipality::class, function (Faker\Generator $faker) {
     return [
         'name'  => $faker->city
+    ];
+});
+
+$factory->define(App\Obsan\Entities\Intervention::class, function (Faker\Generator $faker) {
+    return [
+        'name'  => $faker->name,
+        'start_date'                        => $faker->date('y-m-d'),
+        'end_date'                          => $faker->date('y-m-d'),
+        'address'                           => $faker->streetAddress,
+        'description'                       => $faker->paragraph,
+        'diversidad_dieta_inicio'           => $faker->numberBetween(0, 2),
+        'diversidad_dieta_fin'              => $faker->numberBetween(0, 2),
+        'variedad_dieta_inicio'             => $faker->numberBetween(0, 2),
+        'variedad_dieta_fin'                => $faker->numberBetween(0, 2),
+        'inseguridad_alimentaria_inicio'    => $faker->numberBetween(0, 2),
+        'inseguridad_alimentaria_fin'       => $faker->numberBetween(0, 2),
     ];
 });
 
@@ -44,11 +60,6 @@ $factory->define(App\Obsan\Entities\Intervened::class, function (Faker\Generator
 });
 
 $factory->define(App\Obsan\Entities\IntervenedIntervention::class, function (Faker\Generator $faker) {
-    return [
-    ];
-});
-
-$factory->define(App\Obsan\Entities\Intervention::class, function (Faker\Generator $faker) {
     return [
     ];
 });
