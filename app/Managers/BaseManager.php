@@ -6,8 +6,6 @@ abstract class BaseManager
 {
     protected $model;
 
-    protected $repository;
-
     public function __construct($model)
     {
         $this->model = $model;

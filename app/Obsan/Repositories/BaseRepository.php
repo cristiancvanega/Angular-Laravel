@@ -17,4 +17,5 @@ abstract class BaseRepository
     {
         $this->model = $model;
     }
+
 }

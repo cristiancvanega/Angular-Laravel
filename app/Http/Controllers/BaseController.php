@@ -10,8 +10,6 @@ use \Request, \Response;
 
 class BaseController extends Controller
 {
-	protected $repository;
-
 	protected $manager;
 
 	protected $data;

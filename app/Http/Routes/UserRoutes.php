@@ -2,7 +2,7 @@
 
 Route::group(['prefix' => 'user'], function()
 {
-	Route::get('/{email}','UserController@show');
+	Route::get('/{id}','UserController@find');
 	
 	Route::post('/','UserController@create');
 
