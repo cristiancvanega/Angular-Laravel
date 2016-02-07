@@ -2,11 +2,13 @@
 
 Route::group(['prefix' => 'user'], function()
 {
+	Route::get('/','UserController@all');
+
 	Route::get('/{id}','UserController@find');
-	
+
 	Route::post('/','UserController@create');
 
-	Route::put('/{email}','UserController@update');
+	Route::put('/','UserController@update');
 
-	Route::delete('/{email}','UserController@delete');
+	Route::delete('/','UserController@delete');
 });
