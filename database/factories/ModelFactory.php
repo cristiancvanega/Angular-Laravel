@@ -11,11 +11,41 @@
 |
 */
 
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+$factory->define(App\Obsan\Entities\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->email,
-        'password' => bcrypt(str_random(10)),
+        'password' => bcrypt('12345678'),
         'remember_token' => str_random(10),
+    ];
+});
+
+$factory->define(App\Obsan\Entities\Entity::class, function (Faker\Generator $faker) {
+    return [
+    ];
+});
+
+$factory->define(App\Obsan\Entities\Evaluation::class, function (Faker\Generator $faker) {
+    return [
+    ];
+});
+
+$factory->define(App\Obsan\Entities\Intervened::class, function (Faker\Generator $faker) {
+    return [
+    ];
+});
+
+$factory->define(App\Obsan\Entities\IntervenedIntervention::class, function (Faker\Generator $faker) {
+    return [
+    ];
+});
+
+$factory->define(App\Obsan\Entities\Intervention::class, function (Faker\Generator $faker) {
+    return [
+    ];
+});
+
+$factory->define(App\Obsan\Entities\Municipality::class, function (Faker\Generator $faker) {
+    return [
     ];
 });

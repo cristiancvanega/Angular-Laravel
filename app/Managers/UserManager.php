@@ -2,7 +2,7 @@
 
 namespace App\Managers;
 
-use App\Entities\User;
+use App\Obsan\Entities\User;
 
 class UserManager extends BaseManager
 {

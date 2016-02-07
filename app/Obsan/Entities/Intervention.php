@@ -24,4 +24,9 @@ class Intervention extends Model
     {
         $this->belongsTo('municipalities');
     }
+
+    public function evaluations()
+    {
+        return $this->hasMany('evaluations');
+    }
 }

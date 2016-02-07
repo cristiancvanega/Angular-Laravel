@@ -8,6 +8,11 @@ abstract class BaseManager
 
     protected $repository;
 
+    public function __construct($model)
+    {
+        $this->model = $model;
+    }
+
     abstract function create();
 
     abstract function update();

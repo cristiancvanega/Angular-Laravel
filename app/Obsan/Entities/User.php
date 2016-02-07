@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entities;
+namespace App\Obsan\Entities;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -16,7 +16,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'token'];
+    protected $fillable = ['name', 'email', 'token', 'password'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -24,4 +24,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = ['remember_token'];
+
+    public function evaluations()
+    {
+        return $this->hasMany('evaluations', 'user_id');
+    }
 }
