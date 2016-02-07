@@ -4,9 +4,9 @@ namespace App\Obsan\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Municipio extends Model
+class Municipality extends Model
 {
-    protected $table = 'municiplities';
+    protected $table = 'municipalities';
 
     protected $fillable =['name'];
 

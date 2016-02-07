@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class UserTableSeeder extends Seeder
+class MunicipalityTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +11,6 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-
-        factory(App\Obsan\Entities\User::class, 15)->create();
+        factory(App\Obsan\Entities\Municipality::class, 15)->create();
     }
 }

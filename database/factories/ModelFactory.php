@@ -27,6 +27,12 @@ $factory->define(App\Obsan\Entities\Entity::class, function (Faker\Generator $fa
     ];
 });
 
+$factory->define(App\Obsan\Entities\Municipality::class, function (Faker\Generator $faker) {
+    return [
+        'name'  => $faker->city
+    ];
+});
+
 $factory->define(App\Obsan\Entities\Evaluation::class, function (Faker\Generator $faker) {
     return [
     ];
@@ -43,11 +49,6 @@ $factory->define(App\Obsan\Entities\IntervenedIntervention::class, function (Fak
 });
 
 $factory->define(App\Obsan\Entities\Intervention::class, function (Faker\Generator $faker) {
-    return [
-    ];
-});
-
-$factory->define(App\Obsan\Entities\Municipality::class, function (Faker\Generator $faker) {
     return [
     ];
 });

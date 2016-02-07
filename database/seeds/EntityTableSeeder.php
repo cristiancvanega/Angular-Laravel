@@ -11,6 +11,6 @@ class EntityTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(App\Obsan\Entities\Entity::class, 15)->create();
     }
 }
