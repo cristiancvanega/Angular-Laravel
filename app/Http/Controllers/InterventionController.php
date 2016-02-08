@@ -24,6 +24,7 @@ class InterventionController extends Controller
 
     public function update(InterventionUpdateRequest $request)
     {
+        //dd($request->toArray());
         $i = $this->model->find($request->id);
         if(is_null($i))
             return response()->json(['Intervention does not exist'], 400);
