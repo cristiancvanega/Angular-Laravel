@@ -10,5 +10,5 @@ Route::group(['prefix' => 'user'], function()
 
 	Route::put('/','UserController@update');
 
-	Route::delete('/','UserController@delete');
+	Route::delete('/{id}','UserController@delete');
 });
