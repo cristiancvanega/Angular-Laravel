@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Obsan\Entities\Intervention;
 use App\Http\Requests\InterventionCreateRequest;
+use App\Http\Requests\InterventionUpdateRequest;
 use App\Http\Controllers\Controller;
 
 class InterventionController extends Controller
@@ -21,4 +22,11 @@ class InterventionController extends Controller
         return $this->responseEntityStore($this->model->create($request->toArray()));
     }
 
+    public function update(InterventionUpdateRequest $request)
+    {
+        $i = $this->model->find($request->id);
+        if(is_null($i))
+            return response()->json(['Intervention does not exist'], 400);
+        return response()->json($i->update($request->toArray()), 202);
+    }
 }
