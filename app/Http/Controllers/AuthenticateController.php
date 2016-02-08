@@ -12,7 +12,7 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Exceptions\TokenExpiredException;
 use Tymon\JWTAuth\Exceptions\TokenInvalidException;
 
-class AuthenticateController extends BaseController
+class AuthenticateController extends Controller
 {
     public function authenticate()
     {
