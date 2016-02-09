@@ -15,7 +15,7 @@ class CreateEvaluacionsTable extends Migration
         Schema::create('evaluations', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->integer('intervencion_id')->unsigned();
+            $table->integer('intervention_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->date('date')->notnull();
             $table->longText('descripcion_evidencia')->nullable();
@@ -43,7 +43,7 @@ class CreateEvaluacionsTable extends Migration
                     'medio',
                     'ideal'
                 ]);
-            $table->longText('descripcion')->notnull();
+            $table->longText('description')->notnull();
             $table->longText('recomendaciones')->nullable();
             $table->timestamps();
         });

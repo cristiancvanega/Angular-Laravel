@@ -1,6 +1,7 @@
 <?php
 
 Route::group(['prefix' => 'intervened'], function(){
+
     Route::get('','IntervenedController@all');
 
     Route::get('{id}','IntervenedController@find');

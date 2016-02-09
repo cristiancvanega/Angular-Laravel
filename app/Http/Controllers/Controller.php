@@ -31,7 +31,7 @@ abstract class Controller extends MainController
 	{
 		$m = $this->model->find($id);
 		if(is_null($m))
-			return $this->responseBadRequest('User does not exist');
+			return $this->responseBadRequest('Model does not exist');
 		return response()->json($m, 200);
 	}
 
@@ -39,7 +39,7 @@ abstract class Controller extends MainController
 	{
 		$m = $this->model->find($id);
 		if(is_null($m))
-			return $this->responseBadRequest('User does not exist');
+			return $this->responseBadRequest('Model does not exist');
 		return response()->json($m->delete(), 202);
 	}
 
