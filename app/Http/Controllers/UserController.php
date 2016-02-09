@@ -20,9 +20,9 @@ class UserController extends Controller
         return $this->responseEntityStore($this->model->create($request->toArray()));
     }
 
-    public function update(UserUpdateRequest $request)
+    public function update(UserUpdateRequest $request, $id)
     {
-        $u = $this->model->find($request->id);
+        $u = $this->model->find($id);
         if(is_null($u))
             return response()->json(['User does not exist'], 400);
         return response()->json($u->update($request->toArray()), 202);

@@ -24,7 +24,6 @@ class UserUpdateRequest extends Request
     public function rules()
     {
         return [
-            'id'                => 'required|numeric',
             'name'              => 'string',
             'email'             => 'email',
             'remember_token'    => 'string'
