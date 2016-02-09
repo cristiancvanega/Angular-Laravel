@@ -11,6 +11,6 @@ class EvaluationTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Obsan\Entities\Evaluation::class, 45);
+        factory(App\Obsan\Entities\Evaluation::class, 45)->create();
     }
 }

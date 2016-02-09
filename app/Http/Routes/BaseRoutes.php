@@ -12,4 +12,6 @@ Route::group([], function ()
 	require(__DIR__ . '/IntervenedRoutes.php');
 
 	require(__DIR__ . '/MunicipalityRoutes.php');
+
+	require(__DIR__ . '/EvaluationRoutes.php');
 });
