@@ -8,6 +8,8 @@ class Intervened extends Model
 {
     protected $table = 'intervened';
 
+    protected $fillable = ['name', 'document_type', 'document', 'email', 'pupilage'];
+
     public function intervened_intervention()
     {
         return $this->belongsToMany('interventions', 'intervened_intervention');
