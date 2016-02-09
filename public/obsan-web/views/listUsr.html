@@ -1,0 +1,134 @@
+<div class="panel panel-default">
+  <br><br>
+  <div class="col-lg-8">
+    <loading></loading>
+    <h3>B&uacute;squeda: <input class="form-control" type="text" ng-model="filter.$" /></h3>
+    <div class="panel-body panel-body-table">
+      <div class="table-responsive">
+        <table  ng-table="tableParams" class="table table-bordered table-striped">
+          <tbody>
+            <tr ng-repeat="usuario in $data">
+              <td align="center" data-title="'Id'" sortable="'id'">{{usuario.id}}</td>
+              <td align="center" data-title="'Nombre'" sortable="'name'">{{usuario.name}}</td>
+              <td align="center" data-title="'Email'" sortable="'email'">{{usuario.email}}</td>
+              <td align="center" data-title="'Creaci&oacute;n'" sortable="'created_at'">{{usuario.created_at}}</td>
+              <td align="center" data-title="'Actualizaci&oacute;n'" sortable="'updated_at'">{{usuario.updated_at}}</td>
+
+              <td align="center" data-title=""><button class="btn btn-danger" data-toggle="modal" ng-click= "showDelete(usuario)" data-target="#borrarusuario"><i class="fa fa-eraser"></i></button></td>
+
+              <td align="center" data-title=""><button class="btn btn-primary" data-toggle="modal" ng-click= "showEdit(usuario)" data-target="#editarusuario" ><i class="fa fa-pencil"></i></button></td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-4">
+    <button class="btn btn-primary" data-toggle="modal" data-target="#crearusuario"><i class="fa fa-plus"></i></button>
+  </div>
+
+</div>
+
+
+
+<!-- init modal soft delete owner -->
+<div class="modal fade" id="borrarusuario" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Borrar Usuario</h4>
+        <aside>Desea eliminar el usuario {{usuarioBorrar.name}} ?</aside>
+      </div>
+      <div class="modal-body">
+        <button type="button" class="btn btn-success" data-dismiss="modal" ng-click="eliminar()">Confirmar</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Rechazar</button>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end modal soft delete owner -->
+
+
+
+<!-- init modal soft update owner -->
+<div class="modal fade" id="editarusuario" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <h4 class="modal-title" id="myModalLabel">Editar Usuario</h4>
+      <div class="modal-body">
+        <form class="form-horizontal col-lg-8 col-md-8 col-xs-10" role="form">
+          <div class="form-group">
+            <label>Nombre*</label>
+            <input type="text" name="nombre" class="form-control" ng-model="usuarioEditar.name" ng-model-options="{ getterSetter: true }" >
+          </div>
+          <div class="form-group">
+            <label>Email*</label>
+            <input type="text"  name="email" class="form-control" ng-model="usuarioEditar.email" ng-model-options="{ getterSetter: true }">
+          </div>
+          <div class="form-group"> 
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="button" class="btn btn-success" 
+              data-dismiss="modal" ng-click="editar()">Confirmar</button>
+
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Rechazar</button>
+            </div>
+          </div>
+        </form> 
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end modal soft update owner -->
+
+
+<!-- init modal soft create owner -->
+<div class="modal fade" id="crearusuario" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <h4 class="modal-title" id="myModalLabel">Agregar Usuario</h4>
+      <div class="modal-body">
+        <form class="form-horizontal col-lg-8 col-md-8 col-xs-10" role="form">
+          <div class="form-group">
+            <label>Nombre*</label>
+            <input type="text" name="nombre" class="form-control" ng-model="usuarioCrear.name" >
+          </div>
+          <div class="form-group">
+            <label>Email*</label>
+            <input type="email"  name="email" class="form-control" 
+            placeholder="email@example" ng-model="usuarioCrear.email" >
+          </div>
+          <div class="form-group">
+            <label>Contraseña*</label>
+            <input type="password" name="password" class="form-control" 
+            ng-model="usuarioCrear.password" >
+          </div>
+          <div class="form-group"> 
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-success" 
+              data-dismiss="modal" ng-click="crear()">Confirmar</button>
+
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Rechazar</button>
+            </div>
+          </div>
+        </form> 
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end modal soft create owner -->
+
