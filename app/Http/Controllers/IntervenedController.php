@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Obsan\Entities\Intervened;
 use App\Http\Requests\IntervenedCreateRequest;
+use App\Http\Requests\IntervenedUpdateRequest;
 
 class IntervenedController extends Controller
 {
