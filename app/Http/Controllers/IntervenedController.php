@@ -26,7 +26,7 @@ class IntervenedController extends Controller
     {
         $u = $this->model->find($id);
         if(is_null($u))
-            return response()->json(['User does not exist'], 400);
+            return response()->json(['Intervened does not exist'], 400);
         return response()->json($u->update($request->toArray()), 202);
     }
 }
