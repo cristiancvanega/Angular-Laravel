@@ -20,12 +20,12 @@ class EvaluationController extends Controller
 
     public function create(EvaluationCreateRequest $request)
     {
-        return $this->responseEntityStore($this->repository->model->create($request->toArray()));
+        return $this->responseEntityStore($this->repository->create($request->toArray()));
     }
 
     public function update(EvaluationUpdateRequest $request, $id)
     {
-        $u = $this->repository->model->find($id);
+        $u = $this->repository->find($id);
         if(is_null($u))
             return response()->json(['Evaluation does not exist'], 400);
         return response()->json($u->update($request->toArray()), 202);

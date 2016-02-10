@@ -20,12 +20,12 @@ class MunicipalityController extends Controller
 
     public function create(MunicipalityCreateRequest $request)
     {
-        return $this->responseEntityStore($this->repository->model->create($request->toArray()));
+        return $this->responseEntityStore($this->repository->create($request->toArray()));
     }
 
     public function update(MunicipalityUpdateRequest $request, $id)
     {
-        $u = $this->repository->model->find($id);
+        $u = $this->repository->find($id);
         if(is_null($u))
             return response()->json(['Municipality does not exist'], 400);
         return response()->json($u->update($request->toArray()), 202);

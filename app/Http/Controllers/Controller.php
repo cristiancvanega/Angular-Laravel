@@ -29,13 +29,13 @@ abstract class Controller extends MainController
      */
 	public function all()
 	{
-		$collection = $this->repository->model->all();
+		$collection = $this->repository->all();
 		return response()->json($collection, 200);
 	}
 
 	public function find($id)
 	{
-		$m = $this->repository->model->find($id);
+		$m = $this->repository->find($id);
 		if(is_null($m))
 			return $this->responseBadRequest('repository does not exist');
 		return response()->json($m, 200);
@@ -43,7 +43,7 @@ abstract class Controller extends MainController
 
 	public function delete($id)
 	{
-		$m = $this->repository->model->find($id);
+		$m = $this->repository->find($id);
 		if(is_null($m))
 			return $this->responseBadRequest('repository does not exist');
 		return response()->json($m->delete(), 202);
