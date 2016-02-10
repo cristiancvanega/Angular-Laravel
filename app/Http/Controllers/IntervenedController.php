@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Obsan\Repositories\IntervenedRepository;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -12,19 +13,19 @@ use App\Http\Requests\IntervenedUpdateRequest;
 
 class IntervenedController extends Controller
 {
-    public function __construct(Intervened $intervened)
+    public function __construct(IntervenedRepository $repository)
     {
-        $this->model = $intervened;
+        $this->repository = $repository;
     }
 
     public function create(IntervenedCreateRequest $request)
     {
-        return $this->responseEntityStore($this->model->create($request->toArray()));
+        return $this->responseEntityStore($this->repository->model->create($request->toArray()));
     }
 
     public function update(IntervenedUpdateRequest $request, $id)
     {
-        $u = $this->model->find($id);
+        $u = $this->repository->model->find($id);
         if(is_null($u))
             return response()->json(['Intervened does not exist'], 400);
         return response()->json($u->update($request->toArray()), 202);

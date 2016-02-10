@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Obsan\Repositories\BaseRepository;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as MainController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -16,30 +17,35 @@ use App\Http\Requests\UserDeleteRequest;
 
 abstract class Controller extends MainController
 {
-	protected $model;
+	protected $repository;
 
-    /**
+	public function __construct(BaseRepository $repository)
+	{
+		$this->repository = $repository;
+	}
+
+	/**
      * @return mixed
      */
 	public function all()
 	{
-		$collection = $this->model->all();
+		$collection = $this->repository->model->all();
 		return response()->json($collection, 200);
 	}
 
 	public function find($id)
 	{
-		$m = $this->model->find($id);
+		$m = $this->repository->model->find($id);
 		if(is_null($m))
-			return $this->responseBadRequest('Model does not exist');
+			return $this->responseBadRequest('repository does not exist');
 		return response()->json($m, 200);
 	}
 
 	public function delete($id)
 	{
-		$m = $this->model->find($id);
+		$m = $this->repository->model->find($id);
 		if(is_null($m))
-			return $this->responseBadRequest('Model does not exist');
+			return $this->responseBadRequest('repository does not exist');
 		return response()->json($m->delete(), 202);
 	}
 

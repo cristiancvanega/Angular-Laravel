@@ -1,19 +1,14 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: cristiancvanega
- * Date: 2/6/16
- * Time: 3:03 PM
- */
-
 namespace App\Obsan\Repositories;
 
 
+use Illuminate\Database\Eloquent\Model;
+
 abstract class BaseRepository
 {
-    protected $model;
+    public $model;
 
-    public function __construct($model)
+    public function __construct(Model $model)
     {
         $this->model = $model;
     }

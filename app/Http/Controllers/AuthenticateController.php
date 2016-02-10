@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Obsan\Repositories\UserRepository;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -14,6 +15,11 @@ use Tymon\JWTAuth\Exceptions\TokenInvalidException;
 
 class AuthenticateController extends Controller
 {
+    public function __construct(UserRepository $repository)
+    {
+        parent::__construct($repository);
+    }
+
     public function authenticate()
     {
         // grab credentials from the request
