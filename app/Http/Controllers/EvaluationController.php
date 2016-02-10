@@ -30,4 +30,9 @@ class EvaluationController extends Controller
             return response()->json(['Evaluation does not exist'], 400);
         return response()->json($u->update($request->toArray()), 202);
     }
+
+    public function getReportData()
+    {
+        return response()->json($this->repository->getData());
+    }
 }
