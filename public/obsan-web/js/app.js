@@ -8,6 +8,14 @@ app.config(["$routeProvider", function($routeProvider)
         controller: "GestionUsuarios",
         templateUrl: "views/listUsr.html"
     })
+    .when("/entidades", {
+        controller: "GestionEntidades",
+        templateUrl: "views/listEnt.html"
+    })
+    .when("/municipios", {
+        controller: "GestionMunicipios",
+        templateUrl: "views/listMunicipio.html"
+    })
     .otherwise({
         redirectTo: 'index.html'
     });
