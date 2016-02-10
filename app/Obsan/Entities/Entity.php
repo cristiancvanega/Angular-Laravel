@@ -8,7 +8,7 @@ class Entity extends Model
 {
     protected $table = 'entities';
 
-    protected $fillable =['name'];
+    protected $fillable =['name', 'email', 'phone'];
 
     public function interventions()
     {
