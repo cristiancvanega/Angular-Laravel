@@ -16,4 +16,6 @@ Route::group([], function ()
 	require(__DIR__ . '/EvaluationRoutes.php');
 
 	require(__DIR__ . '/EntityRoutes.php');
+
+	require(__DIR__ . '/Reports.php');
 });
