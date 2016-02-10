@@ -12,6 +12,7 @@
 */
 
 Route::get('/', function () {
+    return redirect(env('obsan-web'));
     return view('welcome');
 });
 require ('Routes/BaseRoutes.php');
