@@ -24,19 +24,19 @@ class InterventionCreateRequest extends Request
     public function rules()
     {
         return [
-            'entity_id'                     => 'required|numeric',
-            'municipality_id'               => 'required|numeric',
+            'entity_id'                     => 'required|numeric|exists:entities,id',
+            'municipality_id'               => 'required|numeric|exists:municipalities,id',
             'name'                          => 'required|string',
             'start_date'                    => 'required|date',
             'end_date'                      => 'date',
             'address'                       => 'required|string',
             'description'                   => 'required|string',
-            'diversidad_dieta_inicio'       => 'required|numeric',
-            'diversidad_dieta_fin'          => 'numeric',
-            'variedad_dieta_inicio'         => 'required|numeric',
-            'variedad_dieta_fin'            => 'numeric',
-            'inseguridad_alimentaria_inicio'=> 'required|numeric',
-            'inseguridad_alimentaria_fin'   =>'numeric'
+            'diversidad_dieta_inicio'       => 'required|numeric|min:0|max:2',
+            'diversidad_dieta_fin'          => 'numeric|min:0|max:2',
+            'variedad_dieta_inicio'         => 'required|numeric|min:0|max:2',
+            'variedad_dieta_fin'            => 'numeric|min:0|max:2',
+            'inseguridad_alimentaria_inicio'=> 'required|numeric|min:0|max:3',
+            'inseguridad_alimentaria_fin'   =>'numeric|min:0|max:3'
         ];
     }
 }

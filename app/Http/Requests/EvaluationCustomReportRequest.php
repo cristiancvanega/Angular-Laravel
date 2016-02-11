@@ -24,13 +24,13 @@ class EvaluationCustomReportRequest extends Request
     public function rules()
     {
         return [
-            'intervencion_id'       => 'numeric',
-            'user_id'               => 'numeric',
+            'intervention_id'       => 'numeric|exists:interventions,id',
+            'user_id'               => 'numeric|exists:users,id',
             'date'                  => 'date',
             'descripcion_evidencia' => 'string',
             'impacto'               => 'string',
-            'estado_inicial'        => 'numeric',
-            'estado_final'          => 'numeric',
+            'estado_inicial'        => 'string',
+            'estado_final'          => 'string',
             'description'           => 'string',
             'recomendaciones'       => 'string'
         ];
