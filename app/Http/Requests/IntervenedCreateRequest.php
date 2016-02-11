@@ -30,7 +30,7 @@ class IntervenedCreateRequest extends Request
             'address'       => 'string',
             'phone'         => 'numeric',
             'email'         => 'email|unique:users,email',
-            'pupilage'      => 'numeric'
+            'pupilage'      => 'numeric|min:1|max:3|'
         ];
     }
 }

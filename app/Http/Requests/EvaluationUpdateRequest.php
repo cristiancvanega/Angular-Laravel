@@ -24,13 +24,13 @@ class EvaluationUpdateRequest extends Request
     public function rules()
     {
         return [
-            'intervencion_id'       => 'numeric',
-            'user_id'               => 'numeric',
+            'intervention_id'       => 'numeric|exists:interventions,id',
+            'user_id'               => 'numeric|exists:users,id',
             'date'                  => 'date',
             'descripcion_evidencia' => 'string',
-            'impacto'               => 'numeric',
-            'estado_inicial'        => 'numeric',
-            'estado_final'          => 'numeric',
+            'impacto'               => 'numeric|min:0|max:8',
+            'estado_inicial'        => 'numeric|min:0|max:2',
+            'estado_final'          => 'numeric|min:0|max:2',
             'description'           => 'string',
             'recomendaciones'       => 'string'
         ];

@@ -24,13 +24,13 @@ class EvaluationCreateRequest extends Request
     public function rules()
     {
         return [
-            'intervention_id'       => 'required|numeric',
-            'user_id'               => 'required|numeric',
+            'intervention_id'       => 'required|numeric|exists:interventions,id',
+            'user_id'               => 'required|numeric|exists:users,id',
             'date'                  => 'required|date',
             'descripcion_evidencia' => 'string',
-            'impacto'               => 'required|numeric',
-            'estado_inicial'        => 'numeric',
-            'estado_final'          => 'numeric',
+            'impacto'               => 'required|numeric|min:0|max:8',
+            'estado_inicial'        => 'numeric|min:0|max:2',
+            'estado_final'          => 'numericmin:0|max:2',
             'description'           => 'required|string',
             'recomendaciones'       => 'string'
         ];

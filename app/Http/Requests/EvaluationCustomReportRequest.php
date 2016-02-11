@@ -28,7 +28,7 @@ class EvaluationCustomReportRequest extends Request
             'user_id'               => 'numeric',
             'date'                  => 'date',
             'descripcion_evidencia' => 'string',
-            'impacto'               => 'numeric',
+            'impacto'               => 'string',
             'estado_inicial'        => 'numeric',
             'estado_final'          => 'numeric',
             'description'           => 'string',

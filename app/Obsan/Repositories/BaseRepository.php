@@ -30,9 +30,8 @@ abstract class BaseRepository
 
     public function getCustomReport(Array $array)
     {
-        $query = ['intervention_id' => '2', 'user_id' => '3'];
         \Log::info($array);
-        \Log::info($query);
+        \Log::info($this->model->geTtable());
         return $this->model->where($array)->get();
     }
 }
