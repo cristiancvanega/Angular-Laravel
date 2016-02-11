@@ -17,6 +17,7 @@ app.service('TableService', function ($http, $filter) {
     function transformData(data,filter,params){
         return sliceData( orderData( filterData(data,filter), params ), params);
     }
+
     var service = {
         cachedData:[],
         getTable:function($defer, params, filter, data){
@@ -37,6 +38,62 @@ app.service('TableService', function ($http, $filter) {
                 $defer.resolve(transformedData);
             }
         }
+    };
+    return service;
+
+});
+
+app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$route,TableService,$location) {
+
+
+    var service = {
+        listar:function($scope){
+            $http.get('http://obsan.eduagil.com/'+$scope.tabla)
+            .success(function(data, status, headers, config)
+            {
+                $scope.registros = $scope.registros.concat(data);
+                $scope.total=$scope.registros.length;
+                $scope.tableParams = new ngTableParams({page:1, count:10, sorting: { id: 'asc'}}, {
+                    total: $scope.registros.length,
+                    getData: function($defer, params)
+                    {
+                        TableService.getTable($defer,params,$scope.filter, $scope.registros);
+                    }
+                });
+                $scope.tableParams.reload();
+                $scope.$watch("filter.$", function () {
+                    $scope.tableParams.reload();
+                });
+            });
+
+        },
+
+        eliminar:function($scope){
+            $http.delete('http://obsan.eduagil.com/'+$scope.tabla+'/'+$scope.registroBorrar.id)
+            .success(function(data, status, headers, config)
+            {
+                $location.path($scope.url);
+                $route.reload();
+            });
+        },
+
+        editar:function($scope){
+            $http.put('http://obsan.eduagil.com/'+$scope.tabla+'/'+$scope.registroEditar.id,$scope.registroEditar)
+            .success(function(data, status, headers, config)
+            {
+            });
+        },
+
+        crear: function($scope,datos){
+            $http.post('http://obsan.eduagil.com/'+$scope.tabla,datos)
+            .success(function(data, status, headers, config)
+            {
+                $location.path($scope.url);
+                $route.reload();
+            });
+        }
+
+
     };
     return service;
 

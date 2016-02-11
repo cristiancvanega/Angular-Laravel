@@ -1,79 +1,145 @@
 var app = angular.module('obsan');
 
 app.controller("GestionUsuarios", [
-    '$scope', '$http', '$filter', 'ngTableParams', 'TableService','$timeout', function($scope, $http, $filter, ngTableParams, TableService,$timeout)
-{
-    $scope.usuarios = [], $scope.total=0, $scope.usuarioEditar= {},
-     $scope.usuarioBorrar ={}, $scope.usuarioCrear={};
-
-    $scope.listar = function(page)
+    '$scope','serviceHttp',
+    function($scope,serviceHttp)
     {
-        $http.get('http://obsan.eduagil.com/user')
-            .success(function(data, status, headers, config)
-            {
-                $scope.usuarios = $scope.usuarios.concat(data);
-                $scope.total=$scope.usuarios.length;
-                $scope.tableParams = new ngTableParams({page:1, count:10, sorting: { id: 'asc'}}, {
-                    total: $scope.usuarios.length,
-                    getData: function($defer, params)
-                    {
-                        TableService.getTable($defer,params,$scope.filter, $scope.usuarios);
-                    }
-                });
-                $scope.tableParams.reload();
-                $scope.$watch("filter.$", function () {
-                    $scope.tableParams.reload();
-                });
-            });
-    };
-    $scope.listar();
+        $scope.registros = [], $scope.total=0, $scope.registroEditar= {},
+        $scope.registroBorrar ={}, $scope.registroCrear={},$scope.tabla="user"
+        $scope.url="/usuarios";
 
-    $scope.eliminar= function()
-    {
-        $http.delete('http://obsan.eduagil.com/user/'+$scope.usuarioBorrar.id)
-        .success(function(data, status, headers, config)
+        $scope.listar = function()
         {
-            window.location.reload();
-        });
-    };
+            serviceHttp.listar($scope);
+        };
+        $scope.listar();
 
-    $scope.editar= function()
-    {
-        $http.put('http://obsan.eduagil.com/user/'+$scope.usuarioEditar.id,{
-            email: $scope.usuarioEditar.email,
-            name: $scope.usuarioEditar.name
-        })
-            .success(function(data, status, headers, config)
+        $scope.eliminar= function()
         {
-        });
-    };
+            serviceHttp.eliminar($scope);
+        };
 
-    $scope.crear= function()
-    {
-        $http.post('http://obsan.eduagil.com/user',{
-            email: $scope.usuarioCrear.email,
-            name: $scope.usuarioCrear.name,
-            password: $scope.usuarioCrear.password
-        })
-            .success(function(data, status, headers, config)
+        $scope.editar= function()
         {
-        });
-    };
+            serviceHttp.editar($scope);
+        };
+
+        $scope.crear= function()
+        {
+            datos={
+                email: $scope.registroCrear.email,
+                name: $scope.registroCrear.name,
+                password: $scope.registroCrear.password
+            }
+            serviceHttp.crear($scope,datos);
+        };
 
 
-    $scope.showEdit = function(usuario)
+        $scope.showEdit = function(registro)
+        {
+            $scope.registroEditar = registro;
+
+        };
+
+        $scope.showDelete = function(registro)
+        {
+            $scope.registroBorrar = registro;
+        };
+
+    }]);
+
+
+app.controller("GestionEntidades", [
+    '$scope','serviceHttp',
+    function($scope,serviceHttp)
     {
-        $scope.usuarioEditar = usuario;
+        $scope.registros = [], $scope.total=0, $scope.registroEditar= {},
+        $scope.registroBorrar ={}, $scope.registroCrear={},$scope.tabla="entity"
+        $scope.url="/entidades";
 
-        $http.get('http://obsan.eduagil.com/user/'+$scope.usuarioEditar.id)
-            .success(function(data, status, headers, config)
-            {
-            });
-    };
+        $scope.listar = function()
+        {
+            serviceHttp.listar($scope);
+        };
+        $scope.listar();
 
-    $scope.showDelete = function(usuario)
+        $scope.eliminar= function()
+        {
+            serviceHttp.eliminar($scope);
+        };
+
+        $scope.editar= function()
+        {
+            serviceHttp.editar($scope);
+        };
+
+        $scope.crear= function()
+        {
+            datos={
+                name: $scope.registroCrear.name,
+                email: $scope.registroCrear.email,
+                phone: $scope.registroCrear.phone
+            }
+            serviceHttp.crear($scope,datos);
+        };
+
+
+        $scope.showEdit = function(registro)
+        {
+            $scope.registroEditar = registro;
+
+        };
+
+        $scope.showDelete = function(registro)
+        {
+            $scope.registroBorrar = registro;
+        };
+
+    }]);
+
+app.controller("GestionMunicipios", [
+    '$scope','serviceHttp',
+    function($scope,serviceHttp)
     {
-        $scope.usuarioBorrar = usuario;
-    };
+        $scope.registros = [], $scope.total=0, $scope.registroEditar= {},
+        $scope.registroBorrar ={}, $scope.registroCrear={},$scope.tabla="municipality"
+        $scope.url="/municipios";
 
-}]);
+        $scope.listar = function()
+        {
+            serviceHttp.listar($scope);
+        };
+        $scope.listar();
+
+        $scope.eliminar= function()
+        {
+            serviceHttp.eliminar($scope);
+        };
+
+        $scope.editar= function()
+        {
+            serviceHttp.editar($scope);
+        };
+
+        $scope.crear= function()
+        {
+            datos={
+                name: $scope.registroCrear.name,
+            }
+            serviceHttp.crear($scope,datos);
+        };
+
+
+        $scope.showEdit = function(registro)
+        {
+            $scope.registroEditar = registro;
+
+        };
+
+        $scope.showDelete = function(registro)
+        {
+            $scope.registroBorrar = registro;
+        };
+
+    }]);
+
