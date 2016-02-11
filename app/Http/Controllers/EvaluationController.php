@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Obsan\Entities\Evaluation;
 use App\Http\Requests\EvaluationCreateRequest;
 use App\Http\Requests\EvaluationUpdateRequest;
+use App\Http\Requests\EvaluationCustomReportRequest;
 
 class EvaluationController extends Controller
 {
@@ -34,5 +35,10 @@ class EvaluationController extends Controller
     public function getReportData()
     {
         return response()->json($this->repository->getData());
+    }
+
+    public function getCustomReport(EvaluationCustomReportRequest $request)
+    {
+        return response()->json($this->repository->getCustomReport($request->toArray()));
     }
 }

@@ -22,8 +22,9 @@ $factory->define(App\Obsan\Entities\User::class, function (Faker\Generator $fake
 
 $factory->define(App\Obsan\Entities\Entity::class, function (Faker\Generator $faker) {
     return [
+        'name'  => $faker->streetName,
         'email' => $faker->email,
-        'phone'   => $faker->phoneNumber
+        'phone' => $faker->phoneNumber
     ];
 });
 

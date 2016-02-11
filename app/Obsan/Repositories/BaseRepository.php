@@ -27,4 +27,12 @@ abstract class BaseRepository
     {
         return $this->model->all();
     }
+
+    public function getCustomReport(Array $array)
+    {
+        $query = ['intervention_id' => '2', 'user_id' => '3'];
+        \Log::info($array);
+        \Log::info($query);
+        return $this->model->where($array)->get();
+    }
 }
