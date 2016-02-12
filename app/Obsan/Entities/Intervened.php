@@ -13,7 +13,9 @@ class Intervened extends Model
         'document_type',
         'document',
         'email',
-        'pupilage'
+        'pupilage',
+        'address',
+        'phone'
     ];
 
     public function intervened_intervention()

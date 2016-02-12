@@ -25,12 +25,12 @@ class IntervenedUpdateRequest extends Request
     {
         return [
             'name'          => 'string',
-            'document_type' => 'numeric|min:0|max:3',
+            'document_type' => 'string|min:0|max:3',
             'document'      => 'numeric',
             'address'       => 'string',
             'phone'         => 'numeric',
             'email'         => 'email|unique:users,email',
-            'pupilage'      => 'numeric|min:0|max:4'
+            'pupilage'      => 'string'
         ];
     }
 }

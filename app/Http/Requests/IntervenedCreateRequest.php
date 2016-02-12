@@ -25,12 +25,12 @@ class IntervenedCreateRequest extends Request
     {
         return [
             'name'          => 'required|string',
-            'document_type' => 'required|numeric|min:0|max:3',
+            'document_type' => 'required|string|min:0|max:3',
             'document'      => 'required|numeric',
             'address'       => 'string',
             'phone'         => 'numeric',
             'email'         => 'email|unique:users,email',
-            'pupilage'      => 'numeric|min:0|max:4'
+            'pupilage'      => 'string'
         ];
     }
 }
