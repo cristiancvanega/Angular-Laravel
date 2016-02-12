@@ -9,7 +9,7 @@ class  Intervention extends Model
     protected $table = 'interventions';
 
     protected $fillable =[
-        'entity_id', 
+        'entity_id',
         'municipality_id',
         'name',
         'start_date',
@@ -19,23 +19,23 @@ class  Intervention extends Model
         'evidencias_planeadas'
     ];
 
-    public function entities()
+    public function entitie()
     {
-        return $this->belongsTo('entities', 'id', 'entity_id');
+        return $this->belongsTo(Entity::getNamespace(), 'id', 'entity_id');
     }
 
     public function intervened_intervention()
     {
-        return $this->belongsToMany('intervened', 'intervened_intervention');
+        return $this->belongsTo(IntervenedIntervention::getNamespace());
     }
 
     public function municipality()
     {
-        $this->belongsTo('municipalities');
+        $this->belongsTo(Municipality::getNamespace());
     }
 
     public function evaluations()
     {
-        return $this->hasMany('evaluations');
+        return $this->hasMany(Evaluation::getNamespace());
     }
 }
