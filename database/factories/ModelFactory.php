@@ -41,7 +41,6 @@ $factory->define(App\Obsan\Entities\Intervention::class, function (Faker\Generat
         'municipality_id'                   => $faker->numberBetween(1,15),
         'start_date'                        => $faker->date('y-m-d'),
         'end_date'                          => $faker->date('y-m-d'),
-        'address'                           => $faker->streetAddress,
         'description'                       => $faker->paragraph,
         'evidencias_planeadas'              => $faker->paragraph,
     ];
