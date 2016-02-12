@@ -1,6 +1,8 @@
 var app = angular.module('obsan');
+var jwt = '';
 var url = "http://obsan.app/";
 //var url = "http://obsan.eduagil.com/"; 
+
 
 app.service('TableService', function ($http, $filter) {
 
@@ -50,7 +52,7 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
 
     var service = {
         listar:function($scope){
-            $http.get(url+$scope.tabla)
+            $http.get(url+$scope.tabla+'?token='+jwt)
             .success(function(data, status, headers, config)
             {
                 $scope.registros = $scope.registros.concat(data);
@@ -71,7 +73,7 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
         },
 
         eliminar:function($scope){
-            $http.delete(url+$scope.tabla+'/'+$scope.registroBorrar.id)
+            $http.delete(url+$scope.tabla+'/'+$scope.registroBorrar.id+'?token='+jwt)
             .success(function(data, status, headers, config)
             {
                 $location.path($scope.url);
@@ -80,7 +82,7 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
         },
 
         editar:function($scope){
-            $http.put(url+$scope.tabla+'/'+$scope.registroEditar.id,$scope.registroEditar)
+            $http.put(url+$scope.tabla+'/'+$scope.registroEditar.id,$scope.registroEditar+'?token='+jwt)
             .success(function(data, status, headers, config)
             {
                 $location.path($scope.url);
@@ -89,7 +91,7 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
         },
 
         crear: function($scope,datos){
-            $http.post(url+$scope.tabla,datos)
+            $http.post(url+$scope.tabla,datos+'?token='+jwt)
             .success(function(data, status, headers, config)
             {
                 $location.path($scope.url);
