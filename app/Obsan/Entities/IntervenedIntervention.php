@@ -19,6 +19,6 @@ class IntervenedIntervention extends Model
 
     public function interventions()
     {
-        return $this->hasMany(Intervention::getNamespace());
+        return $this->hasMany(Intervention::getNamespace(), 'id', 'interventions_id');
     }
 }

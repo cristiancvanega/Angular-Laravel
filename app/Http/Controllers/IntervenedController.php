@@ -30,4 +30,12 @@ class IntervenedController extends Controller
             return response()->json(['Intervened does not exist'], 400);
         return response()->json($u->update($request->toArray()), 202);
     }
+
+    public function getInterventions($id)
+    {
+        $u = $this->repository->getInterventions($id);
+        if(is_null($u))
+            return response()->json(['Intervened does not exist'], 400);
+        return response()->json($u, 202);
+    }
 }

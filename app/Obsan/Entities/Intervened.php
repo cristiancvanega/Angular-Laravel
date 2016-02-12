@@ -20,6 +20,10 @@ class Intervened extends Model
 
     public function intervened_intervention()
     {
-        return $this->belongsTo(Intervention::getNamespace(), 'intervened_intervention');
+        return $this->belongsToMany(
+            Intervention::getNamespace(),
+            'intervened_intervention',
+            'intervened_id',
+            'interventions_id');
     }
 }
