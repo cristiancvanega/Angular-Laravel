@@ -20,6 +20,10 @@ app.config(["$routeProvider", function($routeProvider)
         controller: "GestionIntervenido",
         templateUrl: "views/intervenido.html"
     })
+    .when("/intervencion", {
+        controller: "GestionIntervencion",
+        templateUrl: "views/intervencion.html"
+    })
     .otherwise({
         redirectTo: 'index.html'
     });
