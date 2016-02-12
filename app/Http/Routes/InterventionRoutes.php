@@ -2,6 +2,8 @@
 
 Route::group(['prefix' => 'intervention'], function(){
 
+    Route::get('with_em', 'InterventionController@getWithEntitiesAndMunicipalities');
+
     Route::get('','InterventionController@all');
 
     Route::get('{id}','InterventionController@find');

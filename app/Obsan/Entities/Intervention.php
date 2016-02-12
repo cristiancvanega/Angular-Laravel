@@ -12,12 +12,11 @@ class  Intervention extends Model
         'name',
         'start_date',
         'end_date',
-        'address',
         'description',
         'evidencias_planeadas'
     ];
 
-    public function entitie()
+    public function entity()
     {
         return $this->belongsTo(Entity::getNamespace(), 'id', 'entity_id');
     }
@@ -34,11 +33,19 @@ class  Intervention extends Model
 
     public function municipality()
     {
-        $this->belongsTo(Municipality::getNamespace());
+        $this->belongsTo(
+            Municipality::getNamespace(),
+            'id',
+            'municipality_id'
+        );
     }
 
     public function evaluation()
     {
-        return $this->hasMany(Evaluation::getNamespace());
+        return $this->belongsTo(
+            Evaluation::getNamespace(),
+            'id',
+            'intervention_id'
+        );
     }
 }

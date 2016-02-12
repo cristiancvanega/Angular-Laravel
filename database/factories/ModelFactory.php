@@ -24,7 +24,7 @@ $factory->define(App\Obsan\Entities\Entity::class, function (Faker\Generator $fa
     return [
         'name'  => $faker->streetName,
         'email' => $faker->email,
-        'phone' => $faker->phoneNumber
+        'phone' => $faker->numberBetween(8100000, 9999999)
     ];
 });
 
