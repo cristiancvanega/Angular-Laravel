@@ -9,10 +9,14 @@ class  Intervention extends Model
     protected $table = 'interventions';
 
     protected $fillable =[
-        'entity_id', 'municipality_id', 'name', 'start_date',
-        'end_date', 'address', 'description', 'diversidad_dieta_inicio',
-        'diversidad_dieta_fin', 'variedad_dieta_inicio', 'variedad_dieta_fin',
-        'inseguridad_alimentaria_inicio', 'inseguridad_alimentaria_fin'
+        'entity_id', 
+        'municipality_id',
+        'name',
+        'start_date',
+        'end_date',
+        'address',
+        'description',
+        'evidencias_planeadas'
     ];
 
     public function entities()
