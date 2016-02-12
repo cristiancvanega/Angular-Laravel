@@ -1,5 +1,5 @@
 var app = angular.module('obsan');
-var jwt = '';
+var jwt = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6XC9cL29ic2FuLmFwcFwvYXV0aFwvdG9rZW4iLCJpYXQiOjE0NTUyNDk0ODYsImV4cCI6MTQ1NTI4NTQ4NiwibmJmIjoxNDU1MjQ5NDg2LCJqdGkiOiI0MTQ1YTQ1NTU4MWRmZmY3ZWE1ZjkwYWRkNTRiODQ1ZSJ9.f3lGK7g_7rRQdVAMhaGxpLhj5qGmapztIlUu_NS156E';
 var url = "http://obsan.app/";
 //var url = "http://obsan.eduagil.com/"; 
 
@@ -57,7 +57,7 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
             {
                 $scope.registros = $scope.registros.concat(data);
                 $scope.total=$scope.registros.length;
-                $scope.tableParams = new ngTableParams({page:1, count:10, sorting: { id: 'asc'}}, {
+                $scope.tableParams = new ngTableParams({page:1, count:10, sorting: { name: 'asc'}}, {
                     total: $scope.registros.length,
                     getData: function($defer, params)
                     {
