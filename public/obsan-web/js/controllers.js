@@ -205,25 +205,19 @@ app.controller("GestionIntervencion", [
     {
         $scope.registros = [],$scope.copiaregistros=[],$scope.total=0, $scope.registroEditar= {},
         $scope.registroBorrar ={},$scope.registroMunicipio =[],$scope.registroEntidad =[], 
-        $scope.registroCrear={},$scope.tabla="intervention",$scope.url="/intervencion";
+        $scope.municipality={},
+        $scope.registroCrear={},$scope.tabla="intervention",$scope.url="/intervencion",$scope.entidad;
 
         $scope.listar = function()
         {
             serviceHttp.listar($scope);
-            datosMunicipio();
-            datosEntidad();
+            datosSelect("municipality");
+            datosSelect("entity");
         };
         $scope.listar();
         
-        function datosMunicipio(){
-            $scope.tabla="municipality";
-            serviceHttp.consultar($scope);
-            $scope.registroMunicipio=$scope.copiaregistros;
-        };
-
-        function datosEntidad(){
-            $scope.tabla="entity";
-            serviceHttp.consultar($scope);
+        function datosSelect(tabla){
+            serviceHttp.consultar($scope,tabla);
         };
 
         $scope.eliminar= function()

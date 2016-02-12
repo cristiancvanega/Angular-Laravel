@@ -3,8 +3,8 @@ var app         = angular.module('obsan');
 var jwt         = '';
 //var prefixJWT   = '?token=';
 var prefixJWT   = '';
-//var url       = "http://obsan.app/";
-var url         = "http://obsan.eduagil.com/";
+var url       = "http://obsan.app/";
+//var url         = "http://obsan.eduagil.com/";
 
 
 app.service('TableService', function ($http, $filter) {
@@ -75,13 +75,17 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
 
         },
 
-        consultar:function($scope){
-            $http.get(url+$scope.tabla+prefixJWT+jwt)
+        consultar:function($scope,tabla){
+            $http.get(url+tabla+prefixJWT+jwt)
             .success(function(data, status, headers, config)
-            {
-                $scope.registroEntidad = data;
-                $scope.tabla="intervened";
-                console.log($scope.registroEntidad);
+            {   
+                if(tabla=="entity"){
+                    $scope.registroEntidad = data;
+                }
+
+                if(tabla=="municipality"){
+                    $scope.registroMunicipio = data;
+                }
             });
 
         },

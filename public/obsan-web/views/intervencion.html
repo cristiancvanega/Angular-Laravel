@@ -17,7 +17,7 @@
               <td align="center" data-title="'Descripción'" sortable="'description'">{{registro.description}}</td>
               <td align="center" data-title="'Evidencias Planeadas'" sortable="'evidencias_planeadas'">{{registro.evidencias_planeadas}}</td>
 
-              <!--<td align="center" data-title=""><button class="btn btn-primary" data-toggle="modal" ng-click= "showEdit(registro)" data-target="#editarregistro" ><i class="fa fa-pencil"></i></button></td>-->
+              <td align="center" data-title=""><button class="btn btn-primary" data-toggle="modal" ng-click= "showEdit(registro)" data-target="#editarregistro" ><i class="fa fa-pencil"></i></button></td>
 
             </tr>
           </tbody>
@@ -25,11 +25,6 @@
       </div>
     </div>
   </div>
-
-  <div class="col-xs-1">
-    <button class="btn btn-primary" data-toggle="modal" data-target="#crearregistro"><i class="fa fa-plus"></i></button>
-  </div>
-
 </div>
 
 
@@ -45,40 +40,26 @@
       <div class="modal-body">
         <form class="form-horizontal col-lg-8 col-md-8 col-xs-10" role="form">
           <div class="form-group">
-            <label>Nombre</label>
+            <label>Nombre de la intervención</label>
             <input type="text" name="nombre" class="form-control" ng-model="registroEditar.name" ng-model-options="{ getterSetter: true }" >
           </div>
           <div class="form-group">
-            <label>Tipo de Documento*</label>
-            <select class="form-control" ng-model="registroEditar.document_type">
-              <option ng-repeat="item in registroEntidad.name" value="{{registroEntidad.id}}" ></option>
-            </select>
+            <label>Seleccione una entidad</label>
+            <select class="form-control" ng-options="item.id as item.name for item in registroEntidad" ng-model="registroEditar.entity_id"></select>
           </div>
           <div class="form-group">
-            <label>Documento</label>
-            <input type="text" name="nombre" class="form-control" ng-model="registroEditar.document" >
+            <label>Seleccione un municipio</label>
+            <select class="form-control" ng-options="item.id as item.name for item in registroMunicipio" ng-model="registroEditar.municipality_id"></select>
           </div>
           <div class="form-group">
-            <label>Dirección</label>
-            <input type="text" name="nombre" class="form-control" ng-model="registroEditar.address" ng-model-options="{ getterSetter: true }" >
+            <label>Descripción</label>
+            <textarea type="text" name="description" class="form-control" ng-model="registroEditar.description" ng-model-options="{ getterSetter: true }" >  
+            </textarea>
           </div>
           <div class="form-group">
-            <label>Teléfono</label>
-            <input type="text" name="nombre" class="form-control" ng-model="registroEditar.phone" ng-model-options="{ getterSetter: true }" >
-          </div>
-          <div class="form-group">
-            <label>Email</label>
-            <input type="text" name="nombre" class="form-control" ng-model="registroEditar.email" ng-model-options="{ getterSetter: true }">
-          </div>
-          <div class="form-group">
-            <label>Escolaridad</label>
-            <select class="form-control" ng-model="registroEditar.pupilage">
-              <option value="1">ninguna</option>
-              <option value="2">preescolar</option>
-              <option value="3">básica</option>
-              <option value="4">media</option>
-              <option value="5">superior</option>
-            </select>
+            <label>Evidencias planeadas</label>
+            <textarea type="text" name="evidencias_planeadas" class="form-control" ng-model="registroEditar.evidencias_planeadas" ng-model-options="{ getterSetter: true }" >  
+            </textarea>
           </div>
           <div class="form-group"> 
             <div class="col-sm-offset-2 col-sm-10">
@@ -97,69 +78,5 @@
 <!-- end modal soft update intervention -->
 
 
-<!-- init modal soft create intervention -->
-<div class="modal fade" id="crearregistro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Agregar Intervención</h4>
-      </div>
-      <div class="modal-body">
-        <form class="form-horizontal col-lg-8 col-md-8 col-xs-10" role="form" name="registroForm">
-         <div class="form-group">
-          <label>Nombre</label>
-          <input type="text" name="nombre" class="form-control" ng-model="registroCrear.name" >
-        </div>
-        <div class="form-group">
-          <label>Tipo de Documento*</label>
-          <select class="form-control" ng-model="registroCrear.document_type">
-            <option value="1">Cédula de ciudadanía</option>
-            <option value="2">Tarjeta de identidad</option>
-            <option value="3">Registro civil de nacimiento</option>
-            <option value="4">Cédula de extranjería</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Documento</label>
-          <input type="text" name="document" class="form-control" ng-model="registroCrear.document" >
-        </div>
-        <div class="form-group">
-          <label>Dirección</label>
-          <input type="text" name="address" class="form-control" ng-model="registroCrear.address" >
-        </div>
-        <div class="form-group">
-          <label>Teléfono</label>
-          <input type="text" name="phone" class="form-control" ng-model="registroCrear.phone" >
-        </div>
-        <div class="form-group">
-          <label>Email</label>
-          <input type="text" name="email" class="form-control" ng-model="registroCrear.email">
-        </div>
-        <div class="form-group">
-          <label>Escolaridad</label>
-          <select class="form-control" ng-model="registroCrear.pupilage">
-            <option value="1">ninguna</option>
-            <option value="2">preescolar</option>
-            <option value="3">básica</option>
-            <option value="4">media</option>
-            <option value="5">superior</option>
-          </select>
-        </div>
-        <div class="form-group"> 
-          <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-success" 
-            data-dismiss="modal" ng-click="crear()">Confirmar</button>
 
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-          </div>
-        </div>
-      </form> 
-    </div>
-    <div class="modal-footer">
-    </div>
-  </div>
-</div>
-</div>
-<!-- end modal soft create intervention -->
 
