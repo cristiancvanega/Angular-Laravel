@@ -36,7 +36,7 @@ $factory->define(App\Obsan\Entities\Municipality::class, function (Faker\Generat
 
 $factory->define(App\Obsan\Entities\Intervention::class, function (Faker\Generator $faker) {
     return [
-        'name'  => $faker->name,
+        'name'                              => $faker->name,
         'start_date'                        => $faker->date('y-m-d'),
         'end_date'                          => $faker->date('y-m-d'),
         'address'                           => $faker->streetAddress,
