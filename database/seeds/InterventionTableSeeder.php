@@ -13,7 +13,7 @@ class InterventionTableSeeder extends Seeder
     public function run()
     {
         $i = 1;
-        while($i < 16)
+        while($i < 40)
         {
             for($j = 1; $j < 4; $j++)
             {
