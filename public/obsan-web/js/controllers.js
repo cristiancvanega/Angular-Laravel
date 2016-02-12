@@ -164,6 +164,7 @@ app.controller("GestionIntervenido", [
 
         $scope.editar= function()
         {
+            console.log($scope.registroEditar);
             serviceHttp.editar($scope);
         };
 
@@ -178,6 +179,7 @@ app.controller("GestionIntervenido", [
                 email: $scope.registroCrear.email,
                 pupilage: $scope.registroCrear.pupilage
             }
+            console.log(datos);
             serviceHttp.crear($scope,datos);
         };
 
