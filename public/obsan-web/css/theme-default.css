@@ -524,6 +524,7 @@ body.page-container-boxed.wall_10 {
 .x-navigation.x-navigation-horizontal .xn-logo a {
   border-bottom: 0px;
   width: 200px;
+  height: 200px;
 }
 .x-navigation.x-navigation-horizontal > li.xn-openable:before {
   display: none;
@@ -1010,7 +1011,7 @@ body.page-container-boxed.wall_10 {
   padding: 0px;
   border-bottom: 0px;
   color: #FFF;
-  height: 100px;
+  height: 200px;
 }
 .x-navigation > li.xn-logo > a:first-child:hover {
   background-color: white;

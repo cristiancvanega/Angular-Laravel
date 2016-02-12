@@ -9,7 +9,6 @@
         <table  ng-table="tableParams" class="table table-bordered table-striped">
           <tbody>
             <tr ng-repeat="registro in $data">
-              <td align="center" data-title="'Id'" sortable="'id'">{{registro.id}}</td>
               <td align="center" data-title="'Nombre'" sortable="'name'">{{registro.name}}</td>
               <td align="center" data-title=""><button class="btn btn-danger" data-toggle="modal" ng-click= "showDelete(registro)" data-target="#borrarregistro"><i class="fa fa-eraser"></i></button></td>
 

@@ -24,9 +24,10 @@ class UserUpdateRequest extends Request
     public function rules()
     {
         return [
+            'token'             => 'in',
             'name'              => 'string',
             'email'             => 'email',
-            'remember_token'    => 'string'
+            'remember_token'    => 'string',
         ];
     }
 }

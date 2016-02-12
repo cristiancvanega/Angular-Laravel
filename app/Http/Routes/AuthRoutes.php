@@ -1,3 +1,8 @@
 <?php
+Route::group(['prefix' => 'auth'], function(){
+   Route::group(['prefix' => 'token'], function(){
+       Route::post('', 'AuthenticateController@authenticate');
 
-Route::any('/tes_middleware', 'AuthenticateController@testMiddleware');
+       Route::get('refresh', 'AuthenticateController@testMiddleware')->middleware('jwt.refresh');
+   }) ;
+});
