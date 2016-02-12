@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Obsan\Entities\Intervened;
 use App\Http\Requests\IntervenedCreateRequest;
 use App\Http\Requests\IntervenedUpdateRequest;
+use App\Http\Requests\IntervenedCustomReportRequest;
 
 class IntervenedController extends Controller
 {
@@ -37,5 +38,10 @@ class IntervenedController extends Controller
         if(is_null($u))
             return response()->json(['Intervened does not exist'], 400);
         return response()->json($u, 202);
+    }
+
+    public function getCustomReport(IntervenedCustomReportRequest $request)
+    {
+        return response()->json($this->repository->getCustomReport($request->toArray()));
     }
 }
