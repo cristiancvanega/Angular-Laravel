@@ -2,13 +2,13 @@
 
 Route::group(['prefix' => 'intervention'], function(){
 
-    Route::get('/','InterventionController@all');
+    Route::get('','InterventionController@all');
 
-    Route::get('/{id}','InterventionController@find');
+    Route::get('{id}','InterventionController@find');
 
-    Route::post('/','InterventionController@create');
+    Route::post('','InterventionController@create');
 
-    Route::put('/','InterventionController@update');
+    Route::put('{id}','InterventionController@update');
 
     Route::delete('/{id}','InterventionController@delete');
 
