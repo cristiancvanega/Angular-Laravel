@@ -1,0 +1,193 @@
+<div class="panel panel-default">
+  <br><br>
+  <h2 align="center"><strong>Intervenidos</strong></h2>
+  <div class="col-xs-11">
+    <loading></loading>
+    <h3>B&uacute;squeda: <input class="form-control" type="text" ng-model="filter.$" /></h3>
+    <div class="panel-body panel-body-table">
+      <div class="table-responsive">
+        <table  ng-table="tableParams" class="table table-bordered table-striped">
+          <tbody>
+            <tr ng-repeat="registro in $data">
+              <td align="center" data-title="'Id'" sortable="'id'">{{registro.id}}</td>
+              <td align="center" data-title="'Nombre'" sortable="'name'">{{registro.name}}</td>
+              <td align="center" data-title="'Tipo Documento'" sortable="'document_type'">{{registro.document_type}}</td>
+              <td align="center" data-title="'Documento'" sortable="'document'">{{registro.document}}</td>
+              <td align="center" data-title="'Direcci&oacute;n'" sortable="'address'">{{registro.address}}</td>
+              <td align="center" data-title="'Tel&eacute;fono'" sortable="'phone'">{{registro.phone}}</td>
+              <td align="center" data-title="'Email'" sortable="'email'">{{registro.email}}</td>
+              <td align="center" data-title="'Escolaridad'" sortable="'pupilage'">{{registro.pupilage}}</td>
+              <td align="center" data-title="">
+                <button class="btn btn-danger" data-toggle="modal" ng-click= "showDelete(registro)" data-target="#borrarregistro"><i class="fa fa-eraser"></i></button></td>
+
+              <td align="center" data-title=""><button class="btn btn-primary" data-toggle="modal" ng-click= "showEdit(registro)" data-target="#editarregistro" ><i class="fa fa-pencil"></i></button></td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xs-1">
+    <button class="btn btn-primary" data-toggle="modal" data-target="#crearregistro"><i class="fa fa-plus"></i></button>
+  </div>
+
+</div>
+
+
+
+<!-- init modal soft delete intervened -->
+<div class="modal fade" id="borrarregistro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Borrar Intervenido</h4>
+        <aside>Desea eliminar el intervenido {{registroBorrar.name}} ?</aside>
+      </div>
+      <div class="modal-body">
+        <button type="button" class="btn btn-success" data-dismiss="modal" ng-click="eliminar()">Confirmar</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end modal soft delete intervened -->
+
+
+
+<!-- init modal soft update intervened -->
+<div class="modal fade" id="editarregistro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Editar Intervenido</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal col-lg-8 col-md-8 col-xs-10" role="form">
+          <div class="form-group">
+            <label>Nombre</label>
+            <input type="text" name="nombre" class="form-control" ng-model="registroEditar.name" ng-model-options="{ getterSetter: true }" >
+          </div>
+          <div class="form-group">
+            <label>Tipo de Documento*</label>
+            <select class="form-control" ng-model="registroEditar.document_type" ng-model-options="{ getterSetter: true }">
+              <option value="0">Cédula de ciudadanía</option>
+              <option value="1">Tarjeta de identidad</option>
+              <option value="2">Registro civil de nacimiento</option>
+              <option value="3">Cédula de extranjería</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Documento</label>
+            <input type="text" name="nombre" class="form-control" ng-model="registroEditar.document" >
+          </div>
+          <div class="form-group">
+            <label>Dirección</label>
+            <input type="text" name="nombre" class="form-control" ng-model="registroEditar.address" ng-model-options="{ getterSetter: true }" >
+          </div>
+          <div class="form-group">
+            <label>Teléfono</label>
+            <input type="text" name="nombre" class="form-control" ng-model="registroEditar.phone" ng-model-options="{ getterSetter: true }" >
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="text" name="nombre" class="form-control" ng-model="registroEditar.email" ng-model-options="{ getterSetter: true }">
+          </div>
+          <div class="form-group">
+            <label>Escolaridad</label>
+            <select class="form-control" ng-model="registroEditar.pupilage" ng-model-options="{ getterSetter: true }">
+              <option value="0">ninguna</option>
+              <option value="1">preescolar</option>
+              <option value="2">básica</option>
+              <option value="3">media</option>
+              <option value="3">superior</option>
+            </select>
+          </div>
+          <div class="form-group"> 
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="button" class="btn btn-success" 
+              data-dismiss="modal" ng-click="editar()">Confirmar</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+            </div>
+          </div>
+        </form> 
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end modal soft update intervened -->
+
+
+<!-- init modal soft create intervened -->
+<div class="modal fade" id="crearregistro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Agregar Intervenido</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal col-lg-8 col-md-8 col-xs-10" role="form" name="registroForm">
+         <div class="form-group">
+          <label>Nombre</label>
+          <input type="text" name="nombre" class="form-control" ng-model="registroCrear.name" >
+        </div>
+        <div class="form-group">
+          <label>Tipo de Documento*</label>
+          <select class="form-control" ng-model="registroCrear.document_type">
+            <option value="0">Cédula de ciudadanía</option>
+            <option value="1">Tarjeta de identidad</option>
+            <option value="2">Registro civil de nacimiento</option>
+            <option value="3">Cédula de extranjería</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Documento</label>
+          <input type="text" name="document" class="form-control" ng-model="registroCrear.document" >
+        </div>
+        <div class="form-group">
+          <label>Dirección</label>
+          <input type="text" name="address" class="form-control" ng-model="registroCrear.address" >
+        </div>
+        <div class="form-group">
+          <label>Teléfono</label>
+          <input type="text" name="phone" class="form-control" ng-model="registroCrear.phone" >
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="text" name="email" class="form-control" ng-model="registroCrear.email">
+        </div>
+        <div class="form-group">
+          <label>Escolaridad</label>
+          <select class="form-control" ng-model="registroCrear.pupilage">
+            <option value="0">ninguna</option>
+            <option value="1">preescolar</option>
+            <option value="2">básica</option>
+            <option value="3">media</option>
+            <option value="3">superior</option>
+          </select>
+        </div>
+        <div class="form-group"> 
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-success" 
+            data-dismiss="modal" ng-click="crear()">Confirmar</button>
+
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+          </div>
+        </div>
+      </form> 
+    </div>
+    <div class="modal-footer">
+    </div>
+  </div>
+</div>
+</div>
+<!-- end modal soft create intervened -->
+

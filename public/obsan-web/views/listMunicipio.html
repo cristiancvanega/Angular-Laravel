@@ -1,5 +1,6 @@
 <div class="panel panel-default">
   <br><br>
+  <h2 align="center"><strong>Municipios</strong></h2>
   <div class="col-xs-11">
     <loading></loading>
     <h3>B&uacute;squeda: <input class="form-control" type="text" ng-model="filter.$" /></h3>
@@ -10,9 +11,6 @@
             <tr ng-repeat="registro in $data">
               <td align="center" data-title="'Id'" sortable="'id'">{{registro.id}}</td>
               <td align="center" data-title="'Nombre'" sortable="'name'">{{registro.name}}</td>
-              <td align="center" data-title="'Creaci&oacute;n'" sortable="'created_at'">{{registro.created_at}}</td>
-              <td align="center" data-title="'Actualizaci&oacute;n'" sortable="'updated_at'">{{registro.updated_at}}</td>
-
               <td align="center" data-title=""><button class="btn btn-danger" data-toggle="modal" ng-click= "showDelete(registro)" data-target="#borrarregistro"><i class="fa fa-eraser"></i></button></td>
 
               <td align="center" data-title=""><button class="btn btn-primary" data-toggle="modal" ng-click= "showEdit(registro)" data-target="#editarregistro" ><i class="fa fa-pencil"></i></button></td>

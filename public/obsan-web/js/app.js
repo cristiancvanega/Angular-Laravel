@@ -16,6 +16,10 @@ app.config(["$routeProvider", function($routeProvider)
         controller: "GestionMunicipios",
         templateUrl: "views/listMunicipio.html"
     })
+    .when("/intervenidos", {
+        controller: "GestionIntervenido",
+        templateUrl: "views/intervenido.html"
+    })
     .otherwise({
         redirectTo: 'index.html'
     });
