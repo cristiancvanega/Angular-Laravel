@@ -6,7 +6,9 @@ class Municipality extends Model
 {
     protected $table = 'municipalities';
 
-    protected $fillable =['name'];
+    protected $fillable =[
+        'name'
+    ];
 
     public function interventions()
     {

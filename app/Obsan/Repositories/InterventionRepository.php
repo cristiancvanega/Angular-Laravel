@@ -25,12 +25,16 @@ class InterventionRepository extends BaseRepository
 
     public function getIntervened($id)
     {
-        return $this->model->with('intervened')->find($id);
+        return $this->model->with(
+            'intervened'
+        )->find($id);
     }
 
     public function getEvaluation($id)
     {
-        return $this->model->with('evaluation')->find($id);
+        return $this->model->with(
+            'evaluations'
+        )->find($id);
     }
 
     public function getWithEntitiesAndMunicipalities()
