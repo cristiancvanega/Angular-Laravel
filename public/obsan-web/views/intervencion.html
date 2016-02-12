@@ -12,12 +12,12 @@
               <td align="center" data-title="'Entidad'" sortable="'entity_id'">{{registro.entity_id}}</td>
               <td align="center" data-title="'Municipio'" sortable="'municipality_id'">{{registro.municipality_id}}</td>
               <td align="center" data-title="'Nombre'" sortable="'name'">{{registro.name}}</td>
-              <td align="center" data-title="'Documento'" sortable="'document'">{{registro.document}}</td>
-              <td align="center" data-title="'Direcci&oacute;n'" sortable="'address'">{{registro.address}}</td>
-              <td align="center" data-title="'Tel&eacute;fono'" sortable="'phone'">{{registro.phone}}</td>
-              <td align="center" data-title="'Email'" sortable="'email'">{{registro.email}}</td>
-              <td align="center" data-title="'Escolaridad'" sortable="'pupilage'">{{registro.pupilage}}</td>
-              <td align="center" data-title=""><button class="btn btn-primary" data-toggle="modal" ng-click= "showEdit(registro)" data-target="#editarregistro" ><i class="fa fa-pencil"></i></button></td>
+              <td align="center" data-title="'Inicio'" sortable="'start_date'">{{registro.start_date}}</td>
+              <td align="center" data-title="'Fin'" sortable="'end_date'">{{registro.end_date}}</td>
+              <td align="center" data-title="'Descripción'" sortable="'description'">{{registro.description}}</td>
+              <td align="center" data-title="'Evidencias Planeadas'" sortable="'evidencias_planeadas'">{{registro.evidencias_planeadas}}</td>
+
+              <!--<td align="center" data-title=""><button class="btn btn-primary" data-toggle="modal" ng-click= "showEdit(registro)" data-target="#editarregistro" ><i class="fa fa-pencil"></i></button></td>-->
 
             </tr>
           </tbody>
@@ -51,10 +51,7 @@
           <div class="form-group">
             <label>Tipo de Documento*</label>
             <select class="form-control" ng-model="registroEditar.document_type">
-              <option value="1">Cédula de ciudadanía</option>
-              <option value="2">Tarjeta de identidad</option>
-              <option value="3">Registro civil de nacimiento</option>
-              <option value="4">Cédula de extranjería</option>
+              <option ng-repeat="item in registroEntidad.name" value="{{registroEntidad.id}}" ></option>
             </select>
           </div>
           <div class="form-group">

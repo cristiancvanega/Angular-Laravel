@@ -72,6 +72,17 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
 
         },
 
+        consultar:function($scope){
+            $http.get(url+$scope.tabla+'?token='+jwt)
+            .success(function(data, status, headers, config)
+            {
+                $scope.registroEntidad = data;
+                $scope.tabla="intervened";
+                console.log($scope.registroEntidad);
+            });
+
+        },
+
         eliminar:function($scope){
             $http.delete(url+$scope.tabla+'/'+$scope.registroBorrar.id+'?token='+jwt)
             .success(function(data, status, headers, config)
