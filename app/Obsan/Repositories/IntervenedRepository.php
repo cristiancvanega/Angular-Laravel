@@ -20,6 +20,6 @@ class IntervenedRepository extends BaseRepository
 
     public function getInterventions($id)
     {
-        return $this->model->with(['intervened_intervention'])->find($id);
+        return $this->model->with(['interventions'])->find($id);
     }
 }

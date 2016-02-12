@@ -24,9 +24,14 @@ class  Intervention extends Model
         return $this->belongsTo(Entity::getNamespace(), 'id', 'entity_id');
     }
 
-    public function intervened_intervention()
+    public function intervened()
     {
-        return $this->belongsTo(IntervenedIntervention::getNamespace());
+        return $this->belongsToMany(
+            Intervened::getNamespace(),
+            'intervened_intervention',
+            'interventions_id',
+            'intervened_id'
+        );
     }
 
     public function municipality()

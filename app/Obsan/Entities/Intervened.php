@@ -18,12 +18,13 @@ class Intervened extends Model
         'phone'
     ];
 
-    public function intervened_intervention()
+    public function interventions()
     {
         return $this->belongsToMany(
             Intervention::getNamespace(),
             'intervened_intervention',
             'intervened_id',
-            'interventions_id');
+            'interventions_id'
+        );
     }
 }

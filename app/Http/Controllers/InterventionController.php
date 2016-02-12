@@ -25,7 +25,6 @@ class InterventionController extends Controller
 
     public function update(InterventionUpdateRequest $request)
     {
-        //dd($request->toArray());
         $i = $this->repository->find($request->id);
         if(is_null($i))
             return response()->json(['Intervention does not exist'], 400);
@@ -35,5 +34,13 @@ class InterventionController extends Controller
     public function getData()
     {
         return response()->json($this->repository->getData());
+    }
+
+    public function getIntervened($id)
+    {
+        $i = $this->repository->getIntervened($id);
+        if(is_null($i))
+            return response()->json(['Intervention does not exist'], 400);
+        return response()->json($i, 202);
     }
 }

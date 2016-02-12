@@ -1,6 +1,7 @@
 <?php
 
 Route::group(['prefix' => 'intervention'], function(){
+
     Route::get('/','InterventionController@all');
 
     Route::get('/{id}','InterventionController@find');
@@ -10,4 +11,6 @@ Route::group(['prefix' => 'intervention'], function(){
     Route::put('/','InterventionController@update');
 
     Route::delete('/{id}','InterventionController@delete');
+
+    Route::get('intervened/{id}', 'InterventionController@getIntervened');
 });

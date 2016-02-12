@@ -22,4 +22,9 @@ class InterventionRepository extends BaseRepository
             ->get();
         return $entidad;
     }
+
+    public function getIntervened($id)
+    {
+        return $this->model->with('intervened')->find($id);
+    }
 }
