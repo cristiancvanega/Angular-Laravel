@@ -203,9 +203,8 @@ app.controller("GestionIntervencion", [
     '$scope','serviceHttp',
     function($scope,serviceHttp)
     {
-        $scope.registros = [],$scope.copiaregistros=[],$scope.total=0, $scope.registroEditar= {},
+        $scope.registros = [],$scope.total=0, $scope.registroEditar= {},
         $scope.registroBorrar ={},$scope.registroMunicipio =[],$scope.registroEntidad =[], 
-        $scope.municipality={},
         $scope.registroCrear={},$scope.tabla="intervention",$scope.url="/intervencion",$scope.entidad;
 
         $scope.listar = function()
@@ -226,16 +225,15 @@ app.controller("GestionIntervencion", [
         };
 
         $scope.editar= function()
-        {
+        {   
+            angular.toJson($scope.registroEditar);
             serviceHttp.editar($scope);
         };
 
         $scope.crear= function()
         {
             datos={
-                name: $scope.registroCrear.name,
-                email: $scope.registroCrear.email,
-                phone: $scope.registroCrear.phone
+                
             }
             serviceHttp.crear($scope,datos);
         };
@@ -244,7 +242,6 @@ app.controller("GestionIntervencion", [
         $scope.showEdit = function(registro)
         {
             $scope.registroEditar = registro;
-
         };
 
         $scope.showDelete = function(registro)
