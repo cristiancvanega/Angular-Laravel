@@ -35,8 +35,9 @@ class InterventionRepository extends BaseRepository
 
     public function getWithEntitiesAndMunicipalities()
     {
-        return $this->model->with([
-            'evaluation'
-        ])->find(1);
+        return $this->model->with(
+            'municipality',
+            'entity'
+        )->get();
     }
 }

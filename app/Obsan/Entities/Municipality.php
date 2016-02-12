@@ -11,8 +11,7 @@ class Municipality extends Model
     public function interventions()
     {
         $this->hasMany(
-            Intervention::getNamespace(),
-            'municipality_id'
+            Intervention::getNamespace()
         );
     }
 }

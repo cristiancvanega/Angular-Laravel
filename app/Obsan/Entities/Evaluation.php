@@ -20,7 +20,7 @@ class Evaluation extends Model
 
     public function intervention()
     {
-        $this->hasMany(Intervention::getNamespace(), 'municipality_id');
+        $this->belongsTo(Intervention::getNamespace());
     }
 
     public function user()

@@ -18,7 +18,9 @@ class  Intervention extends Model
 
     public function entity()
     {
-        return $this->belongsTo(Entity::getNamespace(), 'id', 'entity_id');
+        return $this->belongsTo(
+            Entity::getNamespace()
+        );
     }
 
     public function intervened()
@@ -33,19 +35,15 @@ class  Intervention extends Model
 
     public function municipality()
     {
-        $this->belongsTo(
-            Municipality::getNamespace(),
-            'id',
-            'municipality_id'
+        return $this->belongsTo(
+            Municipality::getNamespace()
         );
     }
 
-    public function evaluation()
+    public function evaluations()
     {
-        return $this->belongsTo(
-            Evaluation::getNamespace(),
-            'id',
-            'intervention_id'
+        return $this->hasMany(
+            Evaluation::getNamespace()
         );
     }
 }
