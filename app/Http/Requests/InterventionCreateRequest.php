@@ -36,7 +36,7 @@ class InterventionCreateRequest extends Request
             'variedad_dieta_inicio'         => 'required|numeric|min:0|max:2',
             'variedad_dieta_fin'            => 'numeric|min:0|max:2',
             'inseguridad_alimentaria_inicio'=> 'required|numeric|min:0|max:3',
-            'inseguridad_alimentaria_fin'   =>'numeric|min:0|max:3'
+            'inseguridad_alimentaria_fin'   => 'numeric|min:0|max:3'
         ];
     }
 }
