@@ -22,11 +22,11 @@ class Evaluation extends Model
 
     public function intervention()
     {
-        $this->belongsTo('interventions', 'municipality_id');
+        $this->belongsTo(Intervention::getNamespace(), 'municipality_id');
     }
 
     public function user()
     {
-        return $this->belongsTo('users', 'id', 'user_id');
+        return $this->belongsTo(User::getNamespace(), 'id', 'user_id');
     }
 }
