@@ -1,4 +1,6 @@
 var app = angular.module('obsan');
+var url = "http://obsan.app/";
+//var url = "http://obsan.eduagil.com/"; 
 
 app.service('TableService', function ($http, $filter) {
 
@@ -48,7 +50,7 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
 
     var service = {
         listar:function($scope){
-            $http.get('http://obsan.eduagil.com/'+$scope.tabla)
+            $http.get(url+$scope.tabla)
             .success(function(data, status, headers, config)
             {
                 $scope.registros = $scope.registros.concat(data);
@@ -69,7 +71,7 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
         },
 
         eliminar:function($scope){
-            $http.delete('http://obsan.eduagil.com/'+$scope.tabla+'/'+$scope.registroBorrar.id)
+            $http.delete(url+$scope.tabla+'/'+$scope.registroBorrar.id)
             .success(function(data, status, headers, config)
             {
                 $location.path($scope.url);
@@ -78,14 +80,16 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
         },
 
         editar:function($scope){
-            $http.put('http://obsan.eduagil.com/'+$scope.tabla+'/'+$scope.registroEditar.id,$scope.registroEditar)
+            $http.put(url+$scope.tabla+'/'+$scope.registroEditar.id,$scope.registroEditar)
             .success(function(data, status, headers, config)
             {
+                $location.path($scope.url);
+                $route.reload();
             });
         },
 
         crear: function($scope,datos){
-            $http.post('http://obsan.eduagil.com/'+$scope.tabla,datos)
+            $http.post(url+$scope.tabla,datos)
             .success(function(data, status, headers, config)
             {
                 $location.path($scope.url);
