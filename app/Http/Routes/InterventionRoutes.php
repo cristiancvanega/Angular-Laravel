@@ -13,4 +13,6 @@ Route::group(['prefix' => 'intervention'], function(){
     Route::delete('/{id}','InterventionController@delete');
 
     Route::get('intervened/{id}', 'InterventionController@getIntervened');
+
+    Route::get('evaluation/{id}', 'InterventionController@getEvaluation');
 });

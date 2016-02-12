@@ -27,4 +27,9 @@ class InterventionRepository extends BaseRepository
     {
         return $this->model->with('intervened')->find($id);
     }
+
+    public function getEvaluation($id)
+    {
+        return $this->model->with('evaluation')->find($id);
+    }
 }

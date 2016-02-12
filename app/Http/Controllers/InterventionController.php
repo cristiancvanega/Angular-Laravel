@@ -43,4 +43,12 @@ class InterventionController extends Controller
             return response()->json(['Intervention does not exist'], 400);
         return response()->json($i, 202);
     }
+
+    public function getEvaluation($id)
+    {
+        $e = $this->repository->getEvaluation($id);
+        if(is_null($e))
+            return response()->json(['Intervention does not exist'], 400);
+        return response()->json($e, 202);
+    }
 }

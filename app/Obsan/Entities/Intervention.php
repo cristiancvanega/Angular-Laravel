@@ -37,7 +37,7 @@ class  Intervention extends Model
         $this->belongsTo(Municipality::getNamespace());
     }
 
-    public function evaluations()
+    public function evaluation()
     {
         return $this->hasMany(Evaluation::getNamespace());
     }
