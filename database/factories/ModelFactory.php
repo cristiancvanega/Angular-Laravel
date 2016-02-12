@@ -37,16 +37,13 @@ $factory->define(App\Obsan\Entities\Municipality::class, function (Faker\Generat
 $factory->define(App\Obsan\Entities\Intervention::class, function (Faker\Generator $faker) {
     return [
         'name'                              => $faker->name,
+        'entity_id'                         => $faker->numberBetween(1,15),
+        'municipality_id'                   => $faker->numberBetween(1,15),
         'start_date'                        => $faker->date('y-m-d'),
         'end_date'                          => $faker->date('y-m-d'),
         'address'                           => $faker->streetAddress,
         'description'                       => $faker->paragraph,
-        'diversidad_dieta_inicio'           => $faker->numberBetween(0, 2),
-        'diversidad_dieta_fin'              => $faker->numberBetween(0, 2),
-        'variedad_dieta_inicio'             => $faker->numberBetween(0, 2),
-        'variedad_dieta_fin'                => $faker->numberBetween(0, 2),
-        'inseguridad_alimentaria_inicio'    => $faker->numberBetween(0, 2),
-        'inseguridad_alimentaria_fin'       => $faker->numberBetween(0, 2),
+        'evidencias_planeadas'              => $faker->paragraph,
     ];
 });
 
