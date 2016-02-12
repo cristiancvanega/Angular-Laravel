@@ -157,6 +157,7 @@ app.controller("GestionIntervenido", [
         };
         $scope.listar();
 
+
         $scope.eliminar= function()
         {
             serviceHttp.eliminar($scope);
@@ -180,6 +181,68 @@ app.controller("GestionIntervenido", [
                 pupilage: $scope.registroCrear.pupilage
             }
             console.log(datos);
+            serviceHttp.crear($scope,datos);
+        };
+
+
+        $scope.showEdit = function(registro)
+        {
+            $scope.registroEditar = registro;
+
+        };
+
+        $scope.showDelete = function(registro)
+        {
+            $scope.registroBorrar = registro;
+        };
+
+    }]);
+
+
+app.controller("GestionIntervencion", [
+    '$scope','serviceHttp',
+    function($scope,serviceHttp)
+    {
+        $scope.registros = [],$scope.copiaregistros=[],$scope.total=0, $scope.registroEditar= {},
+        $scope.registroBorrar ={},$scope.registroMunicipio =[],$scope.registroEntidad =[], 
+        $scope.registroCrear={},$scope.tabla="intervention",$scope.url="/intervencion";
+
+        $scope.listar = function()
+        {
+            serviceHttp.listar($scope);
+            datosMunicipio();
+            datosEntidad();
+        };
+        $scope.listar();
+        
+        function datosMunicipio(){
+            $scope.tabla="municipality";
+            serviceHttp.consultar($scope);
+            $scope.registroMunicipio=$scope.copiaregistros;
+        };
+
+        function datosEntidad(){
+            $scope.tabla="entity";
+            serviceHttp.consultar($scope);
+        };
+
+        $scope.eliminar= function()
+        {
+            serviceHttp.eliminar($scope);
+        };
+
+        $scope.editar= function()
+        {
+            serviceHttp.editar($scope);
+        };
+
+        $scope.crear= function()
+        {
+            datos={
+                name: $scope.registroCrear.name,
+                email: $scope.registroCrear.email,
+                phone: $scope.registroCrear.phone
+            }
             serviceHttp.crear($scope,datos);
         };
 
