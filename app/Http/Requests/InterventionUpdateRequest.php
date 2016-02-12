@@ -29,7 +29,6 @@ class InterventionUpdateRequest extends Request
             'name'                          => 'string',
             'start_date'                    => 'date',
             'end_date'                      => 'date',
-            'address'                       => 'string',
             'description'                   => 'string',
             'evidencias_planeadas'          => 'string',
         ];
