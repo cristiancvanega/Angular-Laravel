@@ -20,7 +20,7 @@ class Evaluation extends Model
 
     public function intervention()
     {
-        $this->belongsTo(
+        return $this->belongsTo(
             Intervention::getNamespace()
         );
     }

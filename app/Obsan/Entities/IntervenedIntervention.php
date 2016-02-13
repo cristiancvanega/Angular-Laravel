@@ -12,11 +12,17 @@ class IntervenedIntervention extends Model
 
     public function intervened()
     {
-        return $this->hasMany(Intervened::getNamespace());
+        return $this->hasMany(
+            Intervened::getNamespace()
+        );
     }
 
     public function interventions()
     {
-        return $this->hasMany(Intervention::getNamespace(), 'id', 'interventions_id');
+        return $this->hasMany(
+            Intervention::getNamespace(),
+            'id',
+            'interventions_id'
+        );
     }
 }
