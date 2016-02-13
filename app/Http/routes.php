@@ -17,10 +17,6 @@ Route::get('/', function () {
 });
 require ('Routes/BaseRoutes.php');
 
-Route::any('/user/token/gettoken', 'AuthenticateController@authenticate');
-Route::any('/test', 'AuthenticateController@success');
-Route::any('/user/token/testtoken', 'AuthenticateController@getAuthenticatedUser');
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -31,11 +27,3 @@ Route::any('/user/token/testtoken', 'AuthenticateController@getAuthenticatedUser
 | kernel and includes session state, CSRF protection, and more.
 |
 */
-
-Route::group(['middleware' => ['jwt.auth']], function () {
-    Route::any('/tes_middleware', 'AuthenticateController@testMiddleware');
-});
-
-Route::group(['middleware' => ['jwt.refresh']], function () {
-    Route::any('/tes_middleware_refresh', 'AuthenticateController@testMiddleware');
-});

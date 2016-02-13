@@ -11,6 +11,6 @@ class IntervenedInterventionTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Obsan\Entities\IntervenedIntervention::class, 15)->create();
+        factory(App\Obsan\Entities\IntervenedIntervention::class, 30)->create();
     }
 }

@@ -17,4 +17,9 @@ class IntervenedRepository extends BaseRepository
     {
         parent::__construct($intervened);
     }
+
+    public function getInterventions($id)
+    {
+        return $this->model->with(['interventions'])->find($id);
+    }
 }

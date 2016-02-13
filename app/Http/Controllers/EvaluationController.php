@@ -41,4 +41,9 @@ class EvaluationController extends Controller
     {
         return response()->json($this->repository->getCustomReport($request->toArray()));
     }
+
+    public function getWithInterventionAndUser()
+    {
+        return response()->json($this->repository->getWithInterventionAndUser());
+    }
 }

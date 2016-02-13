@@ -29,11 +29,11 @@ class CreateIntervenidosTable extends Migration
             $table->string('email');
             $table->enum('pupilage',
                 [
-                    'ninguna',
-                    'preescolar',
-                    'basica',
-                    'media',
-                    'superior'
+                    'Ninguna',
+                    'Preescolar',
+                    'Primaria',
+                    'Bachillerato',
+                    'Universidad'
                 ]);
             $table->timestamps();
         });

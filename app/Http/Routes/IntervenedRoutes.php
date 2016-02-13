@@ -11,4 +11,8 @@ Route::group(['prefix' => 'intervened'], function(){
     Route::put('{id}','IntervenedController@update');
 
     Route::delete('/{id}','IntervenedController@delete');
+
+    Route::get('intervention/{id}', 'IntervenedController@getInterventions');
+
+    Route::post('custom_report', 'IntervenedController@getCustomReport');
 });

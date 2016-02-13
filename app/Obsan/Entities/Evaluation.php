@@ -2,8 +2,6 @@
 
 namespace App\Obsan\Entities;
 
-use Illuminate\Database\Eloquent\Model;
-
 class Evaluation extends Model
 {
     protected $table = 'evaluations';
@@ -22,11 +20,15 @@ class Evaluation extends Model
 
     public function intervention()
     {
-        $this->belongsTo('interventions', 'municipality_id');
+        return $this->belongsTo(
+            Intervention::getNamespace()
+        );
     }
 
     public function user()
     {
-        return $this->belongsTo('users', 'id', 'user_id');
+        return $this->belongsTo(
+            User::getNamespace()
+        );
     }
 }

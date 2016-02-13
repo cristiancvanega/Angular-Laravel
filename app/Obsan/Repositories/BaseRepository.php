@@ -28,10 +28,17 @@ abstract class BaseRepository
         return $this->model->all();
     }
 
-    public function getCustomReport(Array $array)
+    public function getCustomReport(Array $request)
     {
-        \Log::info($array);
-        \Log::info($this->model->geTtable());
-        return $this->model->where($array)->get();
+        return $this->buildQuery($this->model, $request)->get();
+    }
+
+    private function buildQuery(Model $model, Array $fields)
+    {
+        foreach (array_keys($fields) as $field)
+        {
+            $model = $model->orWhere($field, 'LIKE', '%' . $fields[$field] . '%');
+        }
+        return $model;
     }
 }

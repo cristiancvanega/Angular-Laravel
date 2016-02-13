@@ -20,46 +20,8 @@ class CreateIntervencionsTable extends Migration
             $table->text('name')->notnull();
             $table->date('start_date')->notnull();
             $table->date('end_date')->nullable();
-            $table->text('address')->notnull();
             $table->longText('description')->notnull();
-            $table->enum('diversidad_dieta_inicio',
-                [
-                    'Completa',
-                    'Moderada',
-                    'Incompleta'
-                ])->notnull();
-            $table->enum('diversidad_dieta_fin',
-                [
-                    'Completa',
-                    'Moderada',
-                    'Incompleta'
-                ])->nullable();
-            $table->enum('variedad_dieta_inicio',
-                [
-                    'Variada',
-                    'Poco variada',
-                    'Monótona'
-                ])->notnull();
-            $table->enum('variedad_dieta_fin',
-                [
-                    'Variada',
-                    'Poco variada',
-                    'Monótona'
-                ])->nullable();
-            $table->enum('inseguridad_alimentaria_inicio',
-                [
-                    'Segura',
-                    'Leve',
-                    'Moderada',
-                    'Severa'
-                ])->notnull();
-            $table->enum('inseguridad_alimentaria_fin',
-                [
-                    'Segura',
-                    'Leve',
-                    'Moderada',
-                    'Severa'
-                ])->nullable();
+            $table->longText('evidencias_planeadas');
             $table->timestamps();
         });
     }
