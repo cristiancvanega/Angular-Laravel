@@ -2,6 +2,8 @@
 
 Route::group(['prefix' => 'evaluation'], function(){
 
+    Route::get('with_iu', 'EvaluationController@getWithInterventionAndUser');
+
     Route::get('','EvaluationController@all');
 
     Route::get('{id}','EvaluationController@find');

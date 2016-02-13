@@ -29,4 +29,12 @@ class EvaluationRepository extends BaseRepository
                 'evaluations.recomendaciones', 'evaluations.id')->get();
         return $intervenciones;
     }
+
+    public function getWithInterventionAndUser()
+    {
+        return $this->model->with(
+            'intervention',
+            'user'
+        )->get();
+    }
 }

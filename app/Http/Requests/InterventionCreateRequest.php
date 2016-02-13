@@ -29,7 +29,6 @@ class InterventionCreateRequest extends Request
             'name'                          => 'required|string',
             'start_date'                    => 'required|date',
             'end_date'                      => 'date',
-            'address'                       => 'required|string',
             'description'                   => 'required|string',
             'evidencias_planeadas'          => 'required|string',
         ];

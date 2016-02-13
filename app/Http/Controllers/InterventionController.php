@@ -51,4 +51,9 @@ class InterventionController extends Controller
             return response()->json(['Intervention does not exist'], 400);
         return response()->json($e, 202);
     }
+
+    public function getWithEntitiesAndMunicipalities()
+    {
+        return response()->json($this->repository->getWithEntitiesAndMunicipalities(), 200);
+    }
 }
