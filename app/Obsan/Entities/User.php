@@ -2,7 +2,7 @@
 
 namespace App\Obsan\Entities;
 
-class User extends Authenticatable
+class User extends Authenticable
 {
     /**
      * @var string
