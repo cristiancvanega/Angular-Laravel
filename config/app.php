@@ -157,7 +157,6 @@ return [
         App\Providers\RouteServiceProvider::class,
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
-        Bican\Roles\RolesServiceProvider::class,
 
     ],
 
