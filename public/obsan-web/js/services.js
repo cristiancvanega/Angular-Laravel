@@ -100,7 +100,7 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
         },
 
         editar:function($scope){
-            $http.put(url+$scope.tabla+'/'+$scope.registroEditar.id,$scope.registroEditar+prefixJWT+jwt)
+            $http.put(url+$scope.tabla+'/'+$scope.registroEditar.id+prefixJWT+jwt,$scope.registroEditar)
             .success(function(data, status, headers, config)
             {
                 $location.path($scope.url);
@@ -109,7 +109,7 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
         },
 
         crear: function($scope,datos){
-            $http.post(url+$scope.tabla,datos+prefixJWT+jwt)
+            $http.post(url+$scope.tabla+prefixJWT+jwt,datos)
             .success(function(data, status, headers, config)
             {
                 $location.path($scope.url);
