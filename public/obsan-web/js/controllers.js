@@ -165,7 +165,6 @@ app.controller("GestionIntervenido", [
 
         $scope.editar= function()
         {
-            console.log($scope.registroEditar);
             serviceHttp.editar($scope);
         };
 
@@ -205,13 +204,15 @@ app.controller("GestionIntervencion", [
     {
         $scope.registros = [],$scope.total=0, $scope.registroEditar= {},
         $scope.registroBorrar ={},$scope.registroMunicipio =[],$scope.registroEntidad =[], 
-        $scope.registroCrear={},$scope.tabla="intervention",$scope.url="/intervencion",$scope.entidad;
+        $scope.registroCrear={},$scope.tabla="",$scope.url="/intervencion",$scope.entidad;
 
         $scope.listar = function()
         {
+            $scope.tabla="intervention/with_em"
             serviceHttp.listar($scope);
             datosSelect("municipality");
             datosSelect("entity");
+            $scope.tabla="intervention"
         };
         $scope.listar();
         
@@ -226,7 +227,60 @@ app.controller("GestionIntervencion", [
 
         $scope.editar= function()
         {   
-            angular.toJson($scope.registroEditar);
+            serviceHttp.editar($scope);
+        };
+
+        $scope.crear= function()
+        {
+            datos={
+
+            }
+            serviceHttp.crear($scope,datos);
+        };
+
+
+        $scope.showEdit = function(registro)
+        {
+            $scope.registroEditar = registro;
+        };
+
+        $scope.showDelete = function(registro)
+        {
+            $scope.registroBorrar = registro;
+        };
+
+    }]);
+
+
+app.controller("GestionEvaluacion", [
+    '$scope','serviceHttp',
+    function($scope,serviceHttp)
+    {
+        $scope.registros = [],$scope.total=0, $scope.registroEditar= {},
+        $scope.registroBorrar ={},$scope.registroIntervencion =[],$scope.registroUsuario =[], 
+        $scope.registroCrear={},$scope.tabla="",$scope.url="/evaluacion",$scope.entidad;
+
+        $scope.listar = function()
+        {
+            $scope.tabla="evaluation/with_iu";
+            serviceHttp.listar($scope);
+            datosSelect("user");
+            datosSelect("intervention");
+            $scope.tabla="evaluation";
+        };
+        $scope.listar();
+        
+        function datosSelect(tabla){
+            serviceHttp.consultar($scope,tabla);
+        };
+
+        $scope.eliminar= function()
+        {
+            serviceHttp.eliminar($scope);
+        };
+
+        $scope.editar= function()
+        {   
             serviceHttp.editar($scope);
         };
 
@@ -250,4 +304,5 @@ app.controller("GestionIntervencion", [
         };
 
     }]);
+
 

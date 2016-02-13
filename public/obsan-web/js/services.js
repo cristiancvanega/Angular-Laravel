@@ -58,6 +58,8 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
             $http.get(url+$scope.tabla+prefixJWT+jwt)
             .success(function(data, status, headers, config)
             {
+                    console.log(data);
+
                 $scope.registros = $scope.registros.concat(data);
                 $scope.total=$scope.registros.length;
                 $scope.tableParams = new ngTableParams({page:1, count:10, sorting: { name: 'asc'}}, {
@@ -79,12 +81,21 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
             $http.get(url+tabla+prefixJWT+jwt)
             .success(function(data, status, headers, config)
             {   
-                if(tabla=="entity"){
-                    $scope.registroEntidad = data;
-                }
-
-                if(tabla=="municipality"){
-                    $scope.registroMunicipio = data;
+                switch (tabla) {
+                    case "entity":
+                        $scope.registroEntidad = data;
+                        break;
+                    case "municipality":
+                         $scope.registroMunicipio = data;
+                        break;
+                    case "user":
+                        $scope.registroUsuario = data;
+                        break;
+                    case "intervention":
+                        $scope.registroIntervencion = data;
+                        break;
+                    default:
+                        break;
                 }
             });
 

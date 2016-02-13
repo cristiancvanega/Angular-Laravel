@@ -9,16 +9,17 @@
         <table  ng-table="tableParams" class="table table-bordered table-striped">
           <tbody>
             <tr ng-repeat="registro in $data">
-              <td align="center" data-title="'Entidad'" sortable="'entity_id'">{{registro.entity.name}}</td>
-              <td align="center" data-title="'Municipio'" sortable="'municipality_id'">{{registro.municipality.name}}</td>
-              <td align="center" data-title="'Nombre'" sortable="'name'">{{registro.date}}</td>
-              <td align="center" data-title="'Inicio'" sortable="'start_date'">{{registro.start_date}}</td>
-              <td align="center" data-title="'Fin'" sortable="'end_date'">{{registro.end_date}}</td>
+              <td align="center" data-title="'Intervencion'" sortable="'intervention.name'">{{registro.intervention.name}}</td>
+              <td align="center" data-title="'Usuario'" sortable="''">{{registro.user.name}}</td>
+              <td align="center" data-title="'Descripcion Evidencia'" sortable="'descripcion_evidencia'">{{registro.descripcion_evidencia}}</td>
+              <td align="center" data-title="'Impacto'" sortable="'impacto'">{{registro.impacto}}</td>
+              <td align="center" data-title="'Estado inicial'" sortable="'estado_inicial'">{{registro.estado_inicial}}</td>
+              <td align="center" data-title="'Estado final'" sortable="'estado_final'">{{registro.estado_final}}</td>
               <td align="center" data-title="'Descripción'" sortable="'description'">{{registro.description}}</td>
-              <td align="center" data-title="'Evidencias Planeadas'" sortable="'evidencias_planeadas'">{{registro.evidencias_planeadas}}</td>
-
+              <td align="center" data-title="'Recomendaciones'" sortable="'recomendaciones'">{{registro.recomendaciones}}</td>
+              <!--
               <td align="center" data-title=""><button class="btn btn-primary" data-toggle="modal" ng-click= "showEdit(registro)" data-target="#editarregistro" ><i class="fa fa-pencil"></i></button></td>
-
+              -->
             </tr>
           </tbody>
         </table>

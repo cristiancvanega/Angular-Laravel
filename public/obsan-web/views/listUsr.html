@@ -100,7 +100,9 @@
         <form class="form-horizontal col-lg-8 col-md-8 col-xs-10" role="form" name="userForm">
           <div class="form-group">
             <label>Nombre*</label>
-            <input type="text" name="nombre" class="form-control" ng-model="registroCrear.name" >
+            <input type="text" name="nombre" class="form-control" ng-model="registroCrear.name">
+            <!--<span ng-show="userForm.nombre.$error.required">Este campo es obligatorio.</span>
+          -->
           </div>
           <div class="form-group">
             <label>Email*</label>
