@@ -6,6 +6,7 @@ use App\Obsan\Repositories\UserRepository;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Http\Requests\ValidateTokenRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Response;
 use JWTAuth;
@@ -20,14 +21,11 @@ class AuthenticateController extends Controller
         parent::__construct($repository);
     }
 
-    public function authenticate()
+    public function authenticate(UserLogInRequest $request)
     {
-        // grab credentials from the request
-        $credentials = Request::capture()->only('email', 'password');
-
         try {
             // attempt to verify the credentials and create a token for the user
-            if (!$token = JWTAuth::attempt($credentials)) {
+            if (!$token = JWTAuth::attempt($request->toArray())) {
                 return json_encode(['error' => 'invalid_credentials'], 401);
             }
         } catch (JWTException $e) {
@@ -41,9 +39,15 @@ class AuthenticateController extends Controller
 
     public function getAuthenticatedUser()
     {
-        try {
+        return $this->getAUser(request()->header('token'));
+    }
 
-            if (!$user = JWTAuth::parseToken()->authenticate()) {
+    public function getAUser($token)
+    {
+        try {
+            JWTAuth::setToken($token);
+
+            if (!$user = JWTAuth::authenticate()) {
                 return response()->json(['user_not_found'], 404);
             }
 

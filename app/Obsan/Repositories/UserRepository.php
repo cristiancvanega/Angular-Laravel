@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: cristiancvanega
- * Date: 2/10/16
- * Time: 1:22 AM
- */
 
 namespace App\Obsan\Repositories;
 

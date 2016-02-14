@@ -2,7 +2,7 @@
 
 Route::group(['prefix' => 'user'], function()
 {
-	Route::get('','UserController@all');
+	Route::get('','UserController@all')->middleware('auth.basic');
 
 	Route::get('{id}','UserController@find');
 

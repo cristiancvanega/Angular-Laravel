@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
-use Validator;
+use App\Http\Requests\UserLogInRequest;
+use App\Obsan\Entities\User;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
@@ -28,7 +29,7 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new authentication controller instance.
@@ -68,5 +69,20 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    public function authenticate(UserLogInRequest $request)
+    {
+        $user = User::where('email', $request['email'])->first();
+        //dd($user);
+        //dd(Auth::login($user));
+        //dd(Auth::attempt($request->toArray(), true));
+        dd(Auth::viaRemember('jL2npz3HH9'));
+
+        if(Auth::attempt($request->toArray()))
+        {
+            dd($request->toArray());
+        }
+        dd('Not valid');
     }
 }
