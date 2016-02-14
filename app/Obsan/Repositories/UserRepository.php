@@ -38,7 +38,12 @@ class UserRepository extends BaseRepository
 
     public function getRoleUser()
     {
-        return $this->getAUser(request()->header('token'))['user']->role;
+        return $this->getRoleUserWithToken(request()->header('token'));
+    }
+
+    public function getRoleUserWithToken($token)
+    {
+        return $this->getAUser($token)['user']->role;
     }
 
     public function getAuthenticatedUser()
