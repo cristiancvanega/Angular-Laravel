@@ -3,13 +3,24 @@ namespace App\Obsan\Repositories;
 
 
 use App\Obsan\Entities\Entity;
+use App\Obsan\Entities\IntervenedIntervention;
 use App\Obsan\Entities\Intervention;
 
 class InterventionRepository extends BaseRepository
 {
-    public function __construct(Intervention $intervention)
+    protected $intervenedIntervention;
+
+    public function __construct(Intervention $intervention, IntervenedIntervention $intervenedIntervention)
     {
         parent::__construct($intervention);
+        $this->intervenedIntervention = $intervenedIntervention;
+    }
+
+    public function create($array)
+    {
+        $i = $this->model->create($array);
+        $this->intervenedIntervention->create(['interventions_id' => $i->id, 'intervened_id' => $array['intervened_id']]);
+        return $i;
     }
 
     public function getData()
