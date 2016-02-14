@@ -26,13 +26,18 @@ class BaseRole
         return $next($request);
     }
 
+    protected function isValidUser()
+    {
+
+    }
+
     protected function isAdmin()
     {
-        return $this->userRepository->getRoleUser() == 'Admin';
+        return $this->userRepository->getRoleUser() === 'Admin';
     }
 
     protected function isObsan()
     {
-        return $this->userRepository->getRoleUser() == 'Obsan';
+        return $this->userRepository->getRoleUser() === 'Obsan';
     }
 }

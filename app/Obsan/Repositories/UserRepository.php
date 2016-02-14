@@ -38,7 +38,7 @@ class UserRepository extends BaseRepository
 
     public function getRoleUser()
     {
-        return $this->getAUser(request()->header('token'))->role;
+        return $this->getAUser(request()->header('token'))['user']->role;
     }
 
     public function getAuthenticatedUser()
@@ -69,6 +69,6 @@ class UserRepository extends BaseRepository
 
         }
         // the token is valid and we have found the user via the sub claim
-        return response()->json(compact('user'));
+        return compact('user');
     }
 }

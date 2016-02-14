@@ -34,6 +34,11 @@ class Kernel extends HttpKernel
         'api' => [
             'throttle:60,1',
         ],
+
+        'admin' => [
+            'jwt.auth',
+            'jwt.admin'
+        ]
     ];
 
     /**
@@ -52,5 +57,6 @@ class Kernel extends HttpKernel
         'jwt.auth'      => \App\Http\Middleware\JWTVeriry::class,
         //'jwt.refresh'   => 'Tymon\JWTAuth\Middleware\RefreshToken',
         'jwt.refresh'   => \App\Http\Middleware\RefreshToken::class,
+        'jwt.admin'         => \App\Http\Middleware\AdminRole::class,
     ];
 }
