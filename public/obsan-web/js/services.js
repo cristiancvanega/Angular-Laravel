@@ -63,7 +63,6 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
                         $scope.registros = $scope.registros.concat(data.interventions);
                         break;
                         case "EvaluacionxIntervencion":
-                        data.intervention_id
                         $scope.registros = $scope.registros.concat(data.evaluations);
                         //console.log(data);
                         break;
