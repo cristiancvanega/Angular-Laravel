@@ -7,7 +7,7 @@ Route::group(['prefix' => 'auth'], function(){
 
        Route::post('', 'AuthenticateController@authenticate');
 
-       Route::get('refresh', 'AuthenticateController@testMiddleware')->middleware('jwt.refresh');
+       Route::post('refresh', 'AuthenticateController@success')->middleware('jwt.refresh');
 
        Route::post('auth', 'AuthController@authenticate');
    }) ;
