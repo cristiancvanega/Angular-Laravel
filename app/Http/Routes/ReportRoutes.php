@@ -1,17 +1,20 @@
 <?php
 
-Route::group(['prefix' => 'report', 'middleware' => 'obsan'], function(){
+Route::group(['prefix' => 'report'], function(){
 
-    Route::get('intervention', 'InterventionController@getData');
+    Route::group(['middleware' => 'obsan'], function(){
 
-    Route::get('evaluation', 'EvaluationController@getReportData');
-});
+        Route::get('intervention', 'InterventionController@getData');
 
-Route::group(['prefix' => 'report/custom_report', 'middleware' => 'admin'], function(){
+        Route::get('evaluation', 'EvaluationController@getReportData');
+    });
 
-    Route::post('intervened', 'IntervenedController@getCustomReport');
+    Route::group(['prefix' => 'custom_report', 'middleware' => 'admin'], function(){
 
-    Route::post('evaluation', 'EvaluationController@getCustomReport');
+        Route::post('intervened', 'IntervenedController@getCustomReport');
 
-    Route::post('intervention', 'InterventionController@getCustomReport');
+        Route::post('evaluation', 'EvaluationController@getCustomReport');
+
+        Route::post('intervention', 'InterventionController@getCustomReport');
+    });
 });
