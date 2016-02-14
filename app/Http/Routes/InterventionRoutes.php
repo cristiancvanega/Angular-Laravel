@@ -1,13 +1,20 @@
 <?php
 
 Route::group(['prefix' => 'intervention'], function(){
-    Route::get('/','InterventionController@all');
 
-    Route::get('/{id}','InterventionController@find');
+    Route::get('with_em', 'InterventionController@getWithEntitiesAndMunicipalities');
 
-    Route::post('/','InterventionController@create');
+    Route::get('','InterventionController@all');
 
-    Route::put('/','InterventionController@update');
+    Route::get('{id}','InterventionController@find');
+
+    Route::post('','InterventionController@create');
+
+    Route::put('{id}','InterventionController@update');
 
     Route::delete('/{id}','InterventionController@delete');
+
+    Route::get('intervened/{id}', 'InterventionController@getIntervened');
+
+    Route::get('evaluation/{id}', 'InterventionController@getEvaluation');
 });

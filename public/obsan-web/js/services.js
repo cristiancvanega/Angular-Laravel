@@ -1,8 +1,4 @@
 var app         = angular.module('obsan');
-//var jwt         = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6XC9cL29ic2FuLmFwcFwvYXV0aFwvdG9rZW4iLCJpYXQiOjE0NTUyNDk0ODYsImV4cCI6MTQ1NTI4NTQ4NiwibmJmIjoxNDU1MjQ5NDg2LCJqdGkiOiI0MTQ1YTQ1NTU4MWRmZmY3ZWE1ZjkwYWRkNTRiODQ1ZSJ9.f3lGK7g_7rRQdVAMhaGxpLhj5qGmapztIlUu_NS156E';
-var jwt         = '';
-//var prefixJWT   = '?token=';
-var prefixJWT   = '';
 //var url       = "http://obsan.app/";
 var url         = "http://obsan.eduagil.com/";
 
@@ -55,7 +51,7 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
 
     var service = {
         listar:function($scope){
-            $http.get(url+$scope.recurso+prefixJWT+jwt)
+            $http.get(url+$scope.recurso)
             .success(function(data, status, headers, config)
             {
                     switch ($scope.descripcion) {
@@ -89,7 +85,7 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
         },
 
         consultar:function($scope,recurso){
-            $http.get(url+recurso+prefixJWT+jwt)
+            $http.get(url+recurso)
             .success(function(data, status, headers, config)
             {   
                 switch (recurso) {
@@ -113,7 +109,7 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
         },
 
         eliminar:function($scope){
-            $http.delete(url+$scope.recurso+'/'+$scope.registroBorrar.id+prefixJWT+jwt)
+            $http.delete(url+$scope.recurso+'/'+$scope.registroBorrar.id)
             .success(function(data, status, headers, config)
             {
                 $location.path($scope.url);
@@ -122,7 +118,7 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
         },
 
         editar:function($scope){
-            $http.put(url+$scope.recurso+'/'+$scope.registroEditar.id+prefixJWT+jwt,$scope.registroEditar)
+            $http.put(url+$scope.recurso+'/'+$scope.registroEditar.id,$scope.registroEditar)
             .success(function(data, status, headers, config)
             {
                 $location.path($scope.url);
@@ -131,7 +127,7 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
         },
 
         crear: function($scope,datos){
-            $http.post(url+$scope.recurso+prefixJWT+jwt,datos)
+            $http.post(url+$scope.recurso,datos)
             .success(function(data, status, headers, config)
             {
                 $location.path($scope.url);

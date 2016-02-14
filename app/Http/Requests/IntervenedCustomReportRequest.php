@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class IntervenedUpdateRequest extends Request
+class IntervenedCustomReportRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,11 +25,11 @@ class IntervenedUpdateRequest extends Request
     {
         return [
             'name'          => 'string',
-            'document_type' => 'string|min:0|max:3',
             'document'      => 'numeric',
-            'address'       => 'string',
+            'document_type' => 'string',
+            'address'       => 'address',
             'phone'         => 'numeric',
-            'email'         => 'email|unique:users,email',
+            'email'         => 'email',
             'pupilage'      => 'string'
         ];
     }
