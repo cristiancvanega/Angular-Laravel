@@ -137,6 +137,17 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
                 $location.path($scope.url);
                 $route.reload();
             });
+        },
+
+        signin: function($scope,datos){
+            $http.post(url+$scope.recurso+prefixJWT+jwt,datos)
+            .success(function(data, status, headers, config)
+            {
+                $location.path($scope.url);
+                $route.reload();
+                console.log($scope.url);
+                console.log(data);
+            });
         }
 
 

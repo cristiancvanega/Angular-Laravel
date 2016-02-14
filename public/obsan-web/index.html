@@ -118,7 +118,7 @@
         </div>
 
 
-        <div class="message-box animated fadeIn" data-sound="alert" id="mb-signin">
+        <div ng-controller="showsignin" class="message-box animated fadeIn" data-sound="alert" id="mb-signin">
             <div class="mb-container">
                 <div class="mb-middle">
                     <div class="mb-title"><span class="fa fa-sign-in"></span>Iniciar<strong>Sesión</strong></div>
@@ -126,18 +126,20 @@
                         <form class="form-horizontal col-xs-10" role="form" name="registroForm">
                             <div class="form-group">
                                 <label>Email*</label>
-                                <input type="text" name="nombre" class="form-control">
+                                <input type="text" name="nombre" class="form-control"
+                                ng-model="email">
                             </div>
                             <div class="form-group">
                                 <label>Contraseña*</label>
-                                <input type="password" name="nombre" class="form-control">
+                                <input type="password" name="nombre" class="form-control"
+                                ng-model="password">
                             </div>
                       </form> 
                   </div>
                   <div class="mb-footer">
                     <div class="pull-right">
-                        <a href="pages-login.html" class="btn btn-success btn-lg">Confirmar</a>
-                        <button class="btn btn-default btn-lg mb-control-close">Cancelar</button>
+                        <button class="btn btn-success btn-md" ng-click= "signin()">Confirmar</button>
+                        <button class="btn btn-default btn-md mb-control-close">Cancelar</button>
                     </div>
                 </div>
             </div>
