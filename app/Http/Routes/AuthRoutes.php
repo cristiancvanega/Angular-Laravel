@@ -1,7 +1,7 @@
 <?php
 Route::group(['prefix' => 'auth'], function(){
 
-    Route::any('get_user', 'AuthenticateController@getAuthenticatedUser');
+    Route::post('get_user', 'AuthenticateController@getAuthenticatedUser');
 
     Route::group(['prefix' => 'token'], function(){
 
@@ -11,9 +11,4 @@ Route::group(['prefix' => 'auth'], function(){
 
        Route::post('auth', 'AuthController@authenticate');
    }) ;
-});
-
-
-Route::group(['namespace' => 'Auth'], function()
-{
 });

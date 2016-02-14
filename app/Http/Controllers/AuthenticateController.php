@@ -6,7 +6,7 @@ use App\Obsan\Repositories\UserRepository;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Http\Requests\ValidateTokenRequest;
+use App\Http\Requests\UserLogInRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Response;
 use JWTAuth;
