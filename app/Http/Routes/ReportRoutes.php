@@ -1,7 +1,6 @@
 <?php
 
-//Route::group(['prefix' => 'report', 'middleware' => 'obsan'], function(){
-Route::group(['prefix' => 'report'], function(){
+Route::group(['prefix' => 'report', 'middleware' => 'obsan'], function(){
 
     Route::get('intervention', 'InterventionController@getData');
 
