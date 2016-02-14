@@ -5,7 +5,7 @@ var btnShow=false;
 app.controller('showsignin', ['$scope', 'serviceHttp', function($scope,serviceHttp) {
   $scope.signout = false;
   $scope.signin = true;
-  $scope.recurso="/auth/token";
+  $scope.recurso="auth/token";
   $scope.url="index.html";
 
   $scope.signin = function(){
@@ -14,8 +14,12 @@ app.controller('showsignin', ['$scope', 'serviceHttp', function($scope,serviceHt
         password: $scope.password
     }
     serviceHttp.signin($scope,datos);
+      $scope.email = '';
+      $scope.password = '';
 };
 }]);
+
+
 
 
 app.controller("GestionUsuarios", [

@@ -1,6 +1,6 @@
 var app         = angular.module('obsan');
-//var url       = "http://obsan.app/";
-var url         = "http://obsan.eduagil.com/";
+var url       = "http://obsan.app/";
+//var url         = "http://obsan.eduagil.com/";
 
 
 app.service('TableService', function ($http, $filter) {
@@ -139,10 +139,14 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
             $http.post(url+$scope.recurso,datos)
             .success(function(data, status, headers, config)
             {
+                console.log(status);
+                console.log(data);
+                localStorage.setItem('token', data.token);
+                console.log(localStorage.getItem('token'));
                 $location.path($scope.url);
                 $route.reload();
-                console.log($scope.url);
-                console.log(data);
+                $scope.signout=true;
+                $scope.signin=false;
             });
         }
 
