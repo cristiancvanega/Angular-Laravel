@@ -136,7 +136,7 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
         },
 
         signin: function($scope,datos){
-            $http.post(url+$scope.recurso+prefixJWT+jwt,datos)
+            $http.post(url+$scope.recurso,datos)
             .success(function(data, status, headers, config)
             {
                 $location.path($scope.url);
