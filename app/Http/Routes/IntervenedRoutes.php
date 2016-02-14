@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['prefix' => 'intervened'], function(){
+Route::group(['prefix' => 'intervened', 'middleware' => 'obsan'], function(){
 
     Route::get('','IntervenedController@all');
 

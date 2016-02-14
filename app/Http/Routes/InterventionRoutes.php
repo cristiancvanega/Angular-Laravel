@@ -1,6 +1,6 @@
 `<?php
 
-Route::group(['prefix' => 'intervention'], function(){
+Route::group(['prefix' => 'intervention', 'middleware' => 'obsan'], function(){
 
     Route::get('with_em', 'InterventionController@getWithEntitiesAndMunicipalities');
 

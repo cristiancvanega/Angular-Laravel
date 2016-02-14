@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['prefix' => 'evaluation'], function(){
+Route::group(['prefix' => 'evaluation', 'middleware' => 'obsan'], function(){
 
     Route::get('with_iu', 'EvaluationController@getWithInterventionAndUser');
 
