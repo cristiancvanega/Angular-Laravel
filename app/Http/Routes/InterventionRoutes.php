@@ -1,4 +1,4 @@
-<?php
+`<?php
 
 Route::group(['prefix' => 'intervention'], function(){
 
