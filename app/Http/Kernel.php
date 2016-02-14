@@ -38,6 +38,11 @@ class Kernel extends HttpKernel
         'admin' => [
             'jwt.auth',
             'jwt.admin'
+        ],
+
+        'obsan' => [
+            'jwt.auth',
+            'jwt.obsan'
         ]
     ];
 
@@ -58,5 +63,6 @@ class Kernel extends HttpKernel
         //'jwt.refresh'   => 'Tymon\JWTAuth\Middleware\RefreshToken',
         'jwt.refresh'   => \App\Http\Middleware\RefreshToken::class,
         'jwt.admin'         => \App\Http\Middleware\AdminRole::class,
+        'jwt.obsan'         => \App\Http\Middleware\ObsanRole::class,
     ];
 }
