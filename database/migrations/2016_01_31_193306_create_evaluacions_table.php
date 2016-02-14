@@ -17,7 +17,6 @@ class CreateEvaluacionsTable extends Migration
             $table->increments('id');
             $table->integer('intervention_id')->unsigned();
             $table->integer('user_id')->unsigned();
-            $table->date('date')->notnull();
             $table->longText('descripcion_evidencia')->nullable();
             $table->enum('impacto',
                 [

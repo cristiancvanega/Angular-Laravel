@@ -1,16 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Model Factories
-|--------------------------------------------------------------------------
-|
-| Here you may define all of your model factories. Model factories give
-| you a convenient way to create models for testing and seeding your
-| database. Just tell the factory how a default model should look.
-|
-*/
-
 $factory->define(App\Obsan\Entities\User::class, function (Faker\Generator $faker) {
     return [
         'name'              => $faker->name,
@@ -69,7 +58,6 @@ $factory->define(App\Obsan\Entities\Evaluation::class, function (Faker\Generator
     return [
         'intervention_id'       => $faker->numberBetween(1, 45),
         'user_id'               => $faker->numberBetween(1, 15),
-        'date'                  => $faker->date('y-m-d'),
         'descripcion_evidencia' => $faker->paragraph,
         'impacto'               => $faker->numberBetween(1, 9),
         'estado_final'          => $faker->numberBetween(1, 4),
