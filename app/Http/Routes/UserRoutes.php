@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['prefix' => 'user'], function()
+Route::group(['prefix' => 'user', 'middleware' => 'admin'], function()
 {
 	Route::get('','UserController@all');
 
