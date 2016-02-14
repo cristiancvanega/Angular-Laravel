@@ -3,8 +3,8 @@ var app         = angular.module('obsan');
 var jwt         = '';
 //var prefixJWT   = '?token=';
 var prefixJWT   = '';
-var url       = "http://obsan.app/";
-//var url         = "http://obsan.eduagil.com/";
+//var url       = "http://obsan.app/";
+var url         = "http://obsan.eduagil.com/";
 
 
 app.service('TableService', function ($http, $filter) {
@@ -55,12 +55,24 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
 
     var service = {
         listar:function($scope){
-            $http.get(url+$scope.tabla+prefixJWT+jwt)
+            $http.get(url+$scope.recurso+prefixJWT+jwt)
             .success(function(data, status, headers, config)
             {
-                    console.log(data);
+                    switch ($scope.descripcion) {
+                    case "IntervencionxIntervenido":
+                        $scope.registros = $scope.registros.concat(data.interventions);
+                        break;
+                        case "EvaluacionxIntervencion":
+                        data.intervention_id
+                        $scope.registros = $scope.registros.concat(data.evaluations);
+                        //console.log(data);
+                        break;
+                    default:
+                        $scope.registros = $scope.registros.concat(data);
+                        break;
+                };
 
-                $scope.registros = $scope.registros.concat(data);
+
                 $scope.total=$scope.registros.length;
                 $scope.tableParams = new ngTableParams({page:1, count:10, sorting: { name: 'asc'}}, {
                     total: $scope.registros.length,
@@ -77,11 +89,11 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
 
         },
 
-        consultar:function($scope,tabla){
-            $http.get(url+tabla+prefixJWT+jwt)
+        consultar:function($scope,recurso){
+            $http.get(url+recurso+prefixJWT+jwt)
             .success(function(data, status, headers, config)
             {   
-                switch (tabla) {
+                switch (recurso) {
                     case "entity":
                         $scope.registroEntidad = data;
                         break;
@@ -102,7 +114,7 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
         },
 
         eliminar:function($scope){
-            $http.delete(url+$scope.tabla+'/'+$scope.registroBorrar.id+prefixJWT+jwt)
+            $http.delete(url+$scope.recurso+'/'+$scope.registroBorrar.id+prefixJWT+jwt)
             .success(function(data, status, headers, config)
             {
                 $location.path($scope.url);
@@ -111,7 +123,7 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
         },
 
         editar:function($scope){
-            $http.put(url+$scope.tabla+'/'+$scope.registroEditar.id+prefixJWT+jwt,$scope.registroEditar)
+            $http.put(url+$scope.recurso+'/'+$scope.registroEditar.id+prefixJWT+jwt,$scope.registroEditar)
             .success(function(data, status, headers, config)
             {
                 $location.path($scope.url);
@@ -120,7 +132,7 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
         },
 
         crear: function($scope,datos){
-            $http.post(url+$scope.tabla+prefixJWT+jwt,datos)
+            $http.post(url+$scope.recurso+prefixJWT+jwt,datos)
             .success(function(data, status, headers, config)
             {
                 $location.path($scope.url);

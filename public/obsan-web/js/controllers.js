@@ -1,11 +1,13 @@
 var app = angular.module('obsan');
 
+var btnShow=false;
+
 app.controller("GestionUsuarios", [
     '$scope','serviceHttp',
     function($scope,serviceHttp)
     {
         $scope.registros = [], $scope.total=0, $scope.registroEditar= {},
-        $scope.registroBorrar ={}, $scope.registroCrear={},$scope.tabla="user"
+        $scope.registroBorrar ={}, $scope.registroCrear={},$scope.recurso="user"
         $scope.url="/usuarios";
 
         $scope.listar = function()
@@ -54,7 +56,7 @@ app.controller("GestionEntidades", [
     function($scope,serviceHttp)
     {
         $scope.registros = [], $scope.total=0, $scope.registroEditar= {},
-        $scope.registroBorrar ={}, $scope.registroCrear={},$scope.tabla="entity",
+        $scope.registroBorrar ={}, $scope.registroCrear={},$scope.recurso="entity",
         $scope.url="/entidades";
 
         $scope.listar = function()
@@ -102,7 +104,7 @@ app.controller("GestionMunicipios", [
     function($scope,serviceHttp)
     {
         $scope.registros = [], $scope.total=0, $scope.registroEditar= {},
-        $scope.registroBorrar ={}, $scope.registroCrear={},$scope.tabla="municipality",
+        $scope.registroBorrar ={}, $scope.registroCrear={},$scope.recurso="municipality",
         $scope.url="/municipios";
 
         $scope.listar = function()
@@ -144,12 +146,12 @@ app.controller("GestionMunicipios", [
     }]);
 
 app.controller("GestionIntervenido", [
-    '$scope','serviceHttp',
-    function($scope,serviceHttp)
+    '$scope','serviceHttp','$location',
+    function($scope,serviceHttp,$location)
     {
         $scope.registros = [], $scope.total=0, $scope.registroEditar= {},
-        $scope.registroBorrar ={}, $scope.registroCrear={},$scope.tabla="intervened",
-        $scope.url="/intervenidos";
+        $scope.registroBorrar ={}, $scope.registroCrear={},$scope.recurso="intervened",
+        $scope.url="/intervenidos",$scope.btnShow=btnShow;
 
         $scope.listar = function()
         {
@@ -195,6 +197,11 @@ app.controller("GestionIntervenido", [
             $scope.registroBorrar = registro;
         };
 
+        $scope.showIntervention = function(registro){
+            btnShow=true;
+            $location.path("/intervenido/intervencion/"+registro.id);
+        };
+
     }]);
 
 
@@ -202,51 +209,34 @@ app.controller("GestionIntervencion", [
     '$scope','serviceHttp',
     function($scope,serviceHttp)
     {
-        $scope.registros = [],$scope.total=0, $scope.registroEditar= {},
+        $scope.registros = [],$scope.total=0, $scope.registroEditar= {},$scope.btnShow=false,
         $scope.registroBorrar ={},$scope.registroMunicipio =[],$scope.registroEntidad =[], 
-        $scope.registroCrear={},$scope.tabla="",$scope.url="/intervencion",$scope.entidad;
+        $scope.registroCrear={},$scope.recurso="",$scope.url="/intervencion",$scope.entidad;
 
         $scope.listar = function()
         {
-            $scope.tabla="intervention/with_em"
+            $scope.recurso="intervention/with_em"
             serviceHttp.listar($scope);
             datosSelect("municipality");
             datosSelect("entity");
-            $scope.tabla="intervention"
+            $scope.recurso="intervention"
         };
         $scope.listar();
         
-        function datosSelect(tabla){
-            serviceHttp.consultar($scope,tabla);
-        };
-
-        $scope.eliminar= function()
-        {
-            serviceHttp.eliminar($scope);
+        function datosSelect(recurso){
+            serviceHttp.consultar($scope,recurso);
         };
 
         $scope.editar= function()
         {   
+            $scope.registroEditar.entity_id=$scope.registroEditar.entity.id;
+            $scope.registroEditar.municipality_id=$scope.registroEditar.municipality.id;
             serviceHttp.editar($scope);
         };
-
-        $scope.crear= function()
-        {
-            datos={
-
-            }
-            serviceHttp.crear($scope,datos);
-        };
-
 
         $scope.showEdit = function(registro)
         {
             $scope.registroEditar = registro;
-        };
-
-        $scope.showDelete = function(registro)
-        {
-            $scope.registroBorrar = registro;
         };
 
     }]);
@@ -258,29 +248,27 @@ app.controller("GestionEvaluacion", [
     {
         $scope.registros = [],$scope.total=0, $scope.registroEditar= {},
         $scope.registroBorrar ={},$scope.registroIntervencion =[],$scope.registroUsuario =[], 
-        $scope.registroCrear={},$scope.tabla="",$scope.url="/evaluacion",$scope.entidad;
+        $scope.registroCrear={},$scope.recurso="",$scope.url="/evaluacion",$scope.entidad;
 
         $scope.listar = function()
         {
-            $scope.tabla="evaluation/with_iu";
+            $scope.recurso="evaluation/with_iu";
             serviceHttp.listar($scope);
             datosSelect("user");
             datosSelect("intervention");
-            $scope.tabla="evaluation";
+            $scope.recurso="evaluation";
         };
         $scope.listar();
         
-        function datosSelect(tabla){
-            serviceHttp.consultar($scope,tabla);
+        function datosSelect(recurso){
+            serviceHttp.consultar($scope,recurso);
         };
 
-        $scope.eliminar= function()
-        {
-            serviceHttp.eliminar($scope);
-        };
 
         $scope.editar= function()
         {   
+            $scope.registroEditar.intervention_id=$scope.registroEditar.intervention.id;
+            $scope.registroEditar.user_id=$scope.registroEditar.user.id;
             serviceHttp.editar($scope);
         };
 
@@ -298,11 +286,135 @@ app.controller("GestionEvaluacion", [
             $scope.registroEditar = registro;
         };
 
+    }]);
+
+
+app.controller("IntervencionxIntervenido", [
+    '$scope','serviceHttp','$routeParams','$location',
+    function($scope,serviceHttp,$routeParams,$location)
+    {
+        $scope.registros = [],$scope.total=0, $scope.registroEditar= {},$scope.btnShow=btnShow,
+        $scope.registroBorrar ={},$scope.registroMunicipio =[],$scope.registroEntidad =[], 
+        $scope.registroCrear={},$scope.recurso="",$scope.url="",$scope.entidad,
+        $scope.descripcion="IntervencionxIntervenido";
+
+
+        $scope.listar = function()
+        {
+            $scope.recurso="/intervened/intervention/"+$routeParams.id;
+            $scope.url="/intervenido/intervencion/"+$routeParams.id;
+            serviceHttp.listar($scope);
+            datosSelect("municipality");
+            datosSelect("entity");
+            $scope.recurso="intervention"
+        };
+        $scope.listar();
+        
+        function datosSelect(recurso){
+            serviceHttp.consultar($scope,recurso);
+        };
+
+        $scope.eliminar= function()
+        {
+            serviceHttp.eliminar($scope);
+        };
+
+        $scope.editar= function()
+        {   
+            $scope.registroEditar.entity_id=$scope.registroEditar.entity.id;
+            $scope.registroEditar.municipality_id=$scope.registroEditar.municipality.id;
+            serviceHttp.editar($scope);
+        };
+
+        $scope.crear= function()
+        {
+            datos={
+                name: $scope.registroCrear.name,
+                entity_id: $scope.registroCrear.entity_id ,      
+                municipality_id: $scope.registroCrear.municipality_id,
+                description: $scope.registroCrear.description,
+                evidencias_planeadas: $scope.registroCrear.evidencias_planeadas,
+                intervened_id: $routeParams.id
+            }
+            serviceHttp.crear($scope,datos);
+        };
+
+
+        $scope.showEdit = function(registro)
+        {   
+
+            $scope.registroEditar = registro;
+        };
+
+        $scope.showDelete = function(registro)
+        {
+            $scope.registroBorrar = registro;
+        };
+
+        $scope.showEvaluation = function(registro){
+            btnShow=true;
+            $location.path("/intervencion/evaluacion/"+registro.id);
+        };
+
+    }]);
+
+
+app.controller("EvaluacionxIntervencion", [
+    '$scope','serviceHttp','$routeParams',
+    function($scope,serviceHttp,$routeParams)
+    {
+        $scope.registros = [],$scope.total=0, $scope.registroEditar= {},$scope.btnShow=btnShow,
+        $scope.registroBorrar ={},$scope.registroIntervencion =[],$scope.registroUsuario =[], 
+        $scope.registroCrear={},$scope.recurso="",$scope.url="",$scope.entidad,
+        $scope.descripcion="EvaluacionxIntervencion";
+
+
+        $scope.listar = function()
+        {
+            $scope.recurso="/intervention/evaluation/"+$routeParams.id;
+            $scope.url="/intervencion/evaluacion/"+$routeParams.id;
+            serviceHttp.listar($scope);
+            datosSelect("user");
+            datosSelect("intervention");
+            $scope.recurso="evaluation";
+        };
+        $scope.listar();
+        
+        function datosSelect(recurso){
+            serviceHttp.consultar($scope,recurso);
+        };
+
+        $scope.eliminar= function()
+        {
+            serviceHttp.eliminar($scope);
+        };
+
+        $scope.editar= function()
+        {   
+            //$scope.registroEditar.intervention_id=$scope.registroEditar.intervention.id;
+            $scope.registroEditar.user_id=$scope.registroEditar.user.id;
+            serviceHttp.editar($scope);
+        };
+
+        $scope.crear= function()
+        {
+            datos={
+                
+            }
+            serviceHttp.crear($scope,datos);
+        };
+
+
+        $scope.showEdit = function(registro)
+        {   
+
+            $scope.registroEditar = registro;
+        };
+
         $scope.showDelete = function(registro)
         {
             $scope.registroBorrar = registro;
         };
 
     }]);
-
 

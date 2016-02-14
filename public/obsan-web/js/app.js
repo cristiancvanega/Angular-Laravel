@@ -27,6 +27,14 @@ app.config(["$routeProvider", function($routeProvider)
     .when("/evaluacion", {
         controller: "GestionEvaluacion",
         templateUrl: "views/evaluacion.html"
+    }).
+    when("/intervenido/intervencion/:id", {
+        controller: "IntervencionxIntervenido",
+        templateUrl: "views/intervencion.html"
+    }).
+    when("/intervencion/evaluacion/:id", {
+        controller: "EvaluacionxIntervencion",
+        templateUrl: "views/evaluacion.html"
     })
     .otherwise({
         redirectTo: 'index.html'

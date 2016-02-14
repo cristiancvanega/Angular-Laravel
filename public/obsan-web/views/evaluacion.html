@@ -1,12 +1,12 @@
 <div class="panel panel-default">
   <br><br>
-  <h2 align="center"><strong>Intervención</strong></h2>
+  <h2 align="center"><strong>Evaluación</strong></h2>
   <div class="col-xs-11">
     <loading></loading>
     <h3>B&uacute;squeda: <input class="form-control" type="text" ng-model="filter.$" /></h3>
     <div class="panel-body panel-body-table">
       <div class="table-responsive">
-        <table  ng-table="tableParams" class="table table-bordered table-striped">
+        <table   ng-table="tableParams" class="table table-bordered table-striped">
           <tbody>
             <tr ng-repeat="registro in $data">
               <td align="center" data-title="'Intervencion'" sortable="'intervention.name'">{{registro.intervention.name}}</td>
@@ -17,49 +17,75 @@
               <td align="center" data-title="'Estado final'" sortable="'estado_final'">{{registro.estado_final}}</td>
               <td align="center" data-title="'Descripción'" sortable="'description'">{{registro.description}}</td>
               <td align="center" data-title="'Recomendaciones'" sortable="'recomendaciones'">{{registro.recomendaciones}}</td>
-              <!--
+              
               <td align="center" data-title=""><button class="btn btn-primary" data-toggle="modal" ng-click= "showEdit(registro)" data-target="#editarregistro" ><i class="fa fa-pencil"></i></button></td>
-              -->
+             
             </tr>
           </tbody>
         </table>
       </div>
     </div>
   </div>
+  <!--
+  <div ng-show='btnShow' class="col-xs-1">
+    <button class="btn btn-primary" data-toggle="modal" data-target="#crearregistro"><i class="fa fa-plus"></i></button>
+  </div>
+-->
 </div>
 
 
 
-<!-- init modal soft update intervention -->
+<!-- init modal soft update evaluation -->
 <div class="modal fade" id="editarregistro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Editar Intervención</h4>
+        <h4 class="modal-title" id="myModalLabel">Editar Evaluación</h4>
       </div>
       <div class="modal-body">
         <form class="form-horizontal col-lg-8 col-md-8 col-xs-10" role="form">
           <div class="form-group">
-            <label>Nombre de la intervención</label>
-            <input type="text" name="nombre" class="form-control" ng-model="registroEditar.name" >
+            <label>Seleccione una Intervención</label>
+            <select class="form-control" ng-options="item.id as item.name for item in registroIntervencion" ng-model="registroEditar.intervention.id"></select>
           </div>
           <div class="form-group">
-            <label>Seleccione una entidad</label>
-            <select class="form-control" ng-options="item.id as item.name for item in registroEntidad" ng-model="registroEditar.entity_id"></select>
+            <label>Seleccione un Usuario</label>
+            <select class="form-control" ng-options="item.id as item.name for item in registroUsuario" ng-model="registroEditar.user.id"></select>
           </div>
           <div class="form-group">
-            <label>Seleccione un municipio</label>
-            <select class="form-control" ng-options="item.id as item.name for item in registroMunicipio" ng-model="registroEditar.municipality_id"></select>
+            <label>Seleccione Impacto</label>
+            <select class="form-control" ng-model="registroEditar.impacto">
+              <option value="1">El impacto generado no presenta evidencias, el estado inicial es igual al estado final</option>
+              <option value="2">El impacto generado no presenta evidencias, el estado inicial es menor  que el estado final</option>
+              <option value="3">El impacto generado no presenta evidencias, el estado final es igual al estado ideal</option>
+              <option value="4">El impacto generado presenta evidencias, el estado inicial es igual al estado final</option>
+              <option value="5">El impacto generado presenta evidencias, el estado inicial es menor  que el estado final</option>
+              <option value="6">El impacto generado presenta evidencias, el estado final es igual al estado ideal</option>
+              <option value="7">El impacto generado presenta evidencias incompletas, el estado inicial es igual al estado final</option>
+              <option value="8">El impacto generado presenta evidencias incompletas, el estado inicial es menor  que el estado final</option>
+              <option value="9">El impacto generado presenta evidencias incompletas, el estado final es igual al estado idea</option>
+            </select>
+          </div>
+           <div class="form-group">
+            <label>Estado Inicial</label>
+            <select class="form-control" ng-model="registroEditar.estado_inicial">
+              <option value="1">bajo</option>
+              <option value="2">medio</option>
+              <option value="3">ideal</option>
+            </select>
+          </div>
+           <div class="form-group">
+            <label>Estado Final</label>
+            <select class="form-control" ng-model="registroEditar.estado_final">
+              <option value="1">bajo</option>
+              <option value="2">medio</option>
+              <option value="3">ideal</option>
+            </select>
           </div>
           <div class="form-group">
             <label>Descripción</label>
             <textarea rows="4" cols="50" type="text" name="description" class="form-control" ng-model="registroEditar.description" >  
-            </textarea>
-          </div>
-          <div class="form-group">
-            <label>Evidencias planeadas</label>
-            <textarea rows="4" cols="50" type="text" name="evidencias_planeadas" class="form-control" ng-model="registroEditar.evidencias_planeadas" >  
             </textarea>
           </div>
           <div class="form-group"> 
@@ -76,7 +102,7 @@
     </div>
   </div>
 </div>
-<!-- end modal soft update intervention -->
+<!-- end modal soft update evaluation -->
 
 
 
