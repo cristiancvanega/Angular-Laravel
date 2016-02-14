@@ -26,10 +26,10 @@ class EvaluationController extends Controller
 
     public function update(EvaluationUpdateRequest $request, $id)
     {
-        $u = $this->repository->find($id);
-        if(is_null($u))
+        $e = $this->repository->find($id);
+        if(is_null($e))
             return response()->json(['Evaluation does not exist'], 400);
-        return response()->json($u->update($request->toArray()), 202);
+        return response()->json($e->update($request->toArray()), 202);
     }
 
     public function getReportData()
