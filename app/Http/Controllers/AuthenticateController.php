@@ -34,10 +34,10 @@ class AuthenticateController extends Controller
         }
 
         // all good so return the token
-        return json_encode([
+        return response()->json([
             'token' => $token,
-            'role' => $this->repository->getRoleUserWithToken($token)
-        ]);
+            'role'  => $this->repository->getRoleUserWithToken($token)
+        ], 200);
     }
 
     public function getAuthenticatedUser()
