@@ -1,6 +1,6 @@
 <div class="panel panel-default">
-  <h2 align="center"><strong>Usuarios</strong></h2>
   <br><br>
+  <h2 align="center"><strong>Usuarios</strong></h2>
   <div class="col-xs-11">
     <loading></loading>
     <h3>B&uacute;squeda: <input class="form-control" type="text" ng-model="filter.$" /></h3>
@@ -100,7 +100,9 @@
         <form class="form-horizontal col-lg-8 col-md-8 col-xs-10" role="form" name="userForm">
           <div class="form-group">
             <label>Nombre*</label>
-            <input type="text" name="nombre" class="form-control" ng-model="registroCrear.name" >
+            <input type="text" name="nombre" class="form-control" ng-model="registroCrear.name">
+            <!--<span ng-show="userForm.nombre.$error.required">Este campo es obligatorio.</span>
+          -->
           </div>
           <div class="form-group">
             <label>Email*</label>
