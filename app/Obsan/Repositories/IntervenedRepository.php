@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: cristiancvanega
- * Date: 2/10/16
- * Time: 1:35 AM
- */
 
 namespace App\Obsan\Repositories;
 
@@ -20,6 +14,10 @@ class IntervenedRepository extends BaseRepository
 
     public function getInterventions($id)
     {
-        return $this->model->with(['interventions'])->find($id);
+        return $this->model->with([
+            'interventions',
+            'interventions.municipality',
+            'interventions.entity'
+        ])->find($id);
     }
 }
