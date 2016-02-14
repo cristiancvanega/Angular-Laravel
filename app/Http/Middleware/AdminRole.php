@@ -16,7 +16,9 @@ class AdminRole extends BaseRole
     public function handle($request, Closure $next)
     {
         if(!$this->isAdmin())
-            return redirect('obsan-web');
+            return response()->json([
+                'message' => 'You do no have permissions to access'
+            ], 405);
 
         return $next($request);
     }
