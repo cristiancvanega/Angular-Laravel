@@ -2,6 +2,12 @@ var app = angular.module('obsan');
 
 var btnShow=false;
 
+app.controller('showsignin', ['$scope', function($scope) {
+  $scope.signout = false;
+  $scope.signin = true;
+}]);
+
+
 app.controller("GestionUsuarios", [
     '$scope','serviceHttp',
     function($scope,serviceHttp)
