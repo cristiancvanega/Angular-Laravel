@@ -1,6 +1,5 @@
 <?php
 
-//Route::group(['middleware' => ['jwt.auth']], function ()
 Route::group([], function ()
 {
 	require(__DIR__ . '/UserRoutes.php');

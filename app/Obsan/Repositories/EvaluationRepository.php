@@ -24,7 +24,7 @@ class EvaluationRepository extends BaseRepository
         $intervenciones = Intervention::Join('evaluations', 'interventions.id', '=', 'evaluations.intervention_id')
             ->Join('users', 'evaluations.user_id', '=', 'users.id' )
             ->select('interventions.name as intervention', 'users.name as user',
-                'evaluations.date', 'evaluations.descripcion_evidencia','evaluations.impacto',
+                'evaluations.created_at', 'evaluations.descripcion_evidencia','evaluations.impacto',
                 'evaluations.estado_inicial', 'evaluations.estado_final','evaluations.description',
                 'evaluations.recomendaciones', 'evaluations.id')->get();
         return $intervenciones;

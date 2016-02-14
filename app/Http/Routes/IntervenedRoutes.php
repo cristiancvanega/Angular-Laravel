@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['prefix' => 'intervened'], function(){
+Route::group(['prefix' => 'intervened', 'middleware' => 'obsan'], function(){
 
     Route::get('','IntervenedController@all');
 
@@ -13,6 +13,4 @@ Route::group(['prefix' => 'intervened'], function(){
     Route::delete('/{id}','IntervenedController@delete');
 
     Route::get('intervention/{id}', 'IntervenedController@getInterventions');
-
-    Route::post('custom_report', 'IntervenedController@getCustomReport');
 });

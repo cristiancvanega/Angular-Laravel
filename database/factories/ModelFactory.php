@@ -1,16 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Model Factories
-|--------------------------------------------------------------------------
-|
-| Here you may define all of your model factories. Model factories give
-| you a convenient way to create models for testing and seeding your
-| database. Just tell the factory how a default model should look.
-|
-*/
-
 $factory->define(App\Obsan\Entities\User::class, function (Faker\Generator $faker) {
     return [
         'name'              => $faker->name,
@@ -49,12 +38,12 @@ $factory->define(App\Obsan\Entities\Intervention::class, function (Faker\Generat
 $factory->define(App\Obsan\Entities\Intervened::class, function (Faker\Generator $faker) {
     return [
         'name'          => $faker->name,
-        'document_type' => $faker->numberBetween(0, 3),
+        'document_type' => $faker->numberBetween(1, 4),
         'document'      => $faker->randomNumber(9),
         'address'       => $faker->address,
         'phone'         => $faker->numberBetween(8100000, 9999999),
         'email'         => $faker->email,
-        'pupilage'      => $faker->numberBetween(0, 4)
+        'pupilage'      => $faker->numberBetween(1, 5)
     ];
 });
 
@@ -69,10 +58,9 @@ $factory->define(App\Obsan\Entities\Evaluation::class, function (Faker\Generator
     return [
         'intervention_id'       => $faker->numberBetween(1, 45),
         'user_id'               => $faker->numberBetween(1, 15),
-        'date'                  => $faker->date('y-m-d'),
         'descripcion_evidencia' => $faker->paragraph,
-        'impacto'               => $faker->numberBetween(0, 8),
-        'estado_final'          => $faker->numberBetween(0, 3),
+        'impacto'               => $faker->numberBetween(1, 9),
+        'estado_final'          => $faker->numberBetween(1, 4),
         'description'           => $faker->paragraph,
         'recomendaciones'       => $faker->paragraph(3)
     ];

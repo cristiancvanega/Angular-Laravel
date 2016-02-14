@@ -9,6 +9,7 @@ use App\Http\Requests;
 use App\Obsan\Entities\Intervention;
 use App\Http\Requests\InterventionCreateRequest;
 use App\Http\Requests\InterventionUpdateRequest;
+use App\Http\Requests\InterventionCustomReportRequest;
 use App\Http\Controllers\Controller;
 
 class InterventionController extends Controller
@@ -55,5 +56,10 @@ class InterventionController extends Controller
     public function getWithEntitiesAndMunicipalities()
     {
         return response()->json($this->repository->getWithEntitiesAndMunicipalities(), 200);
+    }
+
+    public function getCustomReport(InterventionCustomReportRequest $request)
+    {
+        return response()->json($this->repository->getCustomReport($request->toArray()));
     }
 }
