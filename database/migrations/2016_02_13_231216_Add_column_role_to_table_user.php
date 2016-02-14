@@ -13,7 +13,13 @@ class AddColumnRoleToTableUser extends Migration
     public function up()
     {
         Schema::table('users', function($table){
-            $table->integer('role')->default(1);
+            $table->enum('role',
+                [
+                    'Admin',
+                    'OBSAN',
+                    'normal'
+                ]
+            )->default(1);
         });
     }
 
