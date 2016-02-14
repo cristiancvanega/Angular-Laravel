@@ -32,9 +32,10 @@ class InterventionRepository extends BaseRepository
 
     public function getEvaluation($id)
     {
-        return $this->model->with(
-            'evaluations'
-        )->find($id);
+        return $this->model->with([
+            'evaluations',
+            'evaluations.user',
+        ])->find($id);
     }
 
     public function getWithEntitiesAndMunicipalities()
