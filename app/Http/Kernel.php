@@ -36,13 +36,13 @@ class Kernel extends HttpKernel
         ],
 
         'admin' => [
-            //'jwt.auth',
-            //'jwt.admin'
+            'jwt.auth',
+            'jwt.admin'
         ],
 
         'obsan' => [
-            //'jwt.auth',
-            //'jwt.obsan'
+            'jwt.auth',
+            'jwt.obsan'
         ]
     ];
 

@@ -1,6 +1,6 @@
 var app = angular.module('obsan');
-//var url = "http://obsan.app/";
-var url         = "http://obsan.eduagil.com/";
+var url = "http://obsan.app/";
+//var url         = "http://obsan.eduagil.com/";
 
 
 app.service('TableService', function ($http, $filter) {
@@ -48,10 +48,14 @@ app.service('TableService', function ($http, $filter) {
 
 app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$route,TableService,$location) {
 
-
     var service = {
         listar:function($scope){
-            $http.get(url+$scope.recurso)
+            $http.get(url+$scope.recurso,{
+                    headers : {
+                        'token' : localStorage.getItem('token'),
+                        'role'  : localStorage.getItem('role')
+                    }
+                })
             .success(function(data, status, headers, config)
             {
                     switch ($scope.descripcion) {
@@ -84,7 +88,12 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
         },
 
         consultar:function($scope,recurso){
-            $http.get(url+recurso)
+            $http.get(url+recurso,{
+                    headers : {
+                        'token' : localStorage.getItem('token'),
+                        'role'  : localStorage.getItem('role')
+                    }
+                })
             .success(function(data, status, headers, config)
             {   
                 switch (recurso) {
@@ -104,11 +113,15 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
                         break;
                 }
             });
-
         },
 
         eliminar:function($scope){
-            $http.delete(url+$scope.recurso+'/'+$scope.registroBorrar.id)
+            $http.delete(url+$scope.recurso+'/'+$scope.registroBorrar.id,{
+                    headers : {
+                        'token' : localStorage.getItem('token'),
+                        'role'  : localStorage.getItem('role')
+                    }
+                })
             .success(function(data, status, headers, config)
             {
                 $location.path($scope.url);
@@ -117,7 +130,12 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
         },
 
         editar:function($scope){
-            $http.put(url+$scope.recurso+'/'+$scope.registroEditar.id,$scope.registroEditar)
+            $http.put(url+$scope.recurso+'/'+$scope.registroEditar.id,$scope.registroEditar,{
+                    headers : {
+                        'token' : localStorage.getItem('token'),
+                        'role'  : localStorage.getItem('role')
+                    }
+                })
             .success(function(data, status, headers, config)
             {
                 $location.path($scope.url);
@@ -139,16 +157,22 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
             .success(function(data, status, headers, config)
             {
                 console.log(status);
-                console.log(data);
-                $location.path($scope.url);
-                $route.reload();
-                $scope.signout=true;
-                $scope.signin=false;
+                if(status === 200)
+                {
+                    setHeaders(data.token, data.role);
+                    localStorage.setItem('token', data.token);
+                    localStorage.setItem('role', data.role);
+                    console.log(localStorage.getItem('token'));
+                    console.log(localStorage.getItem('role'));
+                    $location.path($scope.url);
+                    $route.reload();
+                    $scope.signout=true;
+                    $scope.signin=false;
+                }
             });
         }
 
 
     };
     return service;
-
 });
