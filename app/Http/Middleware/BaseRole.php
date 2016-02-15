@@ -38,6 +38,6 @@ class BaseRole
 
     protected function isObsan()
     {
-        return $this->userRepository->getRoleUser() === 'Obsan';
+        return $this->userRepository->getRoleUser() === 'OBSAN';
     }
 }
