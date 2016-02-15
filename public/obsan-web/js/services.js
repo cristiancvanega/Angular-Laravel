@@ -159,7 +159,6 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
                 console.log(status);
                 if(status === 200)
                 {
-                    setHeaders(data.token, data.role);
                     localStorage.setItem('token', data.token);
                     localStorage.setItem('role', data.role);
                     console.log(localStorage.getItem('token'));
