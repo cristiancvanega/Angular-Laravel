@@ -6,6 +6,7 @@ $factory->define(App\Obsan\Entities\User::class, function (Faker\Generator $fake
         'email'             => $faker->email,
         'password'          => bcrypt('12345678'),
         'remember_token'    => str_random(10),
+        'role'              => $faker->numberBetween(1,3)
     ];
 });
 

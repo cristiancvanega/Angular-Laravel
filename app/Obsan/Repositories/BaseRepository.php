@@ -2,7 +2,7 @@
 namespace App\Obsan\Repositories;
 
 
-use Illuminate\Database\Eloquent\Model;
+use App\Obsan\Entities\Model;
 
 abstract class BaseRepository
 {

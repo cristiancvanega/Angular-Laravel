@@ -1,6 +1,6 @@
 var app = angular.module('obsan');
 //var url = "http://obsan.app/";
-var url         = "http://obsan.eduagil.com/";
+var url = "http://obsan.eduagil.com/";
 
 
 app.service('TableService', function ($http, $filter) {
