@@ -172,6 +172,19 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
                     $route.reload();
                     $scope.signout=true;
                     $scope.signin=false;
+                    switch (data.role){
+                        case 'Normal':
+                            window.location = url+'obsan-web/index';
+                            break;
+                        case 'OBSAN':
+                            window.location = url+'obsan-web/obsan';
+                            break;
+                        case 'Admin':
+                            window.location = url+'obsan-web/admin';
+                            //window.location = 'https://google.com';
+                            break;
+                    }
+                    console.log(url+'obsan-web/#/index_usa.html');
                 }
             });
         }

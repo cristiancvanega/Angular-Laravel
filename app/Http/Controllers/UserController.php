@@ -18,7 +18,10 @@ class UserController extends Controller
 
     public function create(UserCreateRequest $request)
     {
-        return $this->responseEntityStore($this->repository->create($request->toArray()));
+        $request             = $request->toArray();
+        $password            = \Hash::make($request['password']);
+        $request['password'] = $password;
+        return $this->responseEntityStore($this->repository->create($request));
     }
 
     public function update(UserUpdateRequest $request, $id)
