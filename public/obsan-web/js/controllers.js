@@ -51,6 +51,7 @@ app.controller("GestionUsuarios", [
             datos={
                 email: $scope.registroCrear.email,
                 name: $scope.registroCrear.name,
+                role: $scope.registroCrear.role,
                 password: $scope.registroCrear.password
             }
             serviceHttp.crear($scope,datos);

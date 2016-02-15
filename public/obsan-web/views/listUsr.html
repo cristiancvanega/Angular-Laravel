@@ -70,6 +70,14 @@
             <label>Email*</label>
             <input type="text"  name="email" class="form-control" ng-model="registroEditar.email">
           </div>
+          <div class="form-group">
+            <label>Rol*</label>
+            <select name="role" id="" class="form-control" ng-model="registroEditar.role">
+              <option value="Normal">Normal</option>
+              <option value="OBSAN">OBSAN</option>
+              <option value="Admin">Admin</option>
+            </select>
+          </div>
           <div class="form-group"> 
             <div class="col-sm-offset-2 col-sm-10">
               <button type="button" class="btn btn-success" 
@@ -108,6 +116,14 @@
             <label>Email*</label>
             <input type="email"  name="email" class="form-control" 
             placeholder="email@example" ng-model="registroCrear.email" >
+          </div>
+          <div class="form-group">
+            <label>Rol*</label>
+            <select name="role" id="" class="form-control" ng-model="registroCrear.role">
+              <option value="1">Normal</option>
+              <option value="2">OBSAN</option>
+              <option value="3">Admin</option>
+            </select>
           </div>
           <div class="form-group">
             <label>Contraseña*</label>
