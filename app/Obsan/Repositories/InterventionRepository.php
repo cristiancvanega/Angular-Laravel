@@ -46,6 +46,7 @@ class InterventionRepository extends BaseRepository
         return $this->model->with([
             'evaluations',
             'evaluations.user',
+            'evaluations.intervention'
         ])->find($id);
     }
 
