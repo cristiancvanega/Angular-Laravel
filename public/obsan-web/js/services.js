@@ -1,6 +1,6 @@
 var app = angular.module('obsan');
-//var url = "http://obsan.app/";
-var url = "http://obsan.eduagil.com/";
+var url = "http://obsan.app/";
+//var url = "http://obsan.eduagil.com/";
 
 
 app.service('TableService', function ($http, $filter) {
@@ -162,29 +162,34 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
             .success(function(data, status, headers, config)
             {
                 console.log(status);
+                if(status === 400)
+                {
+                    //TODO : show message "Credenciales inválidas"
+                }
                 if(status === 200)
                 {
-                    localStorage.setItem('token', data.token);
-                    localStorage.setItem('role', data.role);
-                    console.log(localStorage.getItem('token'));
-                    console.log(localStorage.getItem('role'));
-                    $location.path($scope.url);
-                    $route.reload();
-                    $scope.signout=true;
-                    $scope.signin=false;
-                    switch (data.role){
-                        case 'Normal':
-                            window.location = url+'obsan-web/index';
-                            break;
-                        case 'OBSAN':
-                            window.location = url+'obsan-web/obsan';
-                            break;
-                        case 'Admin':
-                            window.location = url+'obsan-web/admin';
-                            //window.location = 'https://google.com';
-                            break;
+                    if(data.error === 'invalid_credentials')
+                    {
+                        //TODO : show message "Credenciales inválidas"
+                    }else{
+                        localStorage.setItem('token', data.token);
+                        localStorage.setItem('role', data.role);
+                        console.log(localStorage.getItem('token'));
+                        console.log(localStorage.getItem('role'));
+                        $scope.signout=true;
+                        $scope.signin=false;
+                        switch (data.role){
+                            case 'Normal':
+                                window.location = url+'obsan-web/index';
+                                break;
+                            case 'OBSAN':
+                                window.location = url+'obsan-web/obsan';
+                                break;
+                            case 'Admin':
+                                window.location = url+'obsan-web/admin';
+                                break;
+                        }
                     }
-                    console.log(url+'obsan-web/#/index_usa.html');
                 }
             });
         }
