@@ -1,6 +1,7 @@
 var app = angular.module('obsan');
 //var url = "http://obsan.app/";
 var url = "http://obsan.eduagil.com/";
+showMenu();
 
 
 app.service('TableService', function ($http, $filter) {
@@ -178,17 +179,7 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
                         console.log(localStorage.getItem('role'));
                         $scope.signout=true;
                         $scope.signin=false;
-                        switch (data.role){
-                            case 'Normal':
-                                break;
-                            case 'OBSAN':
-                                $('#divobsan').removeAttr('hidden');
-                                break;
-                            case 'Admin':
-                                $('#usersdiv').removeAttr('hidden');
-                                $('#divobsan').removeAttr('hidden');
-                                break;
-                        }
+                        showMenu();
                     }
                 }
             });
@@ -198,3 +189,21 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
     };
     return service;
 });
+
+function showMenu(){
+    if(localStorage.getItem('role') == null)
+    {
+        return;
+    }
+    switch (localStorage.getItem('role')){
+        case 'Normal':
+            break;
+        case 'OBSAN':
+            $('#divobsan').removeAttr('hidden');
+            break;
+        case 'Admin':
+            $('#usersdiv').removeAttr('hidden');
+            $('#divobsan').removeAttr('hidden');
+            break;
+    }
+}
