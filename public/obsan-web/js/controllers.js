@@ -101,7 +101,7 @@ app.controller("GestionEntidades", [
             datos={
                 name: $scope.registroCrear.name,
                 email: $scope.registroCrear.email,
-                phone: $scope.registroCrear.phone
+                phone: $scope.registroCrear.phone,
             }
             serviceHttp.crear($scope,datos);
         };
