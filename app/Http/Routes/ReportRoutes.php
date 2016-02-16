@@ -2,11 +2,13 @@
 
 Route::group(['prefix' => 'report'], function(){
 
-    Route::group(['middleware' => 'obsan'], function(){
+    Route::group([], function(){
 
         Route::get('intervention', 'InterventionController@getData');
 
         Route::get('evaluation', 'EvaluationController@getReportData');
+
+        Route::get('intervened', 'IntervenedController@all');
     });
 
     Route::group(['prefix' => 'custom_report', 'middleware' => 'admin'], function(){

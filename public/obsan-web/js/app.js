@@ -37,7 +37,7 @@ app.config(["$routeProvider", function($routeProvider)
         templateUrl: "views/evaluacion.html"
     }).
     when("/reportIntervened", {
-        controller:  "GestionIntervenido",
+        controller:  "reportIntervened",
         templateUrl: "views/reportIntervened.html"
     }).
     when("/reportEvaluation", {

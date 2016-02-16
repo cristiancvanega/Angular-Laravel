@@ -340,6 +340,21 @@ app.controller("reportIntervention", [
 
     }]);
 
+app.controller("reportIntervened", [
+    '$scope','serviceHttp',
+    function($scope,serviceHttp)
+    {
+        $scope.registros = [],$scope.total=0,$scope.recurso="",$scope.url="/reportEvaluation";
+
+        $scope.listar = function()
+        {
+            $scope.recurso="report/intervened";
+            serviceHttp.listar($scope);
+        };
+        $scope.listar();
+
+    }]);
+
 
 app.controller("IntervencionxIntervenido", [
     '$scope','serviceHttp','$routeParams','$location',
