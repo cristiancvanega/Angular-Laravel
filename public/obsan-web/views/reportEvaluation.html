@@ -9,7 +9,7 @@
                 <table   ng-table="tableParams" class="table table-bordered table-striped">
                     <tbody>
                     <tr ng-repeat="registro in $data">
-                        <td align="center" data-title="'Intervencion'" sortable="'intervention.name'">{{registro.intervention.name}}</td>
+                        <td align="center" data-title="'Intervencion'" sortable="'intervention.name'">{{registro.intervention}}</td>
                         <td align="center" data-title="'Usuario'" sortable="''">{{registro.user.name}}</td>
                         <td align="center" data-title="'Descripcion Evidencia'" sortable="'descripcion_evidencia'">{{registro.descripcion_evidencia}}</td>
                         <td align="center" data-title="'Impacto'" sortable="'impacto'">{{registro.impacto}}</td>
@@ -17,7 +17,6 @@
                         <td align="center" data-title="'Estado final'" sortable="'estado_final'">{{registro.estado_final}}</td>
                         <td align="center" data-title="'Descripción'" sortable="'description'">{{registro.description}}</td>
                         <td align="center" data-title="'Recomendaciones'" sortable="'recomendaciones'">{{registro.recomendaciones}}</td>
-
                     </tr>
                     </tbody>
                 </table>

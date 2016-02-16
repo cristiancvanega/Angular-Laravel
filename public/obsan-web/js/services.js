@@ -178,6 +178,7 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
                         console.log(localStorage.getItem('role'));
                         $scope.signout=true;
                         $scope.signin=false;
+                        /*
                         switch (data.role){
                             case 'Normal':
                                 window.location = url+'obsan-web/index';
@@ -189,6 +190,7 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
                                 window.location = url+'obsan-web/admin';
                                 break;
                         }
+                        */
                     }
                 }
             });

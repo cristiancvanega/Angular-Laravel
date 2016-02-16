@@ -34,7 +34,7 @@ class EvaluationController extends Controller
 
     public function getReportData()
     {
-        return response()->json($this->repository->getData());
+        return response()->json($this->repository->getReportData());
     }
 
     public function getCustomReport(EvaluationCustomReportRequest $request)

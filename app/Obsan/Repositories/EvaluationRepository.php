@@ -19,7 +19,7 @@ class EvaluationRepository extends BaseRepository
         parent::__construct($evaluation);
     }
 
-    public function getData()
+    public function getReportData()
     {
         $intervenciones = Intervention::Join('evaluations', 'interventions.id', '=', 'evaluations.intervention_id')
             ->Join('users', 'evaluations.user_id', '=', 'users.id' )

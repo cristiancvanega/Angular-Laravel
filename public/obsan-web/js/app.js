@@ -36,11 +36,13 @@ app.config(["$routeProvider", function($routeProvider)
         controller: "EvaluacionxIntervencion",
         templateUrl: "views/evaluacion.html"
     }).
-    when("obsan", {
-        templateUrl: "index_uso.html"
+    when("/reportEvaluation", {
+        controller:  "reportEvaluation",
+        templateUrl: "views/reportEvaluation.html"
     }).
-    when("admin", {
-        templateUrl: "index_usa.html"
+    when("/reportIntervention", {
+        controller:  "reportIntervention",
+        templateUrl: "views/reportIntervention.html"
     })
     .otherwise({
         redirectTo: 'index.html'
