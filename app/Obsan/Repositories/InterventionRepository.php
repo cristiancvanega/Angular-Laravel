@@ -27,7 +27,7 @@ class InterventionRepository extends BaseRepository
     {
         $entidad = Entity::Join('interventions', 'entities.id', '=', 'interventions.entity_id')
             ->Join('municipalities', 'interventions.municipality_id', '=', 'municipalities.id' )
-            ->select('entities.name as entity', 'municipalities.name as municipality', 'interventions.address',
+            ->select('entities.name as entity', 'municipalities.name as municipality',
                 'interventions.name', 'interventions.start_date',
                 'interventions.end_date', 'interventions.description', 'interventions.id')
             ->get();
