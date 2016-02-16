@@ -51,7 +51,7 @@
                     <li class="xn-openable">
                         <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Reportes</span></a>
                         <ul>
-                            <li><a href="#"><span class="fa fa-file-text-o"></span>Intervenidos</a>
+                            <li><a href="#/reportIntervened"><span class="fa fa-file-text-o"></span>Intervenidos</a>
                             </li>
                             <li><a href="#/reportIntervention"><span class="fa fa-pencil-square-o"></span>Intervenciones</a>
                             </li>
@@ -60,6 +60,7 @@
                         </ul>
                     </li>                                  
                 </ul>
+                <button id="dPDF">Descargar Reporte</button>
                 <!-- END X-NAVIGATION -->
             </div>
             <!-- END PAGE SIDEBAR -->
@@ -88,7 +89,7 @@
 
 
                 <!-- PAGE CONTENT WRAPPER -->
-                <div class="page-content-wrap" ng-view>
+                <div id="contentData" class="page-content-wrap" ng-view>
 
 
 
@@ -193,6 +194,7 @@
     <script type="text/javascript" src="js/app.js"></script>
     <script type="text/javascript" src="js/services.js"></script>
     <script type="text/javascript" src="js/controllers.js"></script>
+    <script type="text/javascript" src="js/lib/dist/jspdf.min.js"></script>
 
 
 </body>
