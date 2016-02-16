@@ -9,6 +9,10 @@ Route::group(['prefix' => 'auth'], function(){
 
        Route::post('refresh', 'AuthenticateController@success')->middleware('jwt.refresh');
 
-       Route::post('auth', 'AuthController@authenticate');
+        Route::group(['namespace' => 'Auth'], function(){
+
+            Route::post('auth', 'AuthController@authenticate');
+
+        });
    }) ;
 });
