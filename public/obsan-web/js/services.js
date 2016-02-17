@@ -219,8 +219,12 @@ function showMenu(){
             break;
         case 'OBSAN':
             $('#divobsan').removeAttr('hidden');
+            $('#btnSignin').attr('hidden',true);
+            $('#btnSignout').removeAttr('hidden');
             break;
         case 'Admin':
+            $('#btnSignin').attr('hidden',true);
+            $('#btnSignout').removeAttr('hidden');
             $('#usersdiv').removeAttr('hidden');
             $('#divobsan').removeAttr('hidden');
             break;

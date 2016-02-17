@@ -3,8 +3,6 @@ var app = angular.module('obsan');
 var btnShow=false;
 
 app.controller('showsignin', ['$scope', 'serviceHttp', function($scope,serviceHttp) {
-  $scope.signout = false;
-  $scope.signin = true;
   $scope.recurso="auth/token";
   $scope.url="index.html";
 
@@ -14,12 +12,21 @@ app.controller('showsignin', ['$scope', 'serviceHttp', function($scope,serviceHt
         password: $scope.password
     }
     serviceHttp.signin($scope,datos);
-      $scope.email = '';
-      $scope.password = '';
+    $scope.email = '';
+    $scope.password = '';
 };
 }]);
 
+app.controller('signout', ['$scope', function($scope) {
 
+  $scope.signout = function(){
+    console.log("entro");
+    localStorage.setItem('token', null);
+    localStorage.setItem('role', null);
+
+    location.reload();
+}
+}]);
 
 
 app.controller("GestionUsuarios", [
@@ -558,16 +565,16 @@ function downloadPDF()
     var doc = new jsPDF();
 
 // We'll make our own renderer to skip this editor
-    var specialElementHandlers = {
-        '#contentData': function(element, renderer){
-            return true;
-        }
-    };
+var specialElementHandlers = {
+    '#contentData': function(element, renderer){
+        return true;
+    }
+};
 
 // All units are in the set measurement for the document
 // This can be changed to "pt" (points), "mm" (Default), "cm", "in"
-    doc.fromHTML($('body').get(0), 15, 15, {
-        'width': 170,
-        'elementHandlers': specialElementHandlers
-    });
+doc.fromHTML($('body').get(0), 15, 15, {
+    'width': 170,
+    'elementHandlers': specialElementHandlers
+});
 }
