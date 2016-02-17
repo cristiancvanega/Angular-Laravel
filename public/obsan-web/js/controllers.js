@@ -355,6 +355,28 @@ app.controller("reportIntervened", [
 
     }]);
 
+app.controller("customReportEvaluation", [
+    '$scope','serviceHttp',
+    function($scope,serviceHttp)
+    {
+        $scope.registros = [],$scope.total=0, $scope.registroConsultar={},$scope.recurso="",$scope.url="/reportEvaluation";
+
+        $scope.customReport = function()
+        {
+            console.log($scope.registroConsultar.impacto);
+            datos = {
+                intervention_id         : $scope.registroConsultar.intervention_id,
+                user_id                 : $scope.registroConsultar.user_id,
+                descripcion_evidencia   : $scope.registroConsultar.descripcion_evidencia,
+                impacto                 : $scope.registroConsultar.impacto,
+                estado_inicial          : $scope.registroConsultar.estado_inicial,
+                estado_final            : $scope.registroConsultar.estado_final
+            };
+            $scope.recurso="report/custom_report/evaluation";
+            serviceHttp.customReport($scope, datos);
+        };
+    }]);
+
 
 app.controller("IntervencionxIntervenido", [
     '$scope','serviceHttp','$routeParams','$location',
@@ -473,8 +495,7 @@ app.controller("EvaluacionxIntervencion", [
 
 
         $scope.showEdit = function(registro)
-        {   
-
+        {
             $scope.registroEditar = registro;
         };
 

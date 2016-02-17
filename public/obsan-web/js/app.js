@@ -47,6 +47,10 @@ app.config(["$routeProvider", function($routeProvider)
     when("/reportIntervention", {
         controller:  "reportIntervention",
         templateUrl: "views/reportIntervention.html"
+    }).
+    when("/customReportEvaluation", {
+        controller:  "customReportEvaluation",
+        templateUrl: "views/customReportEvaluation.html"
     })
     .otherwise({
         redirectTo: 'index.html'

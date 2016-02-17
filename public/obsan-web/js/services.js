@@ -53,23 +53,23 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
         listar:function($scope){
             $http.get(url+$scope.recurso,{
                     headers : {
-                        'token' : localStorage.getItem('token'),
-                        'role'  : localStorage.getItem('role')
+                        'token' : localStorage.getItem('token')
                     }
                 })
             .success(function(data, status, headers, config)
             {
-                    switch ($scope.descripcion) {
-                    case "IntervencionxIntervenido":
-                        $scope.registros = $scope.registros.concat(data.interventions);
-                        break;
-                        case "EvaluacionxIntervencion":
-                        $scope.registros = $scope.registros.concat(data.evaluations);
-                        break;
-                    default:
-                        $scope.registros = $scope.registros.concat(data);
-                        break;
-                };
+                    switch ($scope.descripcion)
+                    {
+                        case "IntervencionxIntervenido":
+                            $scope.registros = $scope.registros.concat(data.interventions);
+                            break;
+                            case "EvaluacionxIntervencion":
+                            $scope.registros = $scope.registros.concat(data.evaluations);
+                            break;
+                        default:
+                            $scope.registros = $scope.registros.concat(data);
+                            break;
+                    };
 
 
                 $scope.total=$scope.registros.length;
@@ -85,14 +85,12 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
                     $scope.tableParams.reload();
                 });
             });
-
         },
 
         consultar:function($scope,recurso){
             $http.get(url+recurso,{
                     headers : {
-                        'token' : localStorage.getItem('token'),
-                        'role'  : localStorage.getItem('role')
+                        'token' : localStorage.getItem('token')
                     }
                 })
             .success(function(data, status, headers, config)
@@ -119,8 +117,7 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
         eliminar:function($scope){
             $http.delete(url+$scope.recurso+'/'+$scope.registroBorrar.id,{
                     headers : {
-                        'token' : localStorage.getItem('token'),
-                        'role'  : localStorage.getItem('role')
+                        'token' : localStorage.getItem('token')
                     }
                 })
             .success(function(data, status, headers, config)
@@ -133,8 +130,7 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
         editar:function($scope){
             $http.put(url+$scope.recurso+'/'+$scope.registroEditar.id,$scope.registroEditar,{
                     headers : {
-                        'token' : localStorage.getItem('token'),
-                        'role'  : localStorage.getItem('role')
+                        'token' : localStorage.getItem('token')
                     }
                 })
             .success(function(data, status, headers, config)
@@ -147,8 +143,7 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
         crear: function($scope,datos){
             $http.post(url+$scope.recurso,datos,{
                     headers : {
-                        'token' : localStorage.getItem('token'),
-                        'role'  : localStorage.getItem('role')
+                        'token' : localStorage.getItem('token')
                     }
                 })
             .success(function(data, status, headers, config)
@@ -156,6 +151,30 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
                 $location.path($scope.url);
                 $route.reload();
             });
+        },
+
+        customReport: function($scope,datos){
+            $http.post(url+$scope.recurso,datos,{
+                    headers : {
+                        'token' : localStorage.getItem('token')
+                    }
+                })
+                .success(function(data, status, headers, config)
+                {
+                    $scope.registros = $scope.registros.concat(data);
+                    $scope.total=$scope.registros.length;
+                    $scope.tableParams = new ngTableParams({page:1, count:10, sorting: { name: 'asc'}}, {
+                        total: $scope.registros.length,
+                        getData: function($defer, params)
+                        {
+                            TableService.getTable($defer,params,$scope.filter, $scope.registros);
+                        }
+                    });
+                    $scope.tableParams.reload();
+                    $scope.$watch("filter.$", function () {
+                        $scope.tableParams.reload();
+                    });
+                });
         },
 
         signin: function($scope,datos){
@@ -171,11 +190,11 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
                 {
                     if(data.error === 'invalid_credentials')
                     {
+                        return;
                         //TODO : show message "Credenciales inválidas"
                     }else{
                         localStorage.setItem('token', data.token);
                         localStorage.setItem('role', data.role);
-                        console.log(localStorage.getItem('token'));
                         console.log(localStorage.getItem('role'));
                         $scope.signout=true;
                         $scope.signin=false;
