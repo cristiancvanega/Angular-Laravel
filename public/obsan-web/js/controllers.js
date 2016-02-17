@@ -436,7 +436,8 @@ app.controller("IntervencionxIntervenido", [
         $scope.registroBorrar ={},$scope.registroMunicipio =[],$scope.registroEntidad =[], 
         $scope.registroCrear={},$scope.recurso="",$scope.url="",$scope.entidad,
         $scope.descripcion="IntervencionxIntervenido";
-
+        
+        $('.datepicker').datepicker();
 
         $scope.listar = function()
         {
@@ -472,6 +473,7 @@ app.controller("IntervencionxIntervenido", [
                 entity_id: $scope.registroCrear.entity_id ,      
                 municipality_id: $scope.registroCrear.municipality_id,
                 description: $scope.registroCrear.description,
+                start_date: $scope.registroCrear.start_date,
                 evidencias_planeadas: $scope.registroCrear.evidencias_planeadas,
                 intervened_id: $routeParams.id
             }
@@ -538,7 +540,13 @@ app.controller("EvaluacionxIntervencion", [
         $scope.crear= function()
         {
             datos={
-
+                intervention_id: $routeParams.id,
+                user_id: $scope.registroCrear.user_id,
+                impacto: $scope.registroCrear.impacto,
+                description: $scope.registroCrear.description,
+                estado_inicial: $scope.registroCrear.estado_inicial,
+                estado_final: $scope.registroCrear.estado_final,
+                recomendaciones: $scope.registroCrear.recomendaciones
             }
             serviceHttp.crear($scope,datos);
         };
