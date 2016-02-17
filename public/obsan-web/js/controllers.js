@@ -359,7 +359,7 @@ app.controller("customReportEvaluation", [
     '$scope','serviceHttp',
     function($scope,serviceHttp)
     {
-        $scope.registros = [],$scope.total=0, $scope.registroConsultar={},$scope.recurso="",$scope.url="/reportEvaluation";
+        $scope.registros = [],$scope.total=0, $scope.registroConsultarEvaluacion={},$scope.recurso="",$scope.url="/reportEvaluation";
 
         $scope.customReport = function()
         {
@@ -380,7 +380,7 @@ app.controller("customReportIntervened", [
     '$scope','serviceHttp',
     function($scope,serviceHttp)
     {
-        $scope.registros = [],$scope.total=0, $scope.registroConsultar={},$scope.recurso="",$scope.url="/reportEvaluation";
+        $scope.registros = [],$scope.total=0, $scope.registroConsultarIntervenido={},$scope.recurso="",$scope.url="/reportEvaluation";
 
         $scope.customReport = function()
         {
