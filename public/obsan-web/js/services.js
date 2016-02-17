@@ -226,6 +226,7 @@ function showMenu(){
             $('#btnSignin').attr('hidden',true);
             $('#btnSignout').removeAttr('hidden');
             $('#usersdiv').removeAttr('hidden');
+            $('#usersdiv2').removeAttr('hidden');
             $('#divobsan').removeAttr('hidden');
             break;
     }

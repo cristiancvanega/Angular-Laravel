@@ -1,0 +1,87 @@
+<div class="panel panel-default">
+
+    <br>
+    <div class="col-xs-1">
+        <button class="btn btn-primary" data-toggle="modal" data-target="#registroConsultarIntervenvion"><i class="fa fa-search"></i>Consultar</button>
+    </div>
+
+    <br><br>
+    <h2 align="center"><strong>Intervenciones</strong></h2>
+    <div class="col-xs-11">
+        <loading></loading>
+        <h3>B&uacute;squeda: <input class="form-control" type="text" ng-model="filter.$" /></h3>
+        <div class="panel-body panel-body-table">
+            <div class="table-responsive">
+                <table  ng-table="tableParams" class="table table-bordered table-striped">
+                    <tbody>
+                    <tr ng-repeat="registro in $data">
+                        <td align="center" data-title="'Entidad'" sortable="'entity.name'">{{registro.entity.name}}</td>
+                        <td align="center" data-title="'Municipio'" sortable="'municipality.name'">{{registro.municipality.name}}</td>
+                        <td align="center" data-title="'Nombre'" sortable="'name'">{{registro.name}}</td>
+                        <td align="center" data-title="'Inicio'" sortable="'start_date'">{{registro.start_date}}</td>
+                        <td align="center" data-title="'Fin'" sortable="'end_date'">{{registro.end_date}}</td>
+                        <td align="center" data-title="'Descripción'" sortable="'description'">{{registro.description}}</td>
+                        <td align="center" data-title="'Evidencias Planeadas'" sortable="'evidencias_planeadas'">{{registro.evidencias_planeadas}}</td>
+
+                        <td align="center" data-title=""><button class="btn btn-primary" data-toggle="modal" ng-click= "showEdit(registro)" data-target="#editarregistro" ><i class="fa fa-pencil"></i></button></td>
+
+                        <td ng-show='btnShow' align="center" data-title=""><button class="btn btn-success" ng-click= "showEvaluation(registro)"><i class="fa fa-eye">
+                        </i>Evaluaciones</button></td>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- init modal soft consult intervention -->
+<div class="modal fade" id="registroConsultarIntervenvion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Editar Intervención</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal col-lg-8 col-md-8 col-xs-10" role="form">
+                    <div class="form-group">
+                        <label>Nombre de la intervención</label>
+                        <input type="text" name="nombre" class="form-control" ng-model="registroConsultarIntervenvion.name" >
+                    </div>
+                    <div class="form-group">
+                        <label>Seleccione una entidad</label>
+                        <select class="form-control" ng-options="item.id as item.name for item in registroEntidad" ng-model="registroConsultarIntervenvion.entity.id"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Seleccione un municipio</label>
+                        <select class="form-control" ng-options="item.id as item.name for item in registroMunicipio" ng-model="registroConsultarIntervenvion.municipality.id"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Descripción</label>
+            <textarea rows="4" cols="50" type="text" name="description" class="form-control" ng-model="registroConsultarIntervenvion.description" >
+            </textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Evidencias planeadas</label>
+            <textarea rows="4" cols="50" type="text" name="evidencias_planeadas" class="form-control" ng-model="registroConsultarIntervenvion.evidencias_planeadas" >
+            </textarea>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="button" class="btn btn-success"
+                                    data-dismiss="modal" ng-click="customReport()">Consultar</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end modal soft consult intervention -->
