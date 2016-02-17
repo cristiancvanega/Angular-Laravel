@@ -406,6 +406,7 @@ app.controller("customReportIntervention", [
 
         $scope.customReport = function()
         {
+            console.log($scope.registroConsultarIntervencion.name);
             datos = {
                 entity_id               : $scope.registroConsultarIntervencion.intervention_id,
                 municipality_id         : $scope.registroConsultarIntervencion.municipality_id,
