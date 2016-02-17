@@ -1,7 +1,7 @@
 <div class="panel panel-default">
 
     <div class="col-xs-1">
-        <button class="btn btn-primary" data-toggle="modal" data-target="#registroConsultar"><i class="fa fa-search"></i>Consultar</button>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#registroConsultarEvaluacion"><i class="fa fa-search"></i>Consultar</button>
     </div>
 
     <br><br>
@@ -31,7 +31,7 @@
 </div>
 
 <!-- init modal soft custom report evaluation -->
-<div class="modal fade" id="registroConsultar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="registroConsultarEvaluacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -42,15 +42,15 @@
                 <form class="form-horizontal col-lg-8 col-md-8 col-xs-10" role="form">
                     <div class="form-group">
                         <label>Seleccione una Intervención</label>
-                        <select class="form-control" ng-model="registroConsultar.intervention_id"></select>
+                        <select class="form-control" ng-model="registroConsultarEvaluacion.intervention_id"></select>
                     </div>
                     <div class="form-group">
                         <label>Seleccione un Usuario</label>
-                        <select class="form-control" ng-model="registroConsultar.user_id"></select>
+                        <select class="form-control" ng-model="registroConsultarEvaluacion.user_id"></select>
                     </div>
                     <div class="form-group">
                         <label>Seleccione Impacto</label>
-                        <select class="form-control" ng-model="registroConsultar.impacto">
+                        <select class="form-control" ng-model="registroConsultarEvaluacion.impacto">
                             <option value="El impacto generado no presenta evidencias, el estado inicial es igual al estado final">El impacto generado no presenta evidencias, el estado inicial es igual al estado final</option>
                             <option value="El impacto generado no presenta evidencias, el estado inicial es menor  que el estado final">El impacto generado no presenta evidencias, el estado inicial es menor  que el estado final</option>
                             <option value="El impacto generado no presenta evidencias, el estado final es igual al estado ideal">El impacto generado no presenta evidencias, el estado final es igual al estado ideal</option>
@@ -64,7 +64,7 @@
                     </div>
                     <div class="form-group">
                         <label>Estado Inicial</label>
-                        <select class="form-control" ng-model="registroConsultar.estado_inicial">
+                        <select class="form-control" ng-model="registroConsultarEvaluacion.estado_inicial">
                             <option value="1">bajo</option>
                             <option value="2">medio</option>
                             <option value="3">ideal</option>
@@ -72,7 +72,7 @@
                     </div>
                     <div class="form-group">
                         <label>Estado Final</label>
-                        <select class="form-control" ng-model="registroConsultar.estado_final">
+                        <select class="form-control" ng-model="registroConsultarEvaluacion.estado_final">
                             <option value="1">bajo</option>
                             <option value="2">medio</option>
                             <option value="3">ideal</option>
@@ -80,7 +80,7 @@
                     </div>
                     <div class="form-group">
                         <label>Descripción</label>
-            <textarea rows="4" cols="50" type="text" name="description" class="form-control" ng-model="registroConsultar.description" >
+            <textarea rows="4" cols="50" type="text" name="description" class="form-control" ng-model="registroConsultarEvaluacion.description" >
             </textarea>
                     </div>
                     <div class="form-group">

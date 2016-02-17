@@ -363,7 +363,49 @@ app.controller("customReportEvaluation", [
 
         $scope.customReport = function()
         {
-            console.log($scope.registroConsultar.impacto);
+            datos = {
+                intervention_id         : $scope.registroConsultarEvaluacion.intervention_id,
+                user_id                 : $scope.registroConsultarEvaluacion.user_id,
+                descripcion_evidencia   : $scope.registroConsultarEvaluacion.descripcion_evidencia,
+                impacto                 : $scope.registroConsultarEvaluacion.impacto,
+                estado_inicial          : $scope.registroConsultarEvaluacion.estado_inicial,
+                estado_final            : $scope.registroConsultarEvaluacion.estado_final
+            };
+            $scope.recurso="report/custom_report/evaluation";
+            serviceHttp.customReport($scope, datos);
+        };
+    }]);
+
+app.controller("customReportIntervened", [
+    '$scope','serviceHttp',
+    function($scope,serviceHttp)
+    {
+        $scope.registros = [],$scope.total=0, $scope.registroConsultar={},$scope.recurso="",$scope.url="/reportEvaluation";
+
+        $scope.customReport = function()
+        {
+            datos = {
+                name            : $scope.registroConsultarIntervenido.name,
+                document_type   : $scope.registroConsultarIntervenido.user_id,
+                document        : $scope.registroConsultarIntervenido.document,
+                address         : $scope.registroConsultarIntervenido.address,
+                phone           : $scope.registroConsultarIntervenido.phone,
+                email           : $scope.registroConsultarIntervenido.email,
+                pupilage        : $scope.registroConsultarIntervenido.pupilage
+            };
+            $scope.recurso="report/custom_report/intervened";
+            serviceHttp.customReport($scope, datos);
+        };
+    }]);
+
+app.controller("customReportIntervention", [
+    '$scope','serviceHttp',
+    function($scope,serviceHttp)
+    {
+        $scope.registros = [],$scope.total=0, $scope.registroConsultar={},$scope.recurso="",$scope.url="/reportEvaluation";
+
+        $scope.customReport = function()
+        {
             datos = {
                 intervention_id         : $scope.registroConsultar.intervention_id,
                 user_id                 : $scope.registroConsultar.user_id,
