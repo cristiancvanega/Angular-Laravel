@@ -17,7 +17,7 @@
               <td align="center" data-title="'Descripción'" sortable="'description'">{{registro.description}}</td>
               <td align="center" data-title="'Evidencias Planeadas'" sortable="'evidencias_planeadas'">{{registro.evidencias_planeadas}}</td>
 
-              <td align="center" data-title=""><button class="btn btn-primary" data-toggle="modal" ng-click= "showEdit(registro)" data-target="#editarregistro" ><i class="fa fa-pencil"></i></button></td>
+              <td align="center" data-title=""><button class="btn btn-primary" data-toggle="modal" ng-click= "showEdit(registro)" data-target="#editarregistro" ><i class="fa fa-pencil"></i>Editar</button></td>
 
               <td ng-show='btnShow' align="center" data-title=""><button class="btn btn-success" ng-click= "showEvaluation(registro)"><i class="fa fa-eye">
               </i>Evaluaciones</button></td>
@@ -30,7 +30,7 @@
   </div>
 
   <div ng-show='btnShow' class="col-xs-1">
-    <button class="btn btn-primary" data-toggle="modal" data-target="#crearregistro"><i class="fa fa-plus"></i></button>
+    <button class="btn btn-primary" data-toggle="modal" data-target="#crearregistro"><i class="fa fa-plus"></i>Adicionar</button>
   </div>
 
 </div>
@@ -58,6 +58,16 @@
           <div class="form-group">
             <label>Seleccione un municipio</label>
             <select class="form-control" ng-options="item.id as item.name for item in registroMunicipio" ng-model="registroEditar.municipality.id"></select>
+          </div>
+          <div class="form-group">
+            <label>Fecha de Inicio</label>
+            <input type="text" name="start_date" class="form-control datepicker" 
+            data-date-format="yyyy-mm-dd" ng-model="registroEditar.start_date">
+          </div>
+          <div class="form-group">
+            <label>Fecha de Finalización</label>
+            <input type="text" name="end_date" class="form-control datepicker" 
+            data-date-format="yyyy-mm-dd" ng-model="registroEditar.end_date">
           </div>
           <div class="form-group">
             <label>Descripción</label>
@@ -107,6 +117,11 @@
           <div class="form-group">
             <label>Seleccione un municipio</label>
             <select class="form-control" ng-options="item.id as item.name for item in registroMunicipio" ng-model="registroCrear.municipality_id"></select>
+          </div>
+          <div class="form-group">
+            <label>Fecha de Inicio</label>
+            <input name="nombre" type="text" class="form-control datepicker" 
+            data-date-format="yyyy-mm-dd" ng-model="registroCrear.start_date">
           </div>
         <div class="form-group">
             <label>Descripción</label>

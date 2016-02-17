@@ -11,26 +11,25 @@
             <tr ng-repeat="registro in $data">
               <td align="center" data-title="'Intervencion'" sortable="'intervention.name'">{{registro.intervention.name}}</td>
               <td align="center" data-title="'Usuario'" sortable="''">{{registro.user.name}}</td>
-              <td align="center" data-title="'Descripcion Evidencia'" sortable="'descripcion_evidencia'">{{registro.descripcion_evidencia}}</td>
+              <td align="center" data-title="'Descripcion'" sortable="'descripcion'">{{registro.descripcion_evidencia}}</td>
               <td align="center" data-title="'Impacto'" sortable="'impacto'">{{registro.impacto}}</td>
               <td align="center" data-title="'Estado inicial'" sortable="'estado_inicial'">{{registro.estado_inicial}}</td>
               <td align="center" data-title="'Estado final'" sortable="'estado_final'">{{registro.estado_final}}</td>
               <td align="center" data-title="'Descripción'" sortable="'description'">{{registro.description}}</td>
               <td align="center" data-title="'Recomendaciones'" sortable="'recomendaciones'">{{registro.recomendaciones}}</td>
               
-              <td align="center" data-title=""><button class="btn btn-primary" data-toggle="modal" ng-click= "showEdit(registro)" data-target="#editarregistro" ><i class="fa fa-pencil"></i></button></td>
-             
+              <td align="center" data-title=""><button class="btn btn-primary" data-toggle="modal" ng-click= "showEdit(registro)" data-target="#editarregistro" ><i class="fa fa-pencil"></i>Editar</button></td>
+
             </tr>
           </tbody>
         </table>
       </div>
     </div>
   </div>
-  <!--
+  
   <div ng-show='btnShow' class="col-xs-1">
-    <button class="btn btn-primary" data-toggle="modal" data-target="#crearregistro"><i class="fa fa-plus"></i></button>
+    <button class="btn btn-primary" data-toggle="modal" data-target="#crearregistro"><i class="fa fa-plus"></i>Adicionar</button>
   </div>
--->
 </div>
 
 
@@ -67,7 +66,7 @@
               <option value="9">El impacto generado presenta evidencias incompletas, el estado final es igual al estado idea</option>
             </select>
           </div>
-           <div class="form-group">
+          <div class="form-group">
             <label>Estado Inicial</label>
             <select class="form-control" ng-model="registroEditar.estado_inicial">
               <option value="1">bajo</option>
@@ -75,7 +74,7 @@
               <option value="3">ideal</option>
             </select>
           </div>
-           <div class="form-group">
+          <div class="form-group">
             <label>Estado Final</label>
             <select class="form-control" ng-model="registroEditar.estado_final">
               <option value="1">bajo</option>
@@ -86,6 +85,11 @@
           <div class="form-group">
             <label>Descripción</label>
             <textarea rows="4" cols="50" type="text" name="description" class="form-control" ng-model="registroEditar.description" >  
+            </textarea>
+          </div>
+          <div class="form-group">
+            <label>Recomendaciones</label>
+            <textarea rows="4" cols="50" type="text" name="recomendaciones" class="form-control" ng-model="registroEditar.recomendaciones" >  
             </textarea>
           </div>
           <div class="form-group"> 
@@ -106,4 +110,73 @@
 
 
 
+<!-- init modal soft create evaluation -->
+<div class="modal fade" id="crearregistro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Agregar Evaluación</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal col-lg-8 col-md-8 col-xs-10" role="form" name="registroForm">
+          <div class="form-group">
+            <label>Seleccione un Usuario</label>
+            <select class="form-control" ng-options="item.id as item.name for item in registroUsuario" ng-model="registroCrear.user_id"></select>
+          </div>
+          <div class="form-group">
+            <label>Seleccione Impacto</label>
+            <select class="form-control" ng-model="registroCrear.impacto">
+              <option value="1">El impacto generado no presenta evidencias, el estado inicial es igual al estado final</option>
+              <option value="2">El impacto generado no presenta evidencias, el estado inicial es menor  que el estado final</option>
+              <option value="3">El impacto generado no presenta evidencias, el estado final es igual al estado ideal</option>
+              <option value="4">El impacto generado presenta evidencias, el estado inicial es igual al estado final</option>
+              <option value="5">El impacto generado presenta evidencias, el estado inicial es menor  que el estado final</option>
+              <option value="6">El impacto generado presenta evidencias, el estado final es igual al estado ideal</option>
+              <option value="7">El impacto generado presenta evidencias incompletas, el estado inicial es igual al estado final</option>
+              <option value="8">El impacto generado presenta evidencias incompletas, el estado inicial es menor  que el estado final</option>
+              <option value="9">El impacto generado presenta evidencias incompletas, el estado final es igual al estado idea</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Estado Inicial</label>
+            <select class="form-control" ng-model="registroCrear.estado_inicial">
+              <option value="1">bajo</option>
+              <option value="2">medio</option>
+              <option value="3">ideal</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Estado Final</label>
+            <select class="form-control" ng-model="registroCrear.estado_final">
+              <option value="1">bajo</option>
+              <option value="2">medio</option>
+              <option value="3">ideal</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Descripción</label>
+            <textarea rows="4" cols="50" type="text" name="description" class="form-control" ng-model="registroCrear.description" >  
+            </textarea>
+          </div>
+          <div class="form-group">
+            <label>Recomendaciones</label>
+            <textarea rows="4" cols="50" type="text" name="recomendaciones" class="form-control" ng-model="registroCrear.recomendaciones" >  
+            </textarea>
+          </div>
+          <div class="form-group"> 
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-success" 
+              data-dismiss="modal" ng-click="crear()">Confirmar</button>
 
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+            </div>
+          </div>
+        </form> 
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end modal soft create evaluation -->
