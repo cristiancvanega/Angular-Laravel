@@ -222,6 +222,7 @@ function showMenu(){
             break;
         case 'Admin':
             $('#usersdiv').removeAttr('hidden');
+            $('#usersdiv2').removeAttr('hidden');
             $('#divobsan').removeAttr('hidden');
             break;
     }

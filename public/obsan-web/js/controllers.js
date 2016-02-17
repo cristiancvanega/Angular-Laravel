@@ -402,19 +402,20 @@ app.controller("customReportIntervention", [
     '$scope','serviceHttp',
     function($scope,serviceHttp)
     {
-        $scope.registros = [],$scope.total=0, $scope.registroConsultar={},$scope.recurso="",$scope.url="/reportEvaluation";
+        $scope.registros = [],$scope.total=0, $scope.registroConsultarIntervencion={},$scope.recurso="",$scope.url="/reportEvaluation";
 
         $scope.customReport = function()
         {
             datos = {
-                intervention_id         : $scope.registroConsultar.intervention_id,
-                user_id                 : $scope.registroConsultar.user_id,
-                descripcion_evidencia   : $scope.registroConsultar.descripcion_evidencia,
-                impacto                 : $scope.registroConsultar.impacto,
-                estado_inicial          : $scope.registroConsultar.estado_inicial,
-                estado_final            : $scope.registroConsultar.estado_final
+                entity_id               : $scope.registroConsultarIntervencion.intervention_id,
+                municipality_id         : $scope.registroConsultarIntervencion.municipality_id,
+                name                    : $scope.registroConsultarIntervencion.name,
+                start_date              : $scope.registroConsultarIntervencion.start_date,
+                end_date                : $scope.registroConsultarIntervencion.end_date,
+                description             : $scope.registroConsultarIntervencion.description,
+                evidencias_planeadas    : $scope.registroConsultarIntervencion.evidencias_planeadas
             };
-            $scope.recurso="report/custom_report/evaluation";
+            $scope.recurso="report/custom_report/intervention";
             serviceHttp.customReport($scope, datos);
         };
     }]);
