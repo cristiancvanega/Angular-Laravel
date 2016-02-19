@@ -34,7 +34,10 @@ class InterventionController extends Controller
 
     public function getData()
     {
-        return response()->json($this->repository->getData());
+        //$response = $this->repository->getData();
+        $response = $this->repository->getCustomReport([]);;
+        $this->generatePDF($response, 'ReporteIntervencion.pdf', 'intervention.reportIntervention', 'intervention');
+        return response()->json($response);
     }
 
     public function getIntervened($id)
@@ -61,16 +64,17 @@ class InterventionController extends Controller
     public function getCustomReport(InterventionCustomReportRequest $request)
     {
         $response = $this->repository->getCustomReport($request->toArray());
-        $pdf = \App::make('dompdf.wrapper');
-        $view = \View::make('intervention.customReport', ['intervention' => $response])->render();
-        $pdf->loadHTML($view);
-        $filename = 'ReporteIntervenido.pdf';
-        $pdf->save('/tmp/' . $filename);
+        $this->generatePDF($response, 'ReportePerzonalizadoIntervencion.pdf', 'intervention.reportIntervention', 'intervention');
         return response()->json($response);
     }
 
     public function downloadCustomReport()
     {
-        return response()->download('/tmp/ReporteIntervenido.pdf');
+        return $this->downloadFile('ReportePerzonalizadoIntervencion.pdf');
+    }
+
+    public function downloadReport()
+    {
+        return $this->downloadFile('ReporteIntervencion.pdf');
     }
 }

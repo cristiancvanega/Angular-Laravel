@@ -50,13 +50,13 @@ class IntervenedController extends Controller
     public function all()
     {
         $collection = $this->repository->all();
-        $this->generatePDF($collection, 'ReportIntervened.pdf', 'intervened.customReport', 'intervened');
+        $this->generatePDF($collection, 'ReporteIntervenido.pdf', 'intervened.customReport', 'intervened');
         return response()->json($collection, 200);
     }
 
     public function downloadReport()
     {
-        return $this->downloadFile('ReportIntervened.pdf');
+        return $this->downloadFile('ReporteIntervenido.pdf');
     }
 
     public function downloadCustomReport()

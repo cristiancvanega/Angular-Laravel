@@ -345,7 +345,10 @@ app.controller("reportIntervention", [
             serviceHttp.listar($scope);
         };
         $scope.listar();
-
+        $scope.downloadFiles = function()
+        {
+            serviceHttp.downloadFiles("report/intervention/download", 'ReporteIntervenciones');
+        }
     }]);
 
 app.controller("reportIntervened", [
