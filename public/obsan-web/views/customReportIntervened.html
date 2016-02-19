@@ -3,7 +3,16 @@
     <br>
     <div class="col-xs-1">
         <button class="btn btn-primary" data-toggle="modal" data-target="#registroConsultarIntervenido"><i class="fa fa-search"></i>Consultar</button>
+        <br><br>
+        <button class="btn btn-primary">
+            <i class="fa fa-download"></i>
+            <a href="http://obsan.app/report/custom_report/download/intervened" target="blank">
+                Descargar
+            </a>
+        </button>
+        <br>
     </div>
+    
 
     <br><br>
     <h2 align="center"><strong>Intervenidos</strong></h2>
@@ -82,9 +91,12 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button type="button" class="btn btn-success"
-                                    data-dismiss="modal" ng-click="customReport()">Consultar</button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-success" data-dismiss="modal" ng-click="customReport()">
+                                Consultar
+                            </button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">
+                                Cancelar
+                            </button>
                         </div>
                     </div>
                 </form>

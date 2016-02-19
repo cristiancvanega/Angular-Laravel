@@ -202,6 +202,17 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
                     }
                 }
             });
+        },
+
+        downloadReport: function(url){
+            $http.get(url,{
+                headers : {
+                    'token' : localStorage.getItem('token')
+                }
+            }).success(function(data){
+                window.open(data);
+            });
+            console.log(url);
         }
 
 

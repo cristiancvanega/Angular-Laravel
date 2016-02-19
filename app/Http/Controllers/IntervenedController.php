@@ -42,6 +42,16 @@ class IntervenedController extends Controller
 
     public function getCustomReport(IntervenedCustomReportRequest $request)
     {
+        $pdf = \App::make('dompdf.wrapper');
+        $view = \View::make('intervened.customReport', ['intervened' => $this->repository->getCustomReport($request->toArray())])->render();
+        $pdf->loadHTML($view);
+        $filename = 'ReporteIntervenidos.pdf';
+        $pdf->save('/tmp/' . $filename);
         return response()->json($this->repository->getCustomReport($request->toArray()));
+    }
+
+    public function downloadCustomReport()
+    {
+        return response()->download('/tmp/ReporteIntervenidos.pdf');
     }
 }
