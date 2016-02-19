@@ -95,12 +95,13 @@
         <form class="form-horizontal col-lg-8 col-md-8 col-xs-10" role="form" name="registroForm">
           <div class="form-group">
             <label>Nombre*</label>
-            <input type="text" name="nombre" class="form-control" ng-model="registroCrear.name" >
+            <input type="text" name="nombre" class="form-control" ng-model="registroCrear.name" required>
+            <span ng-show="!registroForm.$pristine && registroForm.nombre.$error.required">Este campo es obligatorio.</span>
           </div>
           <div class="form-group"> 
             <div class="col-sm-offset-2 col-sm-10">
               <button type="submit" class="btn btn-success" 
-              data-dismiss="modal" ng-click="crear()">Confirmar</button>
+              data-dismiss="modal" ng-click="crear()" ng-disabled="!registroForm.$valid">Confirmar</button>
 
               <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
             </div>

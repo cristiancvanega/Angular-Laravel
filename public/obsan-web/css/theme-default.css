@@ -15,7 +15,7 @@
 @import "introjs/introjs.min.css";
 @import "animate/animate.min.css";
 
-.errorForm {
+form div span{
   color: #C53131;
 }
  

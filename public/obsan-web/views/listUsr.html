@@ -108,17 +108,16 @@
         <form class="form-horizontal col-lg-8 col-md-8 col-xs-10" role="form" name="userForm">
           <div class="form-group">
             <label>Nombre*</label>
-            <input type="text" name="nombre" class="form-control" ng-model="registroCrear.name">
-            <!--<span ng-show="userForm.nombre.$error.required">Este campo es obligatorio.</span>
-          -->
+            <input type="text" name="validate" class="form-control" ng-model="registroCrear.name" required>
           </div>
           <div class="form-group">
             <label>Email*</label>
             <input type="email"  name="email" class="form-control" 
-            placeholder="email@example" ng-model="registroCrear.email" >
+            placeholder="email@example" ng-model="registroCrear.email" required>
+            <span ng-show="!userForm.$pristine && userForm.email.$error.email">Email inválido</span>
           </div>
           <div class="form-group">
-            <label>Rol*</label>
+            <label>Rol</label>
             <select name="role" id="" class="form-control" ng-model="registroCrear.role">
               <option value="1">Normal</option>
               <option value="2">OBSAN</option>
@@ -127,13 +126,16 @@
           </div>
           <div class="form-group">
             <label>Contraseña*</label>
-            <input type="password" name="password" class="form-control" 
-            ng-model="registroCrear.password" >
+            <input type="password" name="validate" class="form-control" 
+            ng-model="registroCrear.password" required>
+          </div>
+          <div class="form-group">
+            <span ng-show="!userForm.$pristine && userForm.validate.$error.required">Los campos con (*) son obligatorios.</span>
           </div>
           <div class="form-group"> 
             <div class="col-sm-offset-2 col-sm-10">
               <button type="submit" class="btn btn-success" 
-              data-dismiss="modal" ng-click="crear()">Confirmar</button>
+              data-dismiss="modal" ng-click="crear()" ng-disabled="!userForm.$valid">Confirmar</button>
 
               <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
             </div>

@@ -108,35 +108,38 @@
         <form class="form-horizontal col-lg-8 col-md-8 col-xs-10" role="form" name="registroForm">
          <div class="form-group">
           <label>Nombre de la Intervención</label>
-          <input type="text" name="nombre" class="form-control" ng-model="registroCrear.name" >
+          <input type="text" name="nombre" class="form-control" ng-model="registroCrear.name"  required>
         </div>
         <div class="form-group">
             <label>Seleccione una entidad</label>
-            <select class="form-control" ng-options="item.id as item.name for item in registroEntidad" ng-model="registroCrear.entity_id"></select>
+            <select class="form-control" name="entity_id" ng-options="item.id as item.name for item in registroEntidad" ng-model="registroCrear.entity_id" required></select>
           </div>
           <div class="form-group">
             <label>Seleccione un municipio</label>
-            <select class="form-control" ng-options="item.id as item.name for item in registroMunicipio" ng-model="registroCrear.municipality_id"></select>
+            <select class="form-control" name="municipality_id" ng-options="item.id as item.name for item in registroMunicipio" ng-model="registroCrear.municipality_id" required></select>
           </div>
           <div class="form-group">
             <label>Fecha de Inicio</label>
-            <input name="nombre" type="text" class="form-control datepicker" 
-            data-date-format="yyyy-mm-dd" ng-model="registroCrear.start_date">
+            <input name="start_date" type="text" class="form-control datepicker" 
+            data-date-format="yyyy-mm-dd" ng-model="registroCrear.start_date" required>
           </div>
         <div class="form-group">
             <label>Descripción</label>
-            <textarea rows="4" cols="50" type="text" name="description" class="form-control" ng-model="registroCrear.description" >  
+            <textarea rows="4" cols="50" type="text" name="description" class="form-control" ng-model="registroCrear.description"  required>  
             </textarea>
           </div>
           <div class="form-group">
             <label>Evidencias planeadas</label>
-            <textarea rows="4" cols="50" type="text" name="evidencias_planeadas" class="form-control" ng-model="registroCrear.evidencias_planeadas" >  
+            <textarea rows="4" cols="50" type="text" name="evidencias_planeadas" class="form-control" ng-model="registroCrear.evidencias_planeadas"  required>  
             </textarea>
+          </div>
+          <div class="form-group">
+            <span ng-show="registroForm.nombre.$error.required && registroForm.entity_id.$error.required && registroForm.municipality_id.$error.required && registroForm.start_date.$error.required && registroForm.description.$error.required && registroForm.evidencias_planeadas.$error.required">Todos los campos son obligatorios.</span>
           </div>
         <div class="form-group"> 
           <div class="col-sm-offset-2 col-sm-10">
             <button type="submit" class="btn btn-success" 
-            data-dismiss="modal" ng-click="crear()">Confirmar</button>
+            data-dismiss="modal" ng-click="crear()" ng-disabled="!registroForm.$valid" >Confirmar</button>
 
             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
           </div>

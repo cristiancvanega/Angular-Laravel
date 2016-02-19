@@ -140,13 +140,12 @@
         <div class="modal-body">
           <form class="form-horizontal col-lg-8 col-md-8 col-xs-10" role="form" name="registroForm">
            <div class="form-group">
-            <label>Nombre</label>
-            <input type="text" name="nombre" class="form-control" ng-model="registroCrear.name" required>
-            <span class="errorForm" ng-show="!registroForm.$pristine && registroForm.nombre.$error.required">Name is required.</span>
+            <label>Nombre*</label>
+            <input type="text" name="validate" class="form-control" ng-model="registroCrear.name" required >
           </div>
           <div class="form-group">
             <label>Tipo de Documento*</label>
-            <select class="form-control" ng-model="registroCrear.document_type">
+            <select class="form-control" name="validate" ng-model="registroCrear.document_type" required>
               <option value="1">Cédula de ciudadanía</option>
               <option value="2">Tarjeta de identidad</option>
               <option value="3">Registro civil de nacimiento</option>
@@ -154,8 +153,8 @@
             </select>
           </div>
           <div class="form-group">
-            <label>Documento</label>
-            <input type="text" name="document" class="form-control" ng-model="registroCrear.document" >
+            <label>Documento*</label>
+            <input type="text" name="validate" class="form-control" ng-model="registroCrear.document" required>
           </div>
           <div class="form-group">
             <label>Dirección</label>
@@ -167,7 +166,8 @@
           </div>
           <div class="form-group">
             <label>Email</label>
-            <input type="text" name="email" class="form-control" ng-model="registroCrear.email">
+            <input type="email" name="email" class="form-control" ng-model="registroCrear.email" placeholder="ejemplo@email.com">
+            <span ng-show="!registroForm.$pristine && registroForm.email.$error.email">Email inválido</span>
           </div>
           <div class="form-group">
             <label>Escolaridad</label>
@@ -178,6 +178,9 @@
               <option value="4">media</option>
               <option value="5">superior</option>
             </select>
+          </div>
+           <div class="form-group">
+            <span ng-show="!registroForm.$pristine && registroForm.validate.$error.required">Los campos con (*) son obligatorios.</span>
           </div>
           <div class="form-group"> 
             <div class="col-sm-offset-2 col-sm-10">
