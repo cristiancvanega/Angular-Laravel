@@ -1,6 +1,6 @@
 var app = angular.module('obsan');
-//var url = "http://obsan.app/";
-var url = "http://obsan.eduagil.com/";
+var url = "http://obsan.app/";
+//var url = "http://obsan.eduagil.com/";
 showMenu();
 
 
@@ -174,6 +174,7 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
                     $scope.$watch("filter.$", function () {
                         $scope.tableParams.reload();
                     });
+                    console.log(status);
                 });
         },
 
@@ -195,7 +196,10 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
                     }else{
                         localStorage.setItem('token', data.token);
                         localStorage.setItem('role', data.role);
-                        console.log(localStorage.getItem('role'));
+                        localStorage.setItem('email', data.email);
+                        localStorage.setItem('id', data.id);
+                        $scope.userEmail = data.email;
+                        console.log($scope.userEmail);
                         $scope.signout=true;
                         $scope.signin=false;
                         showMenu();
@@ -241,4 +245,6 @@ function showMenu(){
             $('#divobsan').removeAttr('hidden');
             break;
     }
+
+    $('#userEmail').html('<a href="#">'+localStorage.getItem('email')+'</a>');
 }

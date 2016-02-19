@@ -36,7 +36,9 @@ class AuthenticateController extends Controller
         // all good so return the token
         return response()->json([
             'token' => $token,
-            'role'  => $this->repository->getRoleUserWithToken($token)
+            'role'  => $this->repository->getRoleUserWithToken($token),
+            'email' => $this->repository->getEmailUserWithToken($token),
+            'id'    => $this->repository->getiDlUserWithToken($token)
         ], 200);
     }
 
