@@ -15,6 +15,10 @@
 @import "introjs/introjs.min.css";
 @import "animate/animate.min.css";
 
+.errorForm {
+  color: #C53131;
+}
+ 
 .singout {
   width: 50px;
 }

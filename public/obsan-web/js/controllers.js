@@ -17,13 +17,13 @@ app.controller('showsignin', ['$scope', 'serviceHttp', function($scope,serviceHt
 };
 }]);
 
-app.controller('signout', ['$scope', function($scope) {
+app.controller('signout', ['$scope','$location', function($scope,$location) {
 
   $scope.signout = function(){
-    console.log("entro");
     localStorage.setItem('token', null);
     localStorage.setItem('role', null);
 
+    $location.path("/index.html");
     location.reload();
 }
 }]);
