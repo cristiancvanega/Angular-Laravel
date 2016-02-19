@@ -360,7 +360,10 @@ app.controller("reportIntervened", [
             serviceHttp.listar($scope);
         };
         $scope.listar();
-
+        $scope.downloadFiles = function()
+        {
+            serviceHttp.downloadFiles("report/intervened/download", 'ReporteIntervenidos');
+        }
     }]);
 
 app.controller("customReportEvaluation", [
@@ -404,10 +407,9 @@ app.controller("customReportIntervened", [
             $scope.recurso="report/custom_report/intervened";
             serviceHttp.customReport($scope, datos);
         };
-
-        $scope.downloadReport = function(url)
+        $scope.downloadFiles = function()
         {
-            serviceHttp.downloadReport(url);
+            serviceHttp.downloadFiles("report/custom_report/download/intervened", 'ReportePersonalizadoIntervenidos');
         }
     }]);
 

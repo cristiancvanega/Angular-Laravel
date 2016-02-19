@@ -2,9 +2,13 @@
 
 Route::group(['prefix' => 'report'], function(){
 
-    Route::group(['prefix' => 'custom_report/download'], function(){
+    Route::group(['prefix' => 'custom_report/download', 'middleware' => 'obsan'], function(){
 
-        Route::get('intervened', 'IntervenedController@downloadCustomReport');
+        Route::post('intervened', 'IntervenedController@downloadCustomReport');
+
+        Route::post('evaluation', 'EvaluationController@downloadCustomReport');
+
+        Route::post('intervention', 'InterventionController@downloadCustomReport');
 
     });
 
@@ -15,6 +19,8 @@ Route::group(['prefix' => 'report'], function(){
         Route::get('evaluation', 'EvaluationController@getReportData');
 
         Route::get('intervened', 'IntervenedController@all');
+
+        Route::post('intervened/download', 'IntervenedController@downloadReport');
 
     });
 

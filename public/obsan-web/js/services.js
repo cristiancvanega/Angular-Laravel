@@ -217,7 +217,56 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
                 window.open(data);
             });
             console.log(url);
-        }
+        },
+
+        downloadFiles: function (fileUrl, namefile) {
+            //var url='/documents/'+fileUrl+'/get';
+            fileUrl = url + fileUrl;
+        $http({
+            method: 'POST',
+            cache: false,
+            url: fileUrl,
+            responseType:'arraybuffer',
+            headers: {
+                'Content-Type': 'application/zip; charset=utf-8',
+                'token': localStorage.getItem('token')
+            }
+        }).success(function(data, status, headers){
+            var headers = headers();
+            filenameTemp=namefile;
+            //var filenameTemp=$scope.urlFiles;
+            var filename = headers['download-filename'] || filenameTemp;
+            var octetStreamMime = 'application/octet-stream';
+            var contentType = headers['Content-Type'] || octetStreamMime;
+            if (navigator.msSaveBlob) {
+                var blob = new Blob([data], { type: contentType });
+                navigator.msSaveBlob(blob, filename);
+            } else {
+                var urlCreator = window.URL || window.webkitURL || window.mozURL || window.msURL;
+                if (urlCreator) {
+                    var link = document.createElement("a");
+                    if ("download" in link) {
+                        var blob = new Blob([data], { type: contentType });
+                        var url = urlCreator.createObjectURL(blob);
+                        link.setAttribute("href", url);
+                        link.setAttribute("download", filename);
+                        var event = document.createEvent('MouseEvents');
+                        event.initMouseEvent('click', true, true, window, 1, 0, 0, 0, 0, false, false, false, false, 0, null);
+                        link.dispatchEvent(event);
+                    } else {
+                        var blob = new Blob([data], { type: octetStreamMime });
+                        var url = urlCreator.createObjectURL(blob);
+                        window.location = url;
+                    }
+                }
+            }
+            //$scope.deleteFiles(filenameTemp);
+            console.log("Termino la descarga!!!");
+        }).error(function(data, status){
+            //$scope.loading.closeLoading();
+            console.log("Error en la petición!!!")
+        })
+    }
 
 
     };

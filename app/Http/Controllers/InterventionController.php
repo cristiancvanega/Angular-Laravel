@@ -60,6 +60,17 @@ class InterventionController extends Controller
 
     public function getCustomReport(InterventionCustomReportRequest $request)
     {
-        return response()->json($this->repository->getCustomReport($request->toArray()));
+        $response = $this->repository->getCustomReport($request->toArray());
+        $pdf = \App::make('dompdf.wrapper');
+        $view = \View::make('intervention.customReport', ['intervention' => $response])->render();
+        $pdf->loadHTML($view);
+        $filename = 'ReporteIntervenido.pdf';
+        $pdf->save('/tmp/' . $filename);
+        return response()->json($response);
+    }
+
+    public function downloadCustomReport()
+    {
+        return response()->download('/tmp/ReporteIntervenido.pdf');
     }
 }

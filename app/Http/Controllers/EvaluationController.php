@@ -39,11 +39,22 @@ class EvaluationController extends Controller
 
     public function getCustomReport(EvaluationCustomReportRequest $request)
     {
-        return response()->json($this->repository->getCustomReport($request->toArray()));
+        $response = $this->repository->getCustomReport($request->toArray());
+        $pdf = \App::make('dompdf.wrapper');
+        $view = \View::make('evaluation.customReport', ['evaluation' => $response])->render();
+        $pdf->loadHTML($view);
+        $filename = 'ReporteEvaluacion.pdf';
+        $pdf->save('/tmp/' . $filename);
+        return response()->json($response);
     }
 
     public function getWithInterventionAndUser()
     {
         return response()->json($this->repository->getWithInterventionAndUser());
+    }
+
+    public function downloadCustomReport()
+    {
+        return response()->download('/tmp/ReporteEvaluacion.pdf');
     }
 }
