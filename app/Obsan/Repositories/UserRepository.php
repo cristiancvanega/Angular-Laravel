@@ -36,6 +36,26 @@ class UserRepository extends BaseRepository
         return json_encode(compact('token'));
     }
 
+    public function getIdUser()
+    {
+        return $this->getiDlUserWithToken(request()->header('token'));
+    }
+
+    public function getiDlUserWithToken($token)
+    {
+        return $this->getAUser($token)['user']->id;
+    }
+
+    public function getEmailUser()
+    {
+        return $this->getEmailUserWithToken(request()->header('token'));
+    }
+
+    public function getEmailUserWithToken($token)
+    {
+        return $this->getAUser($token)['user']->email;
+    }
+
     public function getRoleUser()
     {
         return $this->getRoleUserWithToken(request()->header('token'));

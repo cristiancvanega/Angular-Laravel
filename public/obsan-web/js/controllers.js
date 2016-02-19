@@ -14,6 +14,7 @@ app.controller('showsignin', ['$scope', 'serviceHttp', function($scope,serviceHt
     serviceHttp.signin($scope,datos);
     $scope.email = '';
     $scope.password = '';
+    $scope.userEmail = 'laslkslfdjnlds';
 };
 }]);
 
