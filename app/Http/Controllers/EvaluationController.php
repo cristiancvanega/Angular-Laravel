@@ -34,17 +34,17 @@ class EvaluationController extends Controller
 
     public function getReportData()
     {
-        return response()->json($this->repository->getReportData());
+        $response = $this->repository->getReportData();
+        $this->generatePDF($response, 'ReporteEvaluaciones.pdf', 'evaluation.reportEvaluation', 'evaluation');
+        return response()->json($response);
     }
 
     public function getCustomReport(EvaluationCustomReportRequest $request)
     {
         $response = $this->repository->getCustomReport($request->toArray());
-        $pdf = \App::make('dompdf.wrapper');
-        $view = \View::make('evaluation.customReport', ['evaluation' => $response])->render();
-        $pdf->loadHTML($view);
-        $filename = 'ReporteEvaluacion.pdf';
-        $pdf->save('/tmp/' . $filename);
+        $this->generatePDF($response,
+            'ReportePersonalizadoEvaluacion.pdf',
+            'evaluation.customReportEvaluation', 'evaluation');
         return response()->json($response);
     }
 
@@ -55,6 +55,11 @@ class EvaluationController extends Controller
 
     public function downloadCustomReport()
     {
-        return response()->download('/tmp/ReporteEvaluacion.pdf');
+        return response()->download('/tmp/ReportePersonalizadoEvaluacion.pdf');
+    }
+
+    public function downloadReport()
+    {
+        return response()->download('/tmp/ReporteEvaluaciones.pdf');
     }
 }

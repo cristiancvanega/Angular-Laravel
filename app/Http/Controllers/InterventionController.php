@@ -34,7 +34,6 @@ class InterventionController extends Controller
 
     public function getData()
     {
-        //$response = $this->repository->getData();
         $response = $this->repository->getCustomReport([]);;
         $this->generatePDF($response, 'ReporteIntervencion.pdf', 'intervention.reportIntervention', 'intervention');
         return response()->json($response);
