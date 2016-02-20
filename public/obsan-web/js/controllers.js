@@ -350,7 +350,7 @@ app.controller("reportIntervention", [
         $scope.listar();
         $scope.downloadFiles = function()
         {
-            serviceHttp.downloadFiles("report/intervention/download", 'ReporteIntervenciones');
+            serviceHttp.downloadFiles("report/intervention/download", 'ReporteIntervenciones.pdf');
         }
     }]);
 
@@ -368,7 +368,7 @@ app.controller("reportIntervened", [
         $scope.listar();
         $scope.downloadFiles = function()
         {
-            serviceHttp.downloadFiles("report/intervened/download", 'ReporteIntervenidos');
+            serviceHttp.downloadFiles("report/intervened/download", 'ReporteIntervenidos.pdf');
         }
     }]);
 
