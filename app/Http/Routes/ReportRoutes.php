@@ -24,6 +24,8 @@ Route::group(['prefix' => 'report'], function(){
 
         Route::post('intervened/download', 'IntervenedController@downloadReport');
 
+        Route::post('evaluation/download', 'EvaluationController@downloadReport');
+
     });
 
     Route::group(['prefix' => 'custom_report', 'middleware' => 'admin'], function(){
