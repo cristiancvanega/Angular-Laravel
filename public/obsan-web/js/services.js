@@ -108,6 +108,9 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
                     case "intervention":
                         $scope.registroIntervencion = data;
                         break;
+                    case 'evaluation/user_intervention':
+                        $scope.resgistrosUsuariosIntervenciones = data;
+                        break;
                     default:
                         break;
                 }

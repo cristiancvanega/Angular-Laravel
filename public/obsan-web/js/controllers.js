@@ -372,27 +372,6 @@ app.controller("reportIntervened", [
         }
     }]);
 
-app.controller("customReportEvaluation", [
-    '$scope','serviceHttp',
-    function($scope,serviceHttp)
-    {
-        $scope.registros = [],$scope.total=0, $scope.registroConsultarEvaluacion={},$scope.recurso="",$scope.url="/reportEvaluation";
-
-        $scope.customReport = function()
-        {
-            datos = {
-                intervention_id         : $scope.registroConsultarEvaluacion.intervention_id,
-                user_id                 : $scope.registroConsultarEvaluacion.user_id,
-                descripcion_evidencia   : $scope.registroConsultarEvaluacion.descripcion_evidencia,
-                impacto                 : $scope.registroConsultarEvaluacion.impacto,
-                estado_inicial          : $scope.registroConsultarEvaluacion.estado_inicial,
-                estado_final            : $scope.registroConsultarEvaluacion.estado_final
-            };
-            $scope.recurso="report/custom_report/evaluation";
-            serviceHttp.customReport($scope, datos);
-        };
-    }]);
-
 app.controller("customReportIntervened", [
     '$scope','serviceHttp',
     function($scope,serviceHttp)
@@ -418,6 +397,35 @@ app.controller("customReportIntervened", [
             serviceHttp.downloadFiles("report/custom_report/download/intervened", 'ReportePersonalizadoIntervenidos');
         }
     }]);
+
+app.controller("customReportEvaluation", [
+    '$scope','serviceHttp',
+    function($scope,serviceHttp)
+    {
+        $scope.registros = [],$scope.total=0, $scope.resgistrosUsuariosIntervenciones = [],
+            $scope.registroConsultarEvaluacion={},$scope.recurso="",$scope.url="/CustomReportEvaluation";
+
+        $scope.getRegistroUI = function()
+        {
+            serviceHttp.consultar($scope, "evaluation/user_intervention");
+        }
+
+        $scope.getRegistroUI();
+
+        $scope.customReport = function()
+        {
+            datos = {
+                intervention_id         : $scope.registroConsultarEvaluacion.intervention_id,
+                user_id                 : $scope.registroConsultarEvaluacion.user_id,
+                descripcion_evidencia   : $scope.registroConsultarEvaluacion.descripcion_evidencia,
+                impacto                 : $scope.registroConsultarEvaluacion.impacto,
+                estado_inicial          : $scope.registroConsultarEvaluacion.estado_inicial,
+                estado_final            : $scope.registroConsultarEvaluacion.estado_final
+            };
+            $scope.recurso="report/custom_report/evaluation";
+            serviceHttp.customReport($scope, datos);
+        };
+}]);
 
 app.controller("customReportIntervention", [
     '$scope','serviceHttp',
