@@ -37,7 +37,7 @@ abstract class BaseRepository
     {
         foreach (array_keys($fields) as $field)
         {
-            $model = $model->orWhere($field, 'LIKE', '%' . $fields[$field] . '%');
+            $model = $model->where($field, $fields[$field]);
         }
         return $model;
     }
