@@ -30,7 +30,7 @@ abstract class BaseRepository
 
     public function getCustomReport(Array $request)
     {
-        return $this->buildQuery($this->model, $request)->get();
+        return $this->buildQuery($this->model, $request);
     }
 
     private function buildQuery(Model $model, Array $fields)
