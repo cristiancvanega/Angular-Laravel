@@ -57,4 +57,9 @@ class InterventionRepository extends BaseRepository
             'entity'
         )->get();
     }
+
+    public function getIdsAndNames()
+    {
+        return $this->model->all('id', 'name');
+    }
 }
