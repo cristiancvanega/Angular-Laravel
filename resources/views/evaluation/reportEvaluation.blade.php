@@ -5,7 +5,7 @@
     <title>Evaluaciones</title>
 </head>
 <body>
-<table>
+<table border="1px">
     <head>
         <tr>
             <th>Intervencion</th>

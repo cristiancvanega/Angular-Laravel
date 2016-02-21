@@ -5,7 +5,7 @@
         <title>Intervenidos</title>
     </head>
     <body>
-    <table>
+    <table border="1px">
         <head>
             <tr>
                 <th>Nombre</th>
