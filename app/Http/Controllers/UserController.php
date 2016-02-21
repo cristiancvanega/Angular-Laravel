@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Obsan\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Obsan\Entities\User;
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
 
