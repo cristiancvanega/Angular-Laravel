@@ -41,11 +41,21 @@ class EvaluationController extends Controller
 
     public function getCustomReport(EvaluationCustomReportRequest $request)
     {
-        $response = $this->repository->getCustomReport($request->toArray());
+        $response = $this->repository
+            ->getCustomReport($request->toArray())
+            ->with([
+                'intervention',
+                'user'
+            ])->get();
         $this->generatePDF($response,
             'ReportePersonalizadoEvaluacion.pdf',
             'evaluation.customReportEvaluation', 'evaluation');
         return response()->json($response);
+    }
+
+    public function getFieldsCustomReport()
+    {
+        return response()->json($this->repository->getFieldsCustomReport());
     }
 
     public function getWithInterventionAndUser()
