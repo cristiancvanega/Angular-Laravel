@@ -96,4 +96,9 @@ class UserRepository extends BaseRepository
         // the token is valid and we have found the user via the sub claim
         return compact('user');
     }
+
+    public function getIdEmailAdmins()
+    {
+        return $this->model->where('role', 'Admin')->get(['id', 'name']);
+    }
 }
