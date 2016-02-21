@@ -425,6 +425,11 @@ app.controller("customReportEvaluation", [
             $scope.recurso="report/custom_report/evaluation";
             serviceHttp.customReport($scope, datos);
         };
+
+        $scope.downloadFiles = function()
+        {
+            serviceHttp.downloadFiles('report/custom_report/download/evaluation', 'ReportePersonalizadoEvaluaciones');
+        }
 }]);
 
 app.controller("customReportIntervention", [
