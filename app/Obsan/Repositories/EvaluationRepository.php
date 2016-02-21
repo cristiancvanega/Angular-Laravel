@@ -1,22 +1,26 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: cristiancvanega
- * Date: 2/10/16
- * Time: 1:35 AM
- */
 
 namespace App\Obsan\Repositories;
 
 
 use App\Obsan\Entities\Evaluation;
+use App\Obsan\Entities\IntervenedIntervention;
 use App\Obsan\Entities\Intervention;
+use App\Obsan\Entities\User;
 
 class EvaluationRepository extends BaseRepository
 {
     public function __construct(Evaluation $evaluation)
     {
         parent::__construct($evaluation);
+    }
+
+    public function all()
+    {
+        return $this->model->with([
+            'intervention',
+            'user'
+        ])->get();
     }
 
     public function getReportData()
@@ -36,5 +40,16 @@ class EvaluationRepository extends BaseRepository
             'intervention',
             'user'
         )->get();
+    }
+
+    public function getFieldsCustomReport()
+    {
+        $users = (new UserRepository(new User()))->getIdEmailAdmins();
+        $interventions = (new InterventionRepository(new Intervention(), new IntervenedIntervention()))->getIdsAndNames();
+        return [
+            'users'         => $users,
+            'interventions' => $interventions
+        ];
+        dd($response);
     }
 }
