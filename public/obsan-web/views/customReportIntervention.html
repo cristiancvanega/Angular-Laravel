@@ -3,20 +3,23 @@
     <br>
     <div class="col-xs-1">
         <button class="btn btn-primary" data-toggle="modal" data-target="#registroConsultarIntervencion"><i class="fa fa-search"></i>Consultar</button>
+        <br><br>
+        <button class="btn btn-primary" ng-click="downloadFiles()">
+            <i class="fa fa-download"></i>
+            Descargar
+        </button>
     </div>
 
     <br><br>
     <h2 align="center"><strong>Intervenciones</strong></h2>
     <div class="col-xs-11">
-        <loading></loading>
-        <h3>B&uacute;squeda: <input class="form-control" type="text" ng-model="filter.$" /></h3>
         <div class="panel-body panel-body-table">
             <div class="table-responsive">
                 <table  ng-table="tableParams" class="table table-bordered table-striped">
                     <tbody>
                     <tr ng-repeat="registro in $data">
-                        <td align="center" data-title="'Entidad'" sortable="'entity.name'">{{registro.entity_id}}</td>
-                        <td align="center" data-title="'Municipio'" sortable="'municipality.name'">{{registro.municipality_id}}</td>
+                        <td align="center" data-title="'Entidad'" sortable="'entity.name'">{{registro.entity.name}}</td>
+                        <td align="center" data-title="'Municipio'" sortable="'municipality.name'">{{registro.municipality.name}}</td>
                         <td align="center" data-title="'Nombre'" sortable="'name'">{{registro.name}}</td>
                         <td align="center" data-title="'Inicio'" sortable="'start_date'">{{registro.start_date}}</td>
                         <td align="center" data-title="'Fin'" sortable="'end_date'">{{registro.end_date}}</td>
@@ -44,11 +47,11 @@
                 <form class="form-horizontal col-lg-8 col-md-8 col-xs-10" role="form">
                     <div class="form-group">
                         <label>Seleccione una entidad</label>
-                        <select class="form-control" ng-options="item.id as item.name for item in registroEntidad" ng-model="registroConsultarIntervencion.entity_id"></select>
+                        <select class="form-control" ng-options="item.id as item.name for item in registroEntidadesMunicipios.entities" ng-model="registroConsultarIntervencion.entity_id"></select>
                     </div>
                     <div class="form-group">
                         <label>Seleccione un municipio</label>
-                        <select class="form-control" ng-options="item.id as item.name for item in registroMunicipio" ng-model="registroConsultarIntervencion.municipality_id"></select>
+                        <select class="form-control" ng-options="item.id as item.name for item in registroEntidadesMunicipios.municipalities" ng-model="registroConsultarIntervencion.municipality_id"></select>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">

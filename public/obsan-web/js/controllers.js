@@ -417,7 +417,6 @@ app.controller("customReportEvaluation", [
             datos = {
                 intervention_id         : $scope.registroConsultarEvaluacion.intervention_id,
                 user_id                 : $scope.registroConsultarEvaluacion.user_id,
-                descripcion_evidencia   : $scope.registroConsultarEvaluacion.descripcion_evidencia,
                 impacto                 : $scope.registroConsultarEvaluacion.impacto,
                 estado_inicial          : $scope.registroConsultarEvaluacion.estado_inicial,
                 estado_final            : $scope.registroConsultarEvaluacion.estado_final
@@ -431,12 +430,19 @@ app.controller("customReportEvaluation", [
             serviceHttp.downloadFiles('report/custom_report/download/evaluation', 'ReportePersonalizadoEvaluaciones');
         }
 }]);
-
 app.controller("customReportIntervention", [
     '$scope','serviceHttp',
     function($scope,serviceHttp)
     {
-        $scope.registros = [],$scope.total=0, $scope.registroConsultarIntervencion={},$scope.recurso="",$scope.url="/reportEvaluation";
+        $scope.registros = [],$scope.total=0, $scope.registroConsultarIntervencion={},$scope.recurso="",
+            $scope.registroEntidadesMunicipios = [], $scope.url="/reportEvaluation";
+
+        $scope.getRegistroEM = function()
+        {
+            serviceHttp.consultar($scope, 'intervention/fields_custom_report');
+        }
+
+        $scope.getRegistroEM();
 
         $scope.customReport = function()
         {
@@ -453,6 +459,11 @@ app.controller("customReportIntervention", [
             $scope.recurso="report/custom_report/intervention";
             serviceHttp.customReport($scope, datos);
         };
+
+        $scope.downloadFiles = function()
+        {
+            serviceHttp.downloadFiles('report/custom_report/download/intervention', 'ReportePerzonalizadoIntervencion.pdf');
+        }
     }]);
 
 

@@ -62,7 +62,12 @@ class InterventionController extends Controller
 
     public function getCustomReport(InterventionCustomReportRequest $request)
     {
-        $response = $this->repository->getCustomReport($request->toArray());
+        $response = $this->repository
+            ->getCustomReport($request->toArray())
+            ->with([
+                'entity',
+                'municipality'
+            ])->get();
         $this->generatePDF($response, 'ReportePerzonalizadoIntervencion.pdf', 'intervention.reportIntervention', 'intervention');
         return response()->json($response);
     }

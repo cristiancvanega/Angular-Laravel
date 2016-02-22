@@ -111,6 +111,9 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
                     case 'evaluation/user_intervention':
                         $scope.resgistrosUsuariosIntervenciones = data;
                         break;
+                    case 'intervention/fields_custom_report':
+                        $scope.registroEntidadesMunicipios = data;
+                        break;
                     default:
                         break;
                 }
@@ -288,6 +291,7 @@ function showMenu(){
             $('#divobsan').removeAttr('hidden');
             $('#btnSignin').attr('hidden',true);
             $('#btnSignout').removeAttr('hidden');
+            $('#divobsanmenu').removeAttr('hidden');
             break;
         case 'Admin':
             $('#btnSignin').attr('hidden',true);
@@ -295,6 +299,7 @@ function showMenu(){
             $('#usersdiv').removeAttr('hidden');
             $('#usersdiv2').removeAttr('hidden');
             $('#divobsan').removeAttr('hidden');
+            $('#divobsanmenu').removeAttr('hidden');
             break;
     }
 
