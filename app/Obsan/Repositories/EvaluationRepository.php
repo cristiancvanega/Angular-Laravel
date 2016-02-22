@@ -50,6 +50,5 @@ class EvaluationRepository extends BaseRepository
             'users'         => $users,
             'interventions' => $interventions
         ];
-        dd($response);
     }
 }
