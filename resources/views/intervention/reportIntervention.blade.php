@@ -20,8 +20,8 @@
     <tbody>
     @foreach($intervention as $item)
     <tr>
-        <td>{{$item->entity->name}}</td>
-        <td>{{$item->municipality->name}}</td>
+        <td>{{$item['entity']->name}}</td>
+        <td>{{$item['municipality']->name}}</td>
         <td>{{$item->name}}</td>
         <td>{{$item->start_date}}</td>
         <td>{{$item->end_date}}</td>
