@@ -63,8 +63,8 @@ class InterventionRepository extends BaseRepository
         $municipalities = (new MunicipalityRepository(new Municipality()))->getIdNames();
         $entities = (new EntityRepository(new Entity()))->getIdNames();
         return [
-            'municipalities',
-            'entities'
+            'municipalities'=> $municipalities,
+            'entities'      => $entities
         ];
     }
 }

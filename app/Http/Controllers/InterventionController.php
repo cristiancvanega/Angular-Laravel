@@ -69,7 +69,7 @@ class InterventionController extends Controller
 
     public function getFieldsCustomReport()
     {
-        
+        return response()->json($this->repository->getFieldsCustomReport());
     }
 
     public function downloadCustomReport()

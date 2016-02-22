@@ -2,6 +2,8 @@
 
 Route::group(['prefix' => 'intervention', 'middleware' => 'obsan'], function(){
 
+    Route::get('fields_custom_report', 'InterventionController@getFieldsCustomReport');
+
     Route::get('with_em', 'InterventionController@getWithEntitiesAndMunicipalities');
 
     Route::get('','InterventionController@all');
