@@ -67,6 +67,11 @@ class InterventionController extends Controller
         return response()->json($response);
     }
 
+    public function getFieldsCustomReport()
+    {
+        
+    }
+
     public function downloadCustomReport()
     {
         return $this->downloadFile('ReportePerzonalizadoIntervencion.pdf');

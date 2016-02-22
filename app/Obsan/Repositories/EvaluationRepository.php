@@ -45,7 +45,7 @@ class EvaluationRepository extends BaseRepository
     public function getFieldsCustomReport()
     {
         $users = (new UserRepository(new User()))->getIdEmailAdmins();
-        $interventions = (new InterventionRepository(new Intervention(), new IntervenedIntervention()))->getIdsAndNames();
+        $interventions = (new InterventionRepository(new Intervention(), new IntervenedIntervention()))->getIdNames();
         return [
             'users'         => $users,
             'interventions' => $interventions

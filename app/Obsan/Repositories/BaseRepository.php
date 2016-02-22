@@ -41,4 +41,9 @@ abstract class BaseRepository
         }
         return $model;
     }
+
+    public function getIdNames()
+    {
+        return $this->model->all('id', 'name');
+    }
 }

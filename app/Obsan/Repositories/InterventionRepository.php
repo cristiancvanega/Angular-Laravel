@@ -1,10 +1,10 @@
 <?php
 namespace App\Obsan\Repositories;
 
-
 use App\Obsan\Entities\Entity;
 use App\Obsan\Entities\IntervenedIntervention;
 use App\Obsan\Entities\Intervention;
+use App\Obsan\Entities\Municipality;
 
 class InterventionRepository extends BaseRepository
 {
@@ -58,8 +58,13 @@ class InterventionRepository extends BaseRepository
         )->get();
     }
 
-    public function getIdsAndNames()
+    public function getFieldsCustomReport()
     {
-        return $this->model->all('id', 'name');
+        $municipalities = (new MunicipalityRepository(new Municipality()))->getIdNames();
+        $entities = (new EntityRepository(new Entity()))->getIdNames();
+        return [
+            'municipalities',
+            'entities'
+        ];
     }
 }
