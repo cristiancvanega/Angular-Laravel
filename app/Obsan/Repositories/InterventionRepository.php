@@ -64,7 +64,8 @@ class InterventionRepository extends BaseRepository
         $entities = (new EntityRepository(new Entity()))->getIdNames();
         return [
             'municipalities'=> $municipalities,
-            'entities'      => $entities
+            'entities'      => $entities,
+            'interventions'  => $this->model->all('id', 'name')
         ];
     }
 }
