@@ -29,7 +29,6 @@
                         <td align="center" data-title="'Tel&eacute;fono'" sortable="'phone'">{{registro.phone}}</td>
                         <td align="center" data-title="'Email'" sortable="'email'">{{registro.email}}</td>
                         <td align="center" data-title="'Escolaridad'" sortable="'pupilage'">{{registro.pupilage}}</td>
-                        <td align="center" data-title="">
                     </tr>
                     </tbody>
                 </table>
@@ -44,48 +43,13 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Editar Intervenido</h4>
+                <h4 class="modal-title" id="myModalLabel">Reporte Personalizado Intervenido</h4>
             </div>
             <div class="modal-body">
                 <form class="form-horizontal col-lg-8 col-md-8 col-xs-10" role="form">
                     <div class="form-group">
-                        <label>Nombre</label>
-                        <input type="text" name="nombre" class="form-control" ng-model="registroConsultarIntervenido.name">
-                    </div>
-                    <div class="form-group">
-                        <label>Tipo de Documento*</label>
-                        <select class="form-control" ng-model="registroConsultarIntervenido.document_type">
-                            <option value="1">Cédula de ciudadanía</option>
-                            <option value="2">Tarjeta de identidad</option>
-                            <option value="3">Registro civil de nacimiento</option>
-                            <option value="4">Cédula de extranjería</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Documento</label>
-                        <input type="text" name="nombre" class="form-control" ng-model="registroConsultarIntervenido.document" >
-                    </div>
-                    <div class="form-group">
-                        <label>Dirección</label>
-                        <input type="text" name="nombre" class="form-control" ng-model="registroConsultarIntervenido.address" >
-                    </div>
-                    <div class="form-group">
-                        <label>Teléfono</label>
-                        <input type="text" name="nombre" class="form-control" ng-model="registroConsultarIntervenido.phone"  >
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="text" name="nombre" class="form-control" ng-model="registroConsultarIntervenido.email" >
-                    </div>
-                    <div class="form-group">
-                        <label>Escolaridad</label>
-                        <select class="form-control" ng-model="registroConsultarIntervenido.pupilage">
-                            <option value="1">Ninguna</option>
-                            <option value="2">Preescolar</option>
-                            <option value="3">Primaria</option>
-                            <option value="4">Bachillerato</option>
-                            <option value="5">Universidad</option>
-                        </select>
+                        <label>Seleccione una intervención</label>
+                        <select class="form-control" ng-options="item.id as item.name for item in registroInterventions" ng-model="registroConsultarIntervenido.id"></select>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">

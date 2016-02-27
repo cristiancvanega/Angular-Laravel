@@ -4,6 +4,7 @@ namespace App\Obsan\Repositories;
 
 
 use App\Obsan\Entities\Intervened;
+use App\Obsan\Entities\Intervention;
 
 class IntervenedRepository extends BaseRepository
 {
@@ -19,5 +20,10 @@ class IntervenedRepository extends BaseRepository
             'interventions.municipality',
             'interventions.entity'
         ])->find($id);
+    }
+
+    public function getCustomReportI($intervention_id)
+    {
+        return (new intervention)->with('intervened')->find($intervention_id['intervention_id'])->toArray()['intervened'];
     }
 }

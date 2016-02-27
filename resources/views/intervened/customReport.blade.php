@@ -20,13 +20,13 @@
         <tbody>
             @foreach($intervened as $item)
                 <tr>
-                    <td>{{$item->name}}</td>
-                    <td>{{$item->document_type}}</td>
-                    <td>{{$item->document}}</td>
-                    <td>{{$item->address}}</td>
-                    <td>{{$item->phone}}</td>
-                    <td>{{$item->email}}</td>
-                    <td>{{$item->pupilage}}</td>
+                    <td>{{$item['name']}}</td>
+                    <td>{{$item['document_type']}}</td>
+                    <td>{{$item['document']}}</td>
+                    <td>{{$item['address']}}</td>
+                    <td>{{$item['phone']}}</td>
+                    <td>{{$item['email']}}</td>
+                    <td>{{$item['pupilage']}}</td>
                 </tr>
             @endforeach
         </tbody>

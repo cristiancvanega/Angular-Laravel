@@ -376,19 +376,22 @@ app.controller("customReportIntervened", [
     '$scope','serviceHttp',
     function($scope,serviceHttp)
     {
-        $scope.registros = [],$scope.total=0, $scope.registroConsultarIntervenido={},$scope.recurso="",$scope.url="/reportEvaluation";
+        $scope.registros = [],$scope.total=0, $scope.registroConsultarIntervenido={},$scope.recurso=""
+            ,$scope.registroInterventions = [],$scope.url="/reportEvaluation";
+
+        $scope.getInterventions = function()
+        {
+            serviceHttp.consultar($scope, 'intervention');
+        }
+
+        $scope.getInterventions();
 
         $scope.customReport = function()
         {
             datos = {
-                name            : $scope.registroConsultarIntervenido.name,
-                document_type   : $scope.registroConsultarIntervenido.user_id,
-                document        : $scope.registroConsultarIntervenido.document,
-                address         : $scope.registroConsultarIntervenido.address,
-                phone           : $scope.registroConsultarIntervenido.phone,
-                email           : $scope.registroConsultarIntervenido.email,
-                pupilage        : $scope.registroConsultarIntervenido.pupilage
+                intervention_id : $scope.registroConsultarIntervenido.id,
             };
+            console.log(datos.intervention_id);
             $scope.recurso="report/custom_report/intervened";
             serviceHttp.customReport($scope, datos);
         };

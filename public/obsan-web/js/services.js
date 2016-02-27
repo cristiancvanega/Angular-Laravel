@@ -106,7 +106,10 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
                         $scope.registroUsuario = data;
                         break;
                     case "intervention":
+                    {
                         $scope.registroIntervencion = data;
+                        $scope.registroInterventions = data;
+                    }
                         break;
                     case 'evaluation/user_intervention':
                         $scope.resgistrosUsuariosIntervenciones = data;
@@ -181,6 +184,7 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
                         $scope.tableParams.reload();
                     });
                     console.log(status);
+                    console.log(data);
                 });
         },
 
