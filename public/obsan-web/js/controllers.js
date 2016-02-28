@@ -456,7 +456,8 @@ app.controller("customReportIntervention", [
                 start_date              : $scope.registroConsultarIntervencion.start_date,
                 end_date                : $scope.registroConsultarIntervencion.end_date,
                 description             : $scope.registroConsultarIntervencion.description,
-                evidencias_planeadas    : $scope.registroConsultarIntervencion.evidencias_planeadas
+                evidencias_planeadas    : $scope.registroConsultarIntervencion.evidencias_planeadas,
+                date                    : $scope.registroConsultarIntervencion.date
             };
             $scope.recurso="report/custom_report/intervention";
             serviceHttp.customReport($scope, datos);
