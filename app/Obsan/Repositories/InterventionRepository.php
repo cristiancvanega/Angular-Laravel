@@ -5,6 +5,7 @@ use App\Obsan\Entities\Entity;
 use App\Obsan\Entities\IntervenedIntervention;
 use App\Obsan\Entities\Intervention;
 use App\Obsan\Entities\Municipality;
+use Carbon\Carbon;
 
 class InterventionRepository extends BaseRepository
 {
@@ -67,5 +68,26 @@ class InterventionRepository extends BaseRepository
             'entities'      => $entities,
             'interventions'  => $this->model->all('id', 'name')
         ];
+    }
+
+    public function getCustomReportI(Array $request)
+    {
+        return $this->buildQueryI($this->model, $request);
+    }
+
+    public function buildQueryI(Intervention $model, Array $fields)
+    {
+        foreach (array_keys($fields) as $field)
+        {
+            if($field === 'date') {
+                $model = $model->where('start_date', Carbon::parse(substr($fields[$field], 0, 10)));
+                \Log::info(Carbon::parse(substr($fields[$field], 0, 10)));
+                \Log::info(Carbon::parse($fields[$field]));
+                \Log::info(substr($fields[$field], 0, 10));
+            }
+            else
+                $model = $model->where($field, $fields[$field]);
+        }
+        return $model;
     }
 }
