@@ -58,6 +58,13 @@
                         <select class="form-control" ng-options="item.id as item.name for item in registroEntidadesMunicipios.municipalities" ng-model="registroConsultarIntervencion.municipality_id"></select>
                     </div>
                     <div class="form-group">
+                        <label>Tipo de filtro para la fecha</label>
+                        <select class="form-control" ng-model="registroConsultarIntervencion.type_date">
+                            <option value="1">Por fecha</option>
+                            <option value="2">Por año</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label>Seleccione una fecha</label><br>
                         <input type="date" class="ui-datepicker" ng-model="registroConsultarIntervencion.date">
                     </div>

@@ -72,6 +72,10 @@ class InterventionRepository extends BaseRepository
 
     public function getCustomReportI(Array $request)
     {
+        \Log::info($request);
+        if(isset($request['forDate']) && $request['forDate'] == 2)
+            return $this->model->where('start_date', 'LIKE', Carbon::parse($request['date'])->year . '%');
+
         return $this->buildQueryI($this->model, $request);
     }
 
@@ -79,14 +83,13 @@ class InterventionRepository extends BaseRepository
     {
         foreach (array_keys($fields) as $field)
         {
-            if($field === 'date') {
-                $model = $model->where('start_date', Carbon::parse(substr($fields[$field], 0, 10)));
-                \Log::info(Carbon::parse(substr($fields[$field], 0, 10)));
-                \Log::info(Carbon::parse($fields[$field]));
-                \Log::info(substr($fields[$field], 0, 10));
+            if($field != 'forDate')
+            {
+                if($field === 'date')
+                    $model = $model->where('start_date', Carbon::parse(substr($fields[$field], 0, 10)));
+                else
+                    $model = $model->where($field, $fields[$field]);
             }
-            else
-                $model = $model->where($field, $fields[$field]);
         }
         return $model;
     }
