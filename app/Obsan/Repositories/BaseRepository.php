@@ -3,6 +3,7 @@ namespace App\Obsan\Repositories;
 
 
 use App\Obsan\Entities\Model;
+use Carbon\Carbon;
 
 abstract class BaseRepository
 {
@@ -33,7 +34,7 @@ abstract class BaseRepository
         return $this->buildQuery($this->model, $request);
     }
 
-    private function buildQuery(Model $model, Array $fields)
+    public function buildQuery(Model $model, Array $fields)
     {
         foreach (array_keys($fields) as $field)
         {
