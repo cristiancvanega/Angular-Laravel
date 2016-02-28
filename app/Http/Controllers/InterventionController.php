@@ -68,7 +68,7 @@ class InterventionController extends Controller
     public function getCustomReport(InterventionCustomReportRequest $request)
     {
         $response = $this->repository
-            ->getCustomReport($request->toArray())
+            ->getCustomReportI($request->toArray())
             ->with([
                 'entity',
                 'municipality'
