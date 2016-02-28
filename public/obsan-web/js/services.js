@@ -184,7 +184,6 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
                         $scope.tableParams.reload();
                     });
                     console.log(status);
-                    console.log(data);
                 });
         },
 
