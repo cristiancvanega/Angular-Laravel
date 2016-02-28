@@ -58,6 +58,10 @@
                         <select class="form-control" ng-options="item.id as item.name for item in registroEntidadesMunicipios.municipalities" ng-model="registroConsultarIntervencion.municipality_id"></select>
                     </div>
                     <div class="form-group">
+                        <label>Seleccione una fecha</label><br>
+                        <input type="date" class="ui-datepicker" ng-model="registroConsultarIntervencion.date">
+                    </div>
+                    <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                             <button type="button" class="btn btn-success"
                                     data-dismiss="modal" ng-click="customReport()">Consultar</button>
