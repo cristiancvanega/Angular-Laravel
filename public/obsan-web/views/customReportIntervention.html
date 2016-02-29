@@ -1,8 +1,8 @@
 <div class="panel panel-default">
-
     <br>
-    <div class="col-xs-1">
-        <button class="btn btn-primary" data-toggle="modal" data-target="#registroConsultarIntervencion"><i class="fa fa-search"></i>Consultar</button>
+    <div>
+        <button class="btn btn-primary col-xs-3" data-toggle="modal" data-target="#registroConsultarIntervencion"><i class="fa fa-search"></i>Consultar</button>
+        <button class="btn btn-primary col-xs-3" data-toggle="modal" data-target="#registroConsultarIntervencionPorFecha"><i class="fa fa-search"></i>Consultar por fecha</button>
         <br><br>
         <button class="btn btn-primary" ng-click="downloadFiles()">
             <i class="fa fa-download"></i>
@@ -41,7 +41,8 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Consultar Intervención</h4>
+                <h4 class="modal-title" id="myModalLabel">Consulta Personalizada Intervención</h4>
+                <h6>Diligencie UNICAMENTE los campos por los que quiere realizar la búsqueda.</h6>
             </div>
             <div class="modal-body">
                 <form class="form-horizontal col-lg-8 col-md-8 col-xs-10" role="form">
@@ -58,6 +59,33 @@
                         <select class="form-control" ng-options="item.id as item.name for item in registroEntidadesMunicipios.municipalities" ng-model="registroConsultarIntervencion.municipality_id"></select>
                     </div>
                     <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="button" class="btn btn-success"
+                                    data-dismiss="modal" ng-click="customReport()">Consultar</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end modal soft consult intervention -->
+
+
+<!-- init modal soft consult intervention -->
+<div class="modal fade" id="registroConsultarIntervencionPorFecha" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Consulta Personalizada Intervención</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal col-lg-8 col-md-8 col-xs-10" role="form">
+                    <div class="form-group">
                         <label>Tipo de filtro para la fecha</label>
                         <select class="form-control" ng-model="registroConsultarIntervencion.type_date">
                             <option value="1">Por fecha</option>
@@ -65,8 +93,14 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Seleccione una fecha</label><br>
-                        <input type="date" class="ui-datepicker" ng-model="registroConsultarIntervencion.date">
+                        <div class="col-xs-6">
+                            <label>Seleccione fecha inicio</label><br>
+                            <input type="text" data-date-format="yyyy-mm-dd" class="form-control datepicker" ng-model="registroConsultarIntervencion.date">
+                        </div>
+                        <div class="col-xs-6">
+                            <label>Seleccione fecha inicio</label><br>
+                            <input type="text" data-date-format="yyyy-mm-dd" class="form-control datepicker" ng-model="registroConsultarIntervencion.end_date">
+                        </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
