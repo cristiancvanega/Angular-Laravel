@@ -238,6 +238,8 @@ app.controller("GestionIntervencion", [
     '$scope','serviceHttp',
     function($scope,serviceHttp)
     {
+        $('.datepicker').datepicker();
+
         $scope.registros = [],$scope.total=0, $scope.registroEditar= {},$scope.btnShow=false,
         $scope.registroBorrar ={},$scope.registroMunicipio =[],$scope.registroEntidad =[], 
         $scope.registroCrear={},$scope.recurso="",$scope.url="/intervencion",$scope.entidad;
@@ -437,6 +439,7 @@ app.controller("customReportIntervention", [
     '$scope','serviceHttp',
     function($scope,serviceHttp)
     {
+        $('.datepicker').datepicker();
         $scope.registros = [],$scope.total=0, $scope.registroConsultarIntervencion={},$scope.recurso="",
             $scope.registroEntidadesMunicipios = [], $scope.url="/reportEvaluation";
 
@@ -446,7 +449,6 @@ app.controller("customReportIntervention", [
         }
 
         $scope.getRegistroEM();
-
         $scope.customReport = function()
         {
             datos = {
@@ -460,6 +462,8 @@ app.controller("customReportIntervention", [
                 date                    : $scope.registroConsultarIntervencion.date,
                 forDate                 : $scope.registroConsultarIntervencion.type_date
             };
+            $scope.registroConsultarIntervencion = null;
+            console.log(datos);
             $scope.recurso="report/custom_report/intervention";
             serviceHttp.customReport($scope, datos);
         };
