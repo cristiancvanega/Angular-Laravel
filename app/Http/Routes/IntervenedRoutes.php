@@ -2,6 +2,8 @@
 
 Route::group(['prefix' => 'intervened', 'middleware' => 'obsan'], function(){
 
+    Route::get('id_names', 'IntervenedController@getIdNames');
+
     Route::get('','IntervenedController@all');
 
     Route::get('{id}','IntervenedController@find');

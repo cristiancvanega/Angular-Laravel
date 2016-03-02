@@ -74,4 +74,9 @@ class IntervenedController extends Controller
         return $this->downloadFile('CustomReportIntervened.pdf');
     }
 
+    public function getIdNames()
+    {
+        return response()->json($this->repository->getIdNames());
+    }
+
 }
