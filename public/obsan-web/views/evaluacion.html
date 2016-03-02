@@ -49,10 +49,6 @@
             <select class="form-control" ng-options="item.id as item.name for item in registroIntervencion" ng-model="registroEditar.intervention.id"></select>
           </div>
           <div class="form-group">
-            <label>Seleccione un Usuario</label>
-            <select class="form-control" ng-options="item.id as item.name for item in registroUsuario" ng-model="registroEditar.user.id"></select>
-          </div>
-          <div class="form-group">
             <label>Seleccione Impacto</label>
             <select class="form-control" ng-model="registroEditar.impacto">
               <option value="1">El impacto generado no presenta evidencias, el estado inicial es igual al estado final</option>
@@ -121,9 +117,6 @@
       <div class="modal-body">
         <form class="form-horizontal col-lg-8 col-md-8 col-xs-10" role="form" name="registroForm">
           <div class="form-group">
-            <label>Seleccione un Usuario*</label>
-            <select name="validate" class="form-control" ng-options="item.id as item.name for item in registroUsuario" ng-model="registroCrear.user_id" required></select>
-          </div>
           <div class="form-group">
             <label>Seleccione Impacto*</label>
             <select name="validate" class="form-control" ng-model="registroCrear.impacto" required>
