@@ -5,6 +5,8 @@
     <title>Intervenidos</title>
 </head>
 <body>
+<h1 style="text-align:center">{{$title}}</h1>
+<br>
 <table cellspacing="0" border="1px">
     <head>
         <tr>
