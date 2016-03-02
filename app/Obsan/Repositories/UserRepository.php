@@ -101,4 +101,9 @@ class UserRepository extends BaseRepository
     {
         return $this->model->where('role', 'Admin')->get(['id', 'name']);
     }
+
+    public function getIdFromEmail($email)
+    {
+        return $this->model->where('email', $email)->first()->id;
+    }
 }
