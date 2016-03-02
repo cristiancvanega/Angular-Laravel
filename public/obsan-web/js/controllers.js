@@ -217,8 +217,8 @@ app.controller("GestionIntervenido", [
 
         $scope.showEdit = function(registro)
         {
+            console.log(registro.document_type);
             $scope.registroEditar = registro;
-
         };
 
         $scope.showDelete = function(registro)
@@ -305,9 +305,6 @@ app.controller("GestionEvaluacion", [
 
         $scope.crear= function()
         {
-            datos={
-
-            }
             serviceHttp.crear($scope,datos);
         };
 
@@ -439,7 +436,28 @@ app.controller("customReportIntervention", [
     '$scope','serviceHttp',
     function($scope,serviceHttp)
     {
+        changeDatepicker = function(value)
+        {
+            if(value == 2)
+            {
+                $('#dateYear').removeAttr('hidden');
+                $('#dateYear').show();
+                $('#dateFull').hide();
+            }
+            if(value == 1)
+            {
+                $('#dateYear').hide();
+                $('#dateFull').removeAttr('hidden');
+                $('#dateFull').show();
+            }
+            console.log(value);
+        }
         $('.datepicker').datepicker();
+        $('.datepickerYear').datepicker({
+            format: " yyyy",
+            viewMode: "years",
+            minViewMode: "years"
+        });
         $scope.registros = [],$scope.total=0, $scope.registroConsultarIntervencion={},$scope.recurso="",
             $scope.registroEntidadesMunicipios = [], $scope.url="/reportEvaluation";
 
@@ -588,13 +606,14 @@ app.controller("EvaluacionxIntervencion", [
         {
             datos={
                 intervention_id: $routeParams.id,
-                user_id: $scope.registroCrear.user_id,
+                user_email: localStorage.getItem('email'),
                 impacto: $scope.registroCrear.impacto,
                 description: $scope.registroCrear.description,
                 estado_inicial: $scope.registroCrear.estado_inicial,
                 estado_final: $scope.registroCrear.estado_final,
                 recomendaciones: $scope.registroCrear.recomendaciones
             }
+            console.log(datos);
             serviceHttp.crear($scope,datos);
         };
 
