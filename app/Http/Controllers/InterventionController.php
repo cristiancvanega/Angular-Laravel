@@ -40,7 +40,12 @@ class InterventionController extends Controller
                 'municipality'
             ])
             ->get();
-        $this->generatePDF($response, 'ReporteIntervencion.pdf', 'intervention.reportIntervention', 'intervention');
+        $this->generatePDF(
+            $response,
+            'ReporteIntervencion.pdf',
+            'intervention.reportIntervention',
+            'intervention',
+            'Reporte de Intervenciones');
         return response()->json($response);
     }
 
@@ -73,7 +78,12 @@ class InterventionController extends Controller
                 'entity',
                 'municipality'
             ])->get();
-        $this->generatePDF($response, 'ReportePerzonalizadoIntervencion.pdf', 'intervention.reportIntervention', 'intervention');
+        $this->generatePDF(
+            $response,
+            'ReportePerzonalizadoIntervencion.pdf',
+            'intervention.reportIntervention',
+            'intervention',
+            'Reporte Personalizado de Intervenciones');
         return response()->json($response);
     }
 

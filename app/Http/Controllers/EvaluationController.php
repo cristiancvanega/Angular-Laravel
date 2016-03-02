@@ -35,7 +35,9 @@ class EvaluationController extends Controller
     public function getReportData()
     {
         $response = $this->repository->getReportData();
-        $this->generatePDF($response, 'ReporteEvaluaciones.pdf', 'evaluation.reportEvaluation', 'evaluation');
+        $this->generatePDF($response, 'ReporteEvaluaciones.pdf',
+            'evaluation.reportEvaluation',
+            'evaluation', 'Reporte de Evaluaciones');
         return response()->json($response);
     }
 
@@ -49,7 +51,7 @@ class EvaluationController extends Controller
             ])->get();
         $this->generatePDF($response,
             'ReportePersonalizadoEvaluacion.pdf',
-            'evaluation.customReportEvaluation', 'evaluation');
+            'evaluation.customReportEvaluation', 'evaluation', 'Reporte Personalizado de Evaluaciones');
         return response()->json($response);
     }
 
