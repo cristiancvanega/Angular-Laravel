@@ -83,19 +83,25 @@
                 <form class="form-horizontal col-lg-8 col-md-8 col-xs-10" role="form">
                     <div class="form-group">
                         <label>Tipo de filtro para la fecha</label>
-                        <select class="form-control" ng-model="registroConsultarIntervencion.type_date">
+                        <select id="selectYear" onchange="changeDatepicker(value)" class="form-control" ng-model="registroConsultarIntervencion.type_date">
                             <option value="1">Por fecha</option>
                             <option value="2">Por año</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <div class="col-xs-6">
-                            <label>Seleccione fecha inicio</label><br>
-                            <input type="text" data-date-format="yyyy-mm-dd" class="form-control datepicker" ng-model="registroConsultarIntervencion.date">
+                        <div id="dateYear" hidden="true" class="col-xs-6">
+                            <label>Seleccione Año</label><br>
+                            <input type="text" data-date-format="yyyy-mm-dd" class="form-control datepickerYear" ng-model="registroConsultarIntervencion.date">
                         </div>
-                        <div class="col-xs-6">
-                            <label>Seleccione fecha inicio</label><br>
-                            <input type="text" data-date-format="yyyy-mm-dd" class="form-control datepicker" ng-model="registroConsultarIntervencion.end_date">
+                        <div id="dateFull" hidden="true" class="col-xs-12">
+                            <div class="col-xs-6">
+                                <label>Fecha Inicio</label><br>
+                                <input type="text" data-date-format="yyyy-mm-dd" class="form-control datepicker" ng-model="registroConsultarIntervencion.date">
+                            </div>
+                            <div class="col-xs-6">
+                                <label>Fecha Fin</label><br>
+                                <input type="text" data-date-format="yyyy-mm-dd" class="form-control datepicker" ng-model="registroConsultarIntervencion.end_date">
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
