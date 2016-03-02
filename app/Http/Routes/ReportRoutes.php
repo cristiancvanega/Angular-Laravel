@@ -12,7 +12,7 @@ Route::group(['prefix' => 'report'], function(){
 
     });
 
-    Route::group(['middleware' => 'obsan'], function(){
+    Route::group([], function(){
 
         Route::get('intervention', 'InterventionController@getData');
 
