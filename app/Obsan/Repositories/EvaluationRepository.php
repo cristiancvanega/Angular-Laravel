@@ -15,6 +15,13 @@ class EvaluationRepository extends BaseRepository
         parent::__construct($evaluation);
     }
 
+    public function create($array)
+    {
+        $array['user_id'] = (new UserRepository(new User()))->getIdFromEmail($array['user_email']);
+        unset($array['user_email']);
+        return $this->model->create($array);
+    }
+
     public function all()
     {
         return $this->model->with([

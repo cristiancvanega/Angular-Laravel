@@ -25,7 +25,7 @@ class EvaluationCreateRequest extends Request
     {
         return [
             'intervention_id'       => 'required|numeric|exists:interventions,id',
-            'user_id'               => 'required|numeric|exists:users,id',
+            'user_email'            => 'required|email|exists:users,email',
             'descripcion_evidencia' => 'string',
             'impacto'               => 'required|numeric|min:1|max:9',
             'estado_inicial'        => 'required|numeric|min:1|max:3',
