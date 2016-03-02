@@ -303,6 +303,7 @@ function showMenu(){
             $('#usersdiv2').removeAttr('hidden');
             $('#divobsan').removeAttr('hidden');
             $('#divobsanmenu').removeAttr('hidden');
+            $('#divLiAdmin').removeAttr('hidden');
             break;
     }
 

@@ -1,5 +1,5 @@
 <?php
-Route::group(['prefix' => 'municipality', 'middleware' => 'obsan'], function(){
+Route::group(['prefix' => 'municipality', 'middleware' => 'admin'], function(){
 
     Route::get('','MunicipalityController@all');
 
