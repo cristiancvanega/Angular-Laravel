@@ -452,7 +452,7 @@ app.controller("customReportIntervention", [
         $scope.customReport = function()
         {
             datos = {
-                entity_id               : $scope.registroConsultarIntervencion.intervention_id,
+                entity_id               : $scope.registroConsultarIntervencion.entity_id,
                 municipality_id         : $scope.registroConsultarIntervencion.municipality_id,
                 name                    : $scope.registroConsultarIntervencion.name,
                 start_date              : $scope.registroConsultarIntervencion.start_date,
