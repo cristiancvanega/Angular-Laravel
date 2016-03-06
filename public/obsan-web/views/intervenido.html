@@ -79,11 +79,7 @@
             </div>
             <div class="form-group">
               <label>Tipo de Documento*</label>
-              <select id="selectDocumentType" class="form-control" ng-model="registroEditar.document_type">
-                <option value="1">Cédula de ciudadanía</option>
-                <option value="2">Tarjeta de identidad</option>
-                <option value="3">Registro civil de nacimiento</option>
-                <option value="4">Cédula de extranjería</option>
+              <select id="selectDocumentType" class="form-control" ng-model="registroEditar.document_type" ng-options="item.label as item.label for item in tipoDocumento">
               </select>
             </div>
             <div class="form-group">
@@ -104,12 +100,7 @@
             </div>
             <div class="form-group">
               <label>Escolaridad</label>
-              <select class="form-control" ng-model="registroEditar.pupilage">
-                <option value="1">Ninguna</option>
-                <option value="2">Preescolar</option>
-                <option value="3">Primaria</option>
-                <option value="4">Bachillerato</option>
-                <option value="5">Universidad</option>
+              <select class="form-control" ng-options="item.label as item.label for item in escolaridad" ng-model="registroEditar.pupilage">
               </select>
             </div>
             <div class="form-group"> 
