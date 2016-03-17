@@ -19,6 +19,8 @@ class CreateIntervencionIntervenidosTable extends Migration
             $table->integer('intervened_id');
 
             $table->timestamps();
+
+            $table->primary(['interventions_id', 'intervened_id']);
         });
     }
 
