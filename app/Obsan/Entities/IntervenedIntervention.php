@@ -25,4 +25,28 @@ class IntervenedIntervention extends Model
             'interventions_id'
         );
     }
+
+    /**
+     * Save a new model and return the instance.
+     *
+     * @param  array  $attributes
+     * @return static
+     */
+    public static function create(array $attributes = [])
+    {
+
+        $model = parent::where([
+            'interventions_id'  => $attributes['interventions_id'],
+            'intervened_id'     => $attributes['intervened_id']
+            ])->first();
+
+        if($model != null)
+            return false;
+
+        $model = new static($attributes);
+
+        $model->save();
+
+        return $model;
+    }
 }

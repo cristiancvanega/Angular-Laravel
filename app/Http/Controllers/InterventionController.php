@@ -6,11 +6,10 @@ use App\Obsan\Repositories\InterventionRepository;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Obsan\Entities\Intervention;
 use App\Http\Requests\InterventionCreateRequest;
 use App\Http\Requests\InterventionUpdateRequest;
 use App\Http\Requests\InterventionCustomReportRequest;
-use App\Http\Controllers\Controller;
+use App\Http\Requests\InterventionAddIntervenedRequest;
 
 class InterventionController extends Controller
 {
@@ -100,5 +99,13 @@ class InterventionController extends Controller
     public function downloadReport()
     {
         return $this->downloadFile('ReporteIntervencion.pdf');
+    }
+
+    public function addIntervened(InterventionAddIntervenedRequest $request)
+    {
+        $response = $this->repository->addIntervened($request->toArray());
+        if($response == false)
+            return response()->json('This intervened already attached to intervention', 406);
+        return response()->json($response);
     }
 }

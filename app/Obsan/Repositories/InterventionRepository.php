@@ -99,4 +99,12 @@ class InterventionRepository extends BaseRepository
         }
         return $model;
     }
+
+    public function addIntervened($request)
+    {
+        return $this->intervenedIntervention->create([
+            'interventions_id'  => $request['interventions_id'],
+            'intervened_id'     => $request['intervened_id']
+        ]);
+    }
 }

@@ -19,4 +19,6 @@ Route::group(['prefix' => 'intervention', 'middleware' => 'obsan'], function(){
     Route::get('intervened/{id}', 'InterventionController@getIntervened');
 
     Route::get('evaluation/{id}', 'InterventionController@getEvaluation');
+
+    Route::post('add_intervened', 'InterventionController@addIntervened');
 });
