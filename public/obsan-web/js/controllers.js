@@ -182,6 +182,21 @@ app.controller("GestionIntervenido", [
         $scope.registroBorrar ={}, $scope.registroCrear={},$scope.recurso="intervened",
         $scope.url="/intervenidos",$scope.btnShow=btnShow;
 
+        $scope.tipoDocumento=[
+            {id:'1',label:'Cédula de ciudadanía'},
+            {id:'2',label:'Tarjeta de identidad'},
+            {id:'3',label:'Registro civil de nacimiento'},
+            {id:'4',label:'Cédula de extranjería'}
+        ];
+
+        $scope.escolaridad=[
+            {id:'1',label:'Ninguna'},
+            {id:'2',label:'Preescolar'},
+            {id:'3',label:'Primaria'},
+            {id:'4',label:'Bachillerato'},
+            {id:'5',label:'Universidad'}
+        ];
+
         $scope.listar = function()
         {
             serviceHttp.listar($scope);
@@ -196,7 +211,13 @@ app.controller("GestionIntervenido", [
 
         $scope.editar= function()
         {
+            for (var i = 0; i < $scope.tipoDocumento.length; i++) {
+                if($scope.registroEditar.document_type==$scope.tipoDocumento[i].label){
+                    $scope.registroEditar.document_type=$scope.tipoDocumento[i].id;
+                }
+            };
             serviceHttp.editar($scope);
+
         };
 
         $scope.crear= function()
@@ -210,14 +231,12 @@ app.controller("GestionIntervenido", [
                 email: $scope.registroCrear.email,
                 pupilage: $scope.registroCrear.pupilage
             }
-            console.log(datos);
             serviceHttp.crear($scope,datos);
         };
 
 
         $scope.showEdit = function(registro)
         {
-            console.log(registro.document_type);
             $scope.registroEditar = registro;
         };
 
@@ -280,6 +299,25 @@ app.controller("GestionEvaluacion", [
         $scope.registros = [],$scope.total=0, $scope.registroEditar= {},
         $scope.registroBorrar ={},$scope.registroIntervencion =[],$scope.registroUsuario =[], 
         $scope.registroCrear={},$scope.recurso="",$scope.url="/evaluacion",$scope.entidad;
+
+
+        $scope.impacto=[
+            {id:'1',label:'El impacto generado no presenta evidencias, el estado inicial es igual al estado final'},
+            {id:'2',label:'El impacto generado no presenta evidencias, el estado inicial es menor  que el estado final'},
+            {id:'3',label:'El impacto generado no presenta evidencias, el estado final es igual al estado ideal'},
+            {id:'4',label:'El impacto generado presenta evidencias, el estado inicial es igual al estado final'},
+            {id:'5',label:'El impacto generado presenta evidencias, el estado inicial es menor  que el estado final'},
+            {id:'6',label:'El impacto generado presenta evidencias, el estado final es igual al estado ideal'},
+            {id:'7',label:'El impacto generado presenta evidencias incompletas, el estado inicial es igual al estado final'},
+            {id:'8',label:'El impacto generado presenta evidencias incompletas, el estado inicial es menor  que el estado final'},
+            {id:'9',label:'El impacto generado presenta evidencias incompletas, el estado final es igual al estado ideal'}
+        ];
+
+        $scope.estado=[
+            {id:'1',label:'bajo'},
+            {id:'2',label:'medio'},
+            {id:'3',label:'ideal'}
+        ];
 
         $scope.listar = function()
         {
@@ -575,6 +613,24 @@ app.controller("EvaluacionxIntervencion", [
         $scope.descripcion="EvaluacionxIntervencion";
 
 
+        $scope.impacto=[
+            {id:1,label:'El impacto generado no presenta evidencias, el estado inicial es igual al estado final'},
+            {id:2,label:'El impacto generado no presenta evidencias, el estado inicial es menor  que el estado final'},
+            {id:3,label:'El impacto generado no presenta evidencias, el estado final es igual al estado ideal'},
+            {id:4,label:'El impacto generado presenta evidencias, el estado inicial es igual al estado final'},
+            {id:5,label:'El impacto generado presenta evidencias, el estado inicial es menor  que el estado final'},
+            {id:6,label:'El impacto generado presenta evidencias, el estado final es igual al estado ideal'},
+            {id:7,label:'El impacto generado presenta evidencias incompletas, el estado inicial es igual al estado final'},
+            {id:8,label:'El impacto generado presenta evidencias incompletas, el estado inicial es menor  que el estado final'},
+            {id:9,label:'El impacto generado presenta evidencias incompletas, el estado final es igual al estado ideal'}
+        ];
+
+        $scope.estado=[
+            {id:'1',label:'bajo'},
+            {id:'2',label:'medio'},
+            {id:'3',label:'ideal'}
+        ];
+
         $scope.listar = function()
         {
             $scope.recurso="/intervention/evaluation/"+$routeParams.id;
@@ -604,6 +660,14 @@ app.controller("EvaluacionxIntervencion", [
 
         $scope.crear= function()
         {
+            for (var i = 0; i < $scope.impacto.length; i++) {
+                if ($scope.registroCrear.impacto==$scope.impacto[i].label){
+                    $scope.registroCrear.impacto=$scope.impacto[i].id;
+                }
+            };
+
+            console.log($scope.registroCrear.impacto);
+
             datos={
                 intervention_id: $routeParams.id,
                 user_email: localStorage.getItem('email'),
