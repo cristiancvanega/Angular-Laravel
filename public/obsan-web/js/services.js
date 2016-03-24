@@ -1,6 +1,6 @@
 var app = angular.module('obsan');
-//var url = "http://obsan.app/";
-var url = "http://obsan.eduagil.com/";
+var url = "http://obsan.app/";
+//var url = "http://obsan.eduagil.com/";
 showMenu();
 
 
@@ -275,8 +275,16 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
             //$scope.loading.closeLoading();
             console.log("Error en la petición!!!")
         })
+    },
+        
+    showMessage: function ($scope, typeMessage, message) {
+        $scope.loginAlertMessage = false;
+        $('#labelShowMessageUser').val(message);
+        $timeout(function(){
+            $scope.loginAlertMessage = true;
+            console.log($scope.loginAlertMessage);
+        }, 2000);
     }
-
 
     };
     return service;

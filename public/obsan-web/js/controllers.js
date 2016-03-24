@@ -416,6 +416,11 @@ app.controller("customReportIntervened", [
         $scope.registros = [],$scope.total=0, $scope.registroConsultarIntervenido={},$scope.recurso=""
             ,$scope.registroInterventions = [],$scope.url="/reportEvaluation";
 
+        $scope.testMessage = function () {
+            console.log('Test Message');
+            serviceHttp.showMessage($scope, 'sds', 'Dynamic user feedback message comes here.');
+        }
+
         $scope.getInterventions = function()
         {
             serviceHttp.consultar($scope, 'intervention');
