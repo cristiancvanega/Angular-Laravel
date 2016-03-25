@@ -1,6 +1,6 @@
 var app = angular.module('obsan');
-var url = "http://obsan.app/";
-//var url = "http://obsan.eduagil.com/";
+//var url = "http://obsan.app/";
+var url = "http://obsan.eduagil.com/";
 showMenu();
 var messages = {
     created:    'Creado con éxito',
@@ -9,6 +9,8 @@ var messages = {
     error:      'Hubo un error al procesar su solicitud',
     relogin:    'Hubo un inconveniente, por favor intente de nuevo',
     invalidC:   'El Email o la Contraseña son incorrectos',
+    process:    'Estamos procesando su solicitud, por favor espere un momento',
+    download:   'Su descarga se ha iniciado'
 }
 
 
@@ -66,13 +68,6 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
                 })
             .success(function(data, status, headers, config)
             {
-                console.log(status);
-
-                if(status != 200){
-                    showMessage('error');
-                    return;
-                }
-
                 switch ($scope.descripcion) {
                     case "IntervencionxIntervenido":
                         $scope.registros = $scope.registros.concat(data.interventions);
@@ -114,7 +109,7 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
                     }
                 })
             .success(function(data, status, headers, config)
-            {   
+            {
                 switch (recurso) {
                     case "entity":
                         $scope.registroEntidad = data;
@@ -159,6 +154,8 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
                 })
             .success(function(data, status, headers, config)
             {
+                showMessage('droped');
+
                 $location.path($scope.url);
                 $route.reload();
             })
@@ -177,6 +174,8 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
                 })
             .success(function(data, status, headers, config)
             {
+                showMessage('updated');
+
                 $location.path($scope.url);
                 $route.reload();
             })
@@ -195,6 +194,8 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
                 })
             .success(function(data, status, headers, config)
             {
+                showMessage('created');
+
                 $location.path($scope.url);
                 $route.reload();
             })
@@ -269,17 +270,6 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
             });
         },
 
-        downloadReport: function(url){
-            $http.get(url,{
-                headers : {
-                    'token' : localStorage.getItem('token')
-                }
-            }).success(function(data){
-                window.open(data);
-            });
-            console.log(url);
-        },
-
         downloadFiles: function (fileUrl, namefile) {
             //var url='/documents/'+fileUrl+'/get';
             fileUrl = url + fileUrl;
@@ -293,6 +283,9 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
                 'token': localStorage.getItem('token')
             }
         }).success(function(data, status, headers){
+
+            showMessage('download');
+
             var headers = headers();
             filenameTemp=namefile;
             //var filenameTemp=$scope.urlFiles;
@@ -324,8 +317,7 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
             //$scope.deleteFiles(filenameTemp);
             console.log("Termino la descarga!!!");
         }).error(function(data, status){
-            //$scope.loading.closeLoading();
-            console.log("Error en la petición!!!")
+            console.log("Error en la petición!!!");
         })
     },
 
