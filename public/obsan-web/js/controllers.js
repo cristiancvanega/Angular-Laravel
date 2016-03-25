@@ -259,9 +259,10 @@ app.controller("GestionIntervencion", [
     {
         $('.datepicker').datepicker();
 
-        $scope.registros = [],$scope.total=0, $scope.registroEditar= {},$scope.btnShow=false,
-        $scope.registroBorrar ={},$scope.registroMunicipio =[],$scope.registroEntidad =[], 
-        $scope.registroCrear={},$scope.recurso="",$scope.url="/intervencion",$scope.entidad;
+        $scope.registros = [],$scope.total=0, $scope.registroEditar= {},$scope.AddIntervened_id,
+        $scope.btnShow=false,$scope.registroBorrar ={},$scope.registroMunicipio =[],$scope.registroEntidad =[], 
+        $scope.registroCrear={},$scope.recurso="",$scope.url="/intervencion",$scope.entidad
+        $scope.registroIntervenidos =[],$scope.AddInt_intervention_id;
 
         $scope.listar = function()
         {
@@ -269,6 +270,7 @@ app.controller("GestionIntervencion", [
             serviceHttp.listar($scope);
             datosSelect("municipality");
             datosSelect("entity");
+            datosSelect("intervened/id_names");
             $scope.recurso="intervention"
         };
         $scope.listar();
@@ -287,6 +289,22 @@ app.controller("GestionIntervencion", [
         $scope.showEdit = function(registro)
         {
             $scope.registroEditar = registro;
+        };
+
+        $scope.showAddInt = function(registro)
+        {
+            $scope.AddInt_intervention_id = registro.id;
+        };
+
+        $scope.AddIntervened = function()
+        {
+            datos={
+                interventions_id : $scope.AddInt_intervention_id,
+                intervened_id : $scope.AddIntervened_id
+            };
+
+            $scope.recurso="intervention/add_intervened";
+            serviceHttp.crear($scope,datos);
         };
 
     }]);

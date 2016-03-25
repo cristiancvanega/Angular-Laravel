@@ -1,6 +1,6 @@
 var app = angular.module('obsan');
-//var url = "http://obsan.app/";
-var url = "http://obsan.eduagil.com/";
+var url = "http://obsan.app/";
+//var url = "http://obsan.eduagil.com/";
 showMenu();
 
 
@@ -104,6 +104,9 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
                         break;
                     case "user":
                         $scope.registroUsuario = data;
+                        break;
+                    case "intervened/id_names":
+                        $scope.registroIntervenidos = data;
                         break;
                     case "intervention":
                     {
