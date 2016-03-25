@@ -2,6 +2,13 @@ var app = angular.module('obsan');
 var url = "http://obsan.app/";
 //var url = "http://obsan.eduagil.com/";
 showMenu();
+var messages = {
+    created:    'Creado con éxito',
+    updated:    'Actualizado con éxito',
+    droped:     'Borrado con éxito',
+    error:      'Hubo un error al procesar su solicitud',
+    relogin:    'Hubo un inconveniente, por favor intente de nuevo'
+}
 
 
 app.service('TableService', function ($http, $filter) {
@@ -58,32 +65,36 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
                 })
             .success(function(data, status, headers, config)
             {
-                    switch ($scope.descripcion)
-                    {
+                console.log(status);
+                if(status != 200){
+                    showMessage('error');
+                }else {
+                    switch ($scope.descripcion) {
                         case "IntervencionxIntervenido":
                             $scope.registros = $scope.registros.concat(data.interventions);
                             break;
-                            case "EvaluacionxIntervencion":
+                        case "EvaluacionxIntervencion":
                             $scope.registros = $scope.registros.concat(data.evaluations);
                             break;
                         default:
                             $scope.registros = $scope.registros.concat(data);
                             break;
-                    };
-
-
-                $scope.total=$scope.registros.length;
-                $scope.tableParams = new ngTableParams({page:1, count:10, sorting: { name: 'asc'}}, {
-                    total: $scope.registros.length,
-                    getData: function($defer, params)
-                    {
-                        TableService.getTable($defer,params,$scope.filter, $scope.registros);
                     }
-                });
-                $scope.tableParams.reload();
-                $scope.$watch("filter.$", function () {
+                    ;
+
+
+                    $scope.total = $scope.registros.length;
+                    $scope.tableParams = new ngTableParams({page: 1, count: 10, sorting: {name: 'asc'}}, {
+                        total: $scope.registros.length,
+                        getData: function ($defer, params) {
+                            TableService.getTable($defer, params, $scope.filter, $scope.registros);
+                        }
+                    });
                     $scope.tableParams.reload();
-                });
+                    $scope.$watch("filter.$", function () {
+                        $scope.tableParams.reload();
+                    });
+                }
             });
         },
 
@@ -276,15 +287,6 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
             console.log("Error en la petición!!!")
         })
     },
-        
-    showMessage: function ($scope, typeMessage, message) {
-        $scope.loginAlertMessage = false;
-        $('#labelShowMessageUser').val(message);
-        $timeout(function(){
-            $scope.loginAlertMessage = true;
-            console.log($scope.loginAlertMessage);
-        }, 2000);
-    }
 
     };
     return service;
@@ -316,4 +318,25 @@ function showMenu(){
     }
 
     $('#userEmail').html('<a href="#">'+localStorage.getItem('email')+'</a>');
+}
+
+function showMessage(message) {
+    console.log(message);
+    console.log('ShowMessage, Hola mamasite');
+    $('#showMessageUser').modal();
+    switch (message){
+        case 'created':{
+            $('#labelShowMessageUser').text(messages.created);
+        }break;
+        case 'updated':{
+            $('#labelShowMessageUser').text(messages.updated);
+        }break;
+        case 'droped':{
+            $('#labelShowMessageUser').text(messages.droped);
+        }break;
+        case 'error':{
+            // data-toggle="modal" data-target="#showMessageUser"
+            $('#labelShowMessageUser').text(messages.error).removeAttr('hide');
+        }break;
+    }
 }

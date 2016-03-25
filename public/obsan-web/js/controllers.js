@@ -418,7 +418,7 @@ app.controller("customReportIntervened", [
 
         $scope.testMessage = function () {
             console.log('Test Message');
-            serviceHttp.showMessage($scope, 'sds', 'Dynamic user feedback message comes here.');
+            showMessage('error');
         }
 
         $scope.getInterventions = function()
