@@ -1,13 +1,14 @@
 var app = angular.module('obsan');
-//var url = "http://obsan.app/";
-var url = "http://obsan.eduagil.com/";
+var url = "http://obsan.app/";
+//var url = "http://obsan.eduagil.com/";
 showMenu();
 var messages = {
     created:    'Creado con éxito',
     updated:    'Actualizado con éxito',
     droped:     'Borrado con éxito',
     error:      'Hubo un error al procesar su solicitud',
-    relogin:    'Hubo un inconveniente, por favor intente de nuevo'
+    relogin:    'Hubo un inconveniente, por favor intente de nuevo',
+    invalidC:   'El Email o la Contraseña son incorrectos',
 }
 
 
@@ -67,12 +68,6 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
             {
                 console.log(status);
 
-                if(status == 401){
-                    showMessage('relogin');
-                    relogin($http);
-                    return;
-                }
-
                 if(status != 200){
                     showMessage('error');
                     return;
@@ -104,6 +99,11 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
                     $scope.tableParams.reload();
                 });
 
+            })
+            .error(function(error){
+                console.log(error);
+                showMessage('relogin');
+                relogin($http);
             });
         },
 
@@ -140,6 +140,11 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
                     default:
                         break;
                 }
+            })
+            .error(function(error){
+                console.log(error);
+                showMessage('relogin');
+                relogin($http);
             });
         },
 
@@ -153,6 +158,11 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
             {
                 $location.path($scope.url);
                 $route.reload();
+            })
+            .error(function(error){
+                console.log(error);
+                showMessage('relogin');
+                relogin($http);
             });
         },
 
@@ -166,6 +176,11 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
             {
                 $location.path($scope.url);
                 $route.reload();
+            })
+            .error(function(error){
+                console.log(error);
+                showMessage('relogin');
+                relogin($http);
             });
         },
 
@@ -179,6 +194,11 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
             {
                 $location.path($scope.url);
                 $route.reload();
+            })
+            .error(function(error){
+                console.log(error);
+                showMessage('relogin');
+                relogin($http);
             });
         },
 
@@ -204,6 +224,11 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
                         $scope.tableParams.reload();
                     });
                     console.log(status);
+                })
+                .error(function(error){
+                    console.log(error);
+                    showMessage('relogin');
+                    relogin($http);
                 });
         },
 
@@ -234,6 +259,10 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
                         showMenu();
                     }
                 }
+            })
+            .error(function(error){
+                console.log(error);
+                showMessage('invalidC');
             });
         },
 
@@ -344,21 +373,28 @@ function showMessage(message) {
             $('#labelShowMessageUser').text(messages.droped);
         }break;
         case 'error':{
-            // data-toggle="modal" data-target="#showMessageUser"
-            $('#labelShowMessageUser').text(messages.error).removeAttr('hide');
+            $('#labelShowMessageUser').text(messages.error);
+        }break;
+        case 'relogin':{
+            $('#labelShowMessageUser').text(messages.relogin);
+        }break;
+        case 'invalidC':{
+            $('#labelShowMessageUser').text(messages.invalidC);
         }break;
     }
 }
 
 function relogin($http){
-    $http.post(url + 'auth/token/refresh',{
+    $http.post(url + 'auth/token/refresh', null,{
             headers : {
                 'token' : localStorage.getItem('token')
             }
         })
         .success(function(data, status, headers, config)
         {
-            console.log(headers);
-            localStorage.setItem('token', headers.Authorization);
+            localStorage.setItem('token', data.token);
+        })
+        .error(function(error){
+            console.log(error);
         });
 }
