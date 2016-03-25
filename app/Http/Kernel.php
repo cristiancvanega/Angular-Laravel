@@ -34,6 +34,16 @@ class Kernel extends HttpKernel
         'api' => [
             'throttle:60,1',
         ],
+
+        'admin' => [
+            'jwt.auth',
+            'jwt.admin'
+        ],
+
+        'obsan' => [
+            'jwt.auth',
+            'jwt.obsan'
+        ]
     ];
 
     /**
@@ -44,11 +54,15 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth' => \App\Http\Middleware\Authenticate::class,
-        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
-        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'jwt.auth' => 'Tymon\JWTAuth\Middleware\GetUserFromToken',
-        'jwt.refresh' => 'Tymon\JWTAuth\Middleware\RefreshToken',
+        'auth'          => \App\Http\Middleware\Authenticate::class,
+        'auth.basic'    => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+        'guest'         => \App\Http\Middleware\RedirectIfAuthenticated::class,
+        'throttle'      => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        //'jwt.auth'      => 'Tymon\JWTAuth\Middleware\GetUserFromToken',
+        'jwt.auth'      => \App\Http\Middleware\JWTVeriry::class,
+        //'jwt.refresh'   => 'Tymon\JWTAuth\Middleware\RefreshToken',
+        'jwt.refresh'   => \App\Http\Middleware\RefreshToken::class,
+        'jwt.admin'         => \App\Http\Middleware\AdminRole::class,
+        'jwt.obsan'         => \App\Http\Middleware\ObsanRole::class,
     ];
 }

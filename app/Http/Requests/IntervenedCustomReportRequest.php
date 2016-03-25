@@ -30,7 +30,8 @@ class IntervenedCustomReportRequest extends Request
             'address'       => 'address',
             'phone'         => 'numeric',
             'email'         => 'email',
-            'pupilage'      => 'string'
+            'pupilage'      => 'string',
+            'date'          => 'date'
         ];
     }
 }

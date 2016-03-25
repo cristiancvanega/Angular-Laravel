@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Obsan\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Obsan\Entities\User;
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
 
@@ -18,7 +17,10 @@ class UserController extends Controller
 
     public function create(UserCreateRequest $request)
     {
-        return $this->responseEntityStore($this->repository->create($request->toArray()));
+        $request             = $request->toArray();
+        $password            = \Hash::make($request['password']);
+        $request['password'] = $password;
+        return $this->responseEntityStore($this->repository->create($request));
     }
 
     public function update(UserUpdateRequest $request, $id)

@@ -1,0 +1,69 @@
+<div class="panel panel-default">
+    <br>
+    <div class="col-xs-1">
+        <button class="btn btn-primary" data-toggle="modal" data-target="#registroConsultarEvaluacion"><i class="fa fa-search"></i>Consultar</button>
+        <br><br>
+        <button class="btn btn-primary" ng-click="downloadFiles()">
+            <i class="fa fa-download"></i>
+            Descargar
+        </button>
+    </div>
+
+    <br><br>
+    <h2 align="center"><strong>Reporte Personalizado de Evaluaciones</strong></h2>
+    <div class="col-xs-11">
+        <div class="panel-body panel-body-table">
+            <div class="table-responsive">
+                <table   ng-table="tableParams" class="table table-bordered table-striped">
+                    <tbody>
+                    <tr ng-repeat="registro in $data">
+                        <td align="center" data-title="'Intervencion'" sortable="'intervention.name'">{{registro.intervention.name}}</td>
+                        <td align="center" data-title="'Usuario'" sortable="''">{{registro.user.name}}</td>
+                        <td align="center" data-title="'Descripcion Evidencia'" sortable="'descripcion_evidencia'">{{registro.descripcion_evidencia}}</td>
+                        <td align="center" data-title="'Impacto'" sortable="'impacto'">{{registro.impacto}}</td>
+                        <td align="center" data-title="'Estado inicial'" sortable="'estado_inicial'">{{registro.estado_inicial}}</td>
+                        <td align="center" data-title="'Estado final'" sortable="'estado_final'">{{registro.estado_final}}</td>
+                        <td align="center" data-title="'Descripción'" sortable="'description'">{{registro.description}}</td>
+                        <td align="center" data-title="'Recomendaciones'" sortable="'recomendaciones'">{{registro.recomendaciones}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- init modal soft custom report evaluation -->
+<div class="modal fade" id="registroConsultarEvaluacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Reporte Personalizado de Evaluación</h4>
+                <h6>Diligencie UNICAMENTE los campos por los que quiere realizar la búsqueda.</h6>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal col-lg-8 col-md-8 col-xs-10" role="form">
+                    <div class="form-group">
+                        <label>Seleccione una Intervención</label>
+                        <select class="form-control" ng-options="item.id as item.name for item in resgistrosUsuariosIntervenciones.interventions" ng-model="registroConsultarEvaluacion.intervention_id"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Seleccione un Usuario</label>
+                        <select class="form-control" ng-options="item.id as item.name for item in resgistrosUsuariosIntervenciones.users" ng-model="registroConsultarEvaluacion.user_id"></select>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="button" class="btn btn-success"
+                                    data-dismiss="modal" ng-click="customReport()">Consultar</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end modal soft custom report evaluation -->

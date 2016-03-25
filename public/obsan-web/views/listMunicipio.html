@@ -10,9 +10,9 @@
           <tbody>
             <tr ng-repeat="registro in $data">
               <td align="center" data-title="'Nombre'" sortable="'name'">{{registro.name}}</td>
-              <td align="center" data-title=""><button class="btn btn-danger" data-toggle="modal" ng-click= "showDelete(registro)" data-target="#borrarregistro"><i class="fa fa-eraser"></i></button></td>
+              <td align="center" data-title=""><button class="btn btn-danger" data-toggle="modal" ng-click= "showDelete(registro)" data-target="#borrarregistro"><i class="fa fa-eraser"></i>Borrar</button></td>
 
-              <td align="center" data-title=""><button class="btn btn-primary" data-toggle="modal" ng-click= "showEdit(registro)" data-target="#editarregistro" ><i class="fa fa-pencil"></i></button></td>
+              <td align="center" data-title=""><button class="btn btn-primary" data-toggle="modal" ng-click= "showEdit(registro)" data-target="#editarregistro" ><i class="fa fa-pencil"></i>Editar</button></td>
 
             </tr>
           </tbody>
@@ -22,7 +22,7 @@
   </div>
 
   <div class="col-xs-1">
-    <button class="btn btn-primary" data-toggle="modal" data-target="#crearregistro"><i class="fa fa-plus"></i></button>
+    <button class="btn btn-primary" data-toggle="modal" data-target="#crearregistro"><i class="fa fa-plus"></i>Adicionar</button>
   </div>
 
 </div>
@@ -95,12 +95,13 @@
         <form class="form-horizontal col-lg-8 col-md-8 col-xs-10" role="form" name="registroForm">
           <div class="form-group">
             <label>Nombre*</label>
-            <input type="text" name="nombre" class="form-control" ng-model="registroCrear.name" >
+            <input type="text" name="nombre" class="form-control" ng-model="registroCrear.name" required>
+            <span ng-show="!registroForm.$pristine && registroForm.nombre.$error.required">Este campo es obligatorio.</span>
           </div>
           <div class="form-group"> 
             <div class="col-sm-offset-2 col-sm-10">
               <button type="submit" class="btn btn-success" 
-              data-dismiss="modal" ng-click="crear()">Confirmar</button>
+              data-dismiss="modal" ng-click="crear()" ng-disabled="!registroForm.$valid">Confirmar</button>
 
               <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
             </div>

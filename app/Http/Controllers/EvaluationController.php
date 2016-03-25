@@ -26,24 +26,52 @@ class EvaluationController extends Controller
 
     public function update(EvaluationUpdateRequest $request, $id)
     {
-        $u = $this->repository->find($id);
-        if(is_null($u))
+        $e = $this->repository->find($id);
+        if(is_null($e))
             return response()->json(['Evaluation does not exist'], 400);
-        return response()->json($u->update($request->toArray()), 202);
+        return response()->json($e->update($request->toArray()), 202);
     }
 
     public function getReportData()
     {
-        return response()->json($this->repository->getData());
+        $response = $this->repository->getReportData();
+        $this->generatePDF($response, 'ReporteEvaluaciones.pdf',
+            'evaluation.reportEvaluation',
+            'evaluation', 'Reporte de Evaluaciones');
+        return response()->json($response);
     }
 
     public function getCustomReport(EvaluationCustomReportRequest $request)
     {
-        return response()->json($this->repository->getCustomReport($request->toArray()));
+        $response = $this->repository
+            ->getCustomReport($request->toArray())
+            ->with([
+                'intervention',
+                'user'
+            ])->get();
+        $this->generatePDF($response,
+            'ReportePersonalizadoEvaluacion.pdf',
+            'evaluation.customReportEvaluation', 'evaluation', 'Reporte Personalizado de Evaluaciones');
+        return response()->json($response);
+    }
+
+    public function getFieldsCustomReport()
+    {
+        return response()->json($this->repository->getFieldsCustomReport());
     }
 
     public function getWithInterventionAndUser()
     {
         return response()->json($this->repository->getWithInterventionAndUser());
+    }
+
+    public function downloadCustomReport()
+    {
+        return response()->download('/tmp/ReportePersonalizadoEvaluacion.pdf');
+    }
+
+    public function downloadReport()
+    {
+        return response()->download('/tmp/ReporteEvaluaciones.pdf');
     }
 }

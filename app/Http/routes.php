@@ -1,29 +1,19 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Routes File
-|--------------------------------------------------------------------------
-|
-| Here is where you will register all of the routes in an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
 
 Route::get('/', function () {
     return redirect(env('obsan-web'));
-    return view('welcome');
+});
+
+Route::get('/obsan-web/index', function () {
+    return redirect('obsan-web/index.html');
+});
+
+Route::get('/obsan-web/obsan', function () {
+    return redirect('obsan-web/index_uso.html');
+});
+
+Route::get('/obsan-web/admin', function () {
+    return redirect('obsan-web/index_usa.html');
 });
 require ('Routes/BaseRoutes.php');
-
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| This route group applies the "web" middleware group to every route
-| it contains. The "web" middleware group is defined in your HTTP
-| kernel and includes session state, CSRF protection, and more.
-|
-*/

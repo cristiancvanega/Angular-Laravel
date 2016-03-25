@@ -2,7 +2,8 @@
 namespace App\Obsan\Repositories;
 
 
-use Illuminate\Database\Eloquent\Model;
+use App\Obsan\Entities\Model;
+use Carbon\Carbon;
 
 abstract class BaseRepository
 {
@@ -30,15 +31,20 @@ abstract class BaseRepository
 
     public function getCustomReport(Array $request)
     {
-        return $this->buildQuery($this->model, $request)->get();
+        return $this->buildQuery($this->model, $request);
     }
 
-    private function buildQuery(Model $model, Array $fields)
+    public function buildQuery(Model $model, Array $fields)
     {
         foreach (array_keys($fields) as $field)
         {
-            $model = $model->orWhere($field, 'LIKE', '%' . $fields[$field] . '%');
+            $model = $model->where($field, $fields[$field]);
         }
         return $model;
+    }
+
+    public function getIdNames()
+    {
+        return $this->model->all('id', 'name');
     }
 }

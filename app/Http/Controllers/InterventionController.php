@@ -6,10 +6,10 @@ use App\Obsan\Repositories\InterventionRepository;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Obsan\Entities\Intervention;
 use App\Http\Requests\InterventionCreateRequest;
 use App\Http\Requests\InterventionUpdateRequest;
-use App\Http\Controllers\Controller;
+use App\Http\Requests\InterventionCustomReportRequest;
+use App\Http\Requests\InterventionAddIntervenedRequest;
 
 class InterventionController extends Controller
 {
@@ -33,7 +33,19 @@ class InterventionController extends Controller
 
     public function getData()
     {
-        return response()->json($this->repository->getData());
+        $response = $this->repository->getCustomReport([])
+            ->with([
+                'entity',
+                'municipality'
+            ])
+            ->get();
+        $this->generatePDF(
+            $response,
+            'ReporteIntervencion.pdf',
+            'intervention.reportIntervention',
+            'intervention',
+            'Reporte de Intervenciones');
+        return response()->json($response);
     }
 
     public function getIntervened($id)
@@ -55,5 +67,45 @@ class InterventionController extends Controller
     public function getWithEntitiesAndMunicipalities()
     {
         return response()->json($this->repository->getWithEntitiesAndMunicipalities(), 200);
+    }
+
+    public function getCustomReport(InterventionCustomReportRequest $request)
+    {
+        $response = $this->repository
+            ->getCustomReportI($request->toArray())
+            ->with([
+                'entity',
+                'municipality'
+            ])->get();
+        $this->generatePDF(
+            $response,
+            'ReportePerzonalizadoIntervencion.pdf',
+            'intervention.reportIntervention',
+            'intervention',
+            'Reporte Personalizado de Intervenciones');
+        return response()->json($response);
+    }
+
+    public function getFieldsCustomReport()
+    {
+        return response()->json($this->repository->getFieldsCustomReport());
+    }
+
+    public function downloadCustomReport()
+    {
+        return $this->downloadFile('ReportePerzonalizadoIntervencion.pdf');
+    }
+
+    public function downloadReport()
+    {
+        return $this->downloadFile('ReporteIntervencion.pdf');
+    }
+
+    public function addIntervened(InterventionAddIntervenedRequest $request)
+    {
+        $response = $this->repository->addIntervened($request->toArray());
+        if($response == false)
+            return response()->json('This intervened already attached to intervention', 406);
+        return response()->json($response);
     }
 }

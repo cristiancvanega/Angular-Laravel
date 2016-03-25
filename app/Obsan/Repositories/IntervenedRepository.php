@@ -1,15 +1,11 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: cristiancvanega
- * Date: 2/10/16
- * Time: 1:35 AM
- */
 
 namespace App\Obsan\Repositories;
 
 
 use App\Obsan\Entities\Intervened;
+use App\Obsan\Entities\Intervention;
+use Carbon\Carbon;
 
 class IntervenedRepository extends BaseRepository
 {
@@ -20,6 +16,15 @@ class IntervenedRepository extends BaseRepository
 
     public function getInterventions($id)
     {
-        return $this->model->with(['interventions'])->find($id);
+        return $this->model->with([
+            'interventions',
+            'interventions.municipality',
+            'interventions.entity'
+        ])->find($id);
+    }
+
+    public function getCustomReportI($intervention_id)
+    {
+        return (new intervention)->with('intervened')->find($intervention_id['intervention_id'])->toArray()['intervened'];
     }
 }

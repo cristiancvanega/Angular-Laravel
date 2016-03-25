@@ -42,6 +42,41 @@ class IntervenedController extends Controller
 
     public function getCustomReport(IntervenedCustomReportRequest $request)
     {
-        return response()->json($this->repository->getCustomReport($request->toArray()));
+        $response = $this->repository->getCustomReportI($request->toArray());
+        $this->generatePDF(
+            $response,
+            'CustomReportIntervened.pdf',
+            'intervened.customReport',
+            'intervened',
+            'Reporte Personalizado de Intervenidos');
+        return response()->json($response);
     }
+
+    public function all()
+    {
+        $response = $this->repository->all();
+        $this->generatePDF(
+            $response,
+            'ReporteIntervenido.pdf',
+            'intervened.customReport',
+            'intervened',
+            'Reporte de Intervenidos');
+        return response()->json($response, 200);
+    }
+
+    public function downloadReport()
+    {
+        return $this->downloadFile('ReporteIntervenido.pdf');
+    }
+
+    public function downloadCustomReport()
+    {
+        return $this->downloadFile('CustomReportIntervened.pdf');
+    }
+
+    public function getIdNames()
+    {
+        return response()->json($this->repository->getIdNames());
+    }
+
 }

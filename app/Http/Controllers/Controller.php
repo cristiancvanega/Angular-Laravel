@@ -49,6 +49,19 @@ abstract class Controller extends MainController
 		return response()->json($m->delete(), 202);
 	}
 
+	public function generatePDF($data, $filename, $view, $modelName, $title)
+	{
+		$pdf = \App::make('dompdf.wrapper');
+		$view = \View::make($view, [$modelName => $data, 'title' => $title])->render();
+		$pdf->loadHTML($view);
+		$pdf->save('/tmp/' . $filename);
+	}
+
+	public function downloadFile($filename)
+	{
+		return response()->download('/tmp/' . $filename);
+	}
+
     /**
      * @param $data
      * @return mixed

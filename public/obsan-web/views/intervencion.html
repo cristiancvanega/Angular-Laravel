@@ -1,6 +1,6 @@
 <div class="panel panel-default">
   <br><br>
-  <h2 align="center"><strong>Intervención</strong></h2>
+  <h2 align="center"><strong>Intervenciones</strong></h2>
   <div class="col-xs-11">
     <loading></loading>
     <h3>B&uacute;squeda: <input class="form-control" type="text" ng-model="filter.$" /></h3>
@@ -9,22 +9,27 @@
         <table  ng-table="tableParams" class="table table-bordered table-striped">
           <tbody>
             <tr ng-repeat="registro in $data">
-              <td align="center" data-title="'Entidad'" sortable="'entity_id'">{{registro.entity_id}}</td>
-              <td align="center" data-title="'Municipio'" sortable="'municipality_id'">{{registro.municipality_id}}</td>
+              <td align="center" data-title="'Entidad'" sortable="'entity.name'">{{registro.entity.name}}</td>
+              <td align="center" data-title="'Municipio'" sortable="'municipality.name'">{{registro.municipality.name}}</td>
               <td align="center" data-title="'Nombre'" sortable="'name'">{{registro.name}}</td>
               <td align="center" data-title="'Inicio'" sortable="'start_date'">{{registro.start_date}}</td>
               <td align="center" data-title="'Fin'" sortable="'end_date'">{{registro.end_date}}</td>
               <td align="center" data-title="'Descripción'" sortable="'description'">{{registro.description}}</td>
               <td align="center" data-title="'Evidencias Planeadas'" sortable="'evidencias_planeadas'">{{registro.evidencias_planeadas}}</td>
-
-              <td align="center" data-title=""><button class="btn btn-primary" data-toggle="modal" ng-click= "showEdit(registro)" data-target="#editarregistro" ><i class="fa fa-pencil"></i></button></td>
-
+              <td align="center" data-title=""><button class="btn btn-primary" data-toggle="modal" ng-click= "showEdit(registro)" data-target="#editarregistro" ><i class="fa fa-pencil"></i>Editar</button></td>
+              <td ng-show='btnShow' align="center" data-title=""><button class="btn btn-success" ng-click= "showEvaluation(registro)"><i class="fa fa-eye">
+              </i>Evaluaciones</button></td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
   </div>
+
+  <div ng-show='btnShow' class="col-xs-1">
+    <button class="btn btn-primary" data-toggle="modal" data-target="#crearregistro"><i class="fa fa-plus"></i>Adicionar</button>
+  </div>
+
 </div>
 
 
@@ -45,11 +50,21 @@
           </div>
           <div class="form-group">
             <label>Seleccione una entidad</label>
-            <select class="form-control" ng-options="item.id as item.name for item in registroEntidad" ng-model="registroEditar.entity_id"></select>
+            <select class="form-control" ng-options="item.id as item.name for item in registroEntidad" ng-model="registroEditar.entity.id"></select>
           </div>
           <div class="form-group">
             <label>Seleccione un municipio</label>
-            <select class="form-control" ng-options="item.id as item.name for item in registroMunicipio" ng-model="registroEditar.municipality_id"></select>
+            <select class="form-control" ng-options="item.id as item.name for item in registroMunicipio" ng-model="registroEditar.municipality.id"></select>
+          </div>
+          <div class="form-group">
+            <label>Fecha de Inicio</label>
+            <input type="text" name="start_date" class="form-control datepicker" 
+            data-date-format="yyyy-mm-dd" ng-model="registroEditar.start_date">
+          </div>
+          <div class="form-group">
+            <label>Fecha de Finalización</label>
+            <input type="text" name="end_date" class="form-control datepicker" 
+            data-date-format="yyyy-mm-dd" ng-model="registroEditar.end_date">
           </div>
           <div class="form-group">
             <label>Descripción</label>
@@ -77,6 +92,63 @@
 </div>
 <!-- end modal soft update intervention -->
 
+
+<!-- init modal soft create intervention -->
+<div class="modal fade" id="crearregistro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Agregar Intervención</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal col-lg-8 col-md-8 col-xs-10" role="form" name="registroForm">
+         <div class="form-group">
+          <label>Nombre de la Intervención</label>
+          <input type="text" name="nombre" class="form-control" ng-model="registroCrear.name"  required>
+        </div>
+        <div class="form-group">
+            <label>Seleccione una entidad</label>
+            <select class="form-control" name="entity_id" ng-options="item.id as item.name for item in registroEntidad" ng-model="registroCrear.entity_id" required></select>
+          </div>
+          <div class="form-group">
+            <label>Seleccione un municipio</label>
+            <select class="form-control" name="municipality_id" ng-options="item.id as item.name for item in registroMunicipio" ng-model="registroCrear.municipality_id" required></select>
+          </div>
+          <div class="form-group">
+            <label>Fecha de Inicio</label>
+            <input name="start_date" type="text" class="form-control datepicker" 
+            data-date-format="yyyy-mm-dd" ng-model="registroCrear.start_date" required>
+          </div>
+        <div class="form-group">
+            <label>Descripción</label>
+            <textarea rows="4" cols="50" type="text" name="description" class="form-control" ng-model="registroCrear.description"  required>  
+            </textarea>
+          </div>
+          <div class="form-group">
+            <label>Evidencias planeadas</label>
+            <textarea rows="4" cols="50" type="text" name="evidencias_planeadas" class="form-control" ng-model="registroCrear.evidencias_planeadas"  required>  
+            </textarea>
+          </div>
+          <div class="form-group">
+            <span ng-show="registroForm.nombre.$error.required && registroForm.entity_id.$error.required && registroForm.municipality_id.$error.required && registroForm.start_date.$error.required && registroForm.description.$error.required && registroForm.evidencias_planeadas.$error.required">Todos los campos son obligatorios.</span>
+          </div>
+        <div class="form-group"> 
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-success" 
+            data-dismiss="modal" ng-click="crear()" ng-disabled="!registroForm.$valid" >Confirmar</button>
+
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+          </div>
+        </div>
+      </form> 
+    </div>
+    <div class="modal-footer">
+    </div>
+  </div>
+</div>
+</div>
+<!-- end modal soft create intervention -->
 
 
 

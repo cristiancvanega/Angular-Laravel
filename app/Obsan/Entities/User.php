@@ -18,7 +18,8 @@ class User extends Authenticable
         'name',
         'email',
         'token',
-        'password'
+        'password',
+        'role'
     ];
 
     /**
@@ -26,7 +27,9 @@ class User extends Authenticable
      *
      * @var array
      */
-    protected $hidden = ['remember_token', 'password'];
+    protected $hidden = [
+        'password'
+    ];
 
     public function evaluations()
     {

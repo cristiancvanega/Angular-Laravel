@@ -1,6 +1,8 @@
 <?php
 
-Route::group(['prefix' => 'evaluation'], function(){
+Route::group(['prefix' => 'evaluation', 'middleware' => 'obsan'], function(){
+
+    Route::get('user_intervention', 'EvaluationController@getFieldsCustomReport');
 
     Route::get('with_iu', 'EvaluationController@getWithInterventionAndUser');
 
@@ -14,5 +16,4 @@ Route::group(['prefix' => 'evaluation'], function(){
 
     Route::delete('/{id}','EvaluationController@delete');
 
-    Route::post('custom_report', 'EvaluationController@getCustomReport');
 });

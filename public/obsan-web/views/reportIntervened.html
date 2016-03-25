@@ -1,0 +1,30 @@
+<div class="panel panel-default">
+    <br><br>
+    <button class="btn btn-primary" hidden="true" ng-click="downloadFiles()">
+        <i class="fa fa-download"></i>
+        Descargar
+    </button>
+    <br><br>
+    <h2 align="center"><strong>Reporte de Intervenidos</strong></h2>
+    <div class="col-xs-11">
+        <loading></loading>
+        <h3>B&uacute;squeda: <input class="form-control" type="text" ng-model="filter.$" /></h3>
+        <div class="panel-body panel-body-table">
+            <div class="table-responsive">
+                <table  ng-table="tableParams" class="table table-bordered table-striped">
+                    <tbody>
+                    <tr ng-repeat="registro in $data">
+                        <td align="center" data-title="'Nombre'" sortable="'name'">{{registro.name}}</td>
+                        <td align="center" data-title="'Tipo Documento'" sortable="'document_type'">{{registro.document_type}}</td>
+                        <td align="center" data-title="'Documento'" sortable="'document'">{{registro.document}}</td>
+                        <td align="center" data-title="'Direcci&oacute;n'" sortable="'address'">{{registro.address}}</td>
+                        <td align="center" data-title="'Tel&eacute;fono'" sortable="'phone'">{{registro.phone}}</td>
+                        <td align="center" data-title="'Email'" sortable="'email'">{{registro.email}}</td>
+                        <td align="center" data-title="'Escolaridad'" sortable="'pupilage'">{{registro.pupilage}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -6,6 +6,7 @@ use App\Obsan\Repositories\UserRepository;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Http\Requests\UserLogInRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Response;
 use JWTAuth;
@@ -20,14 +21,11 @@ class AuthenticateController extends Controller
         parent::__construct($repository);
     }
 
-    public function authenticate()
+    public function authenticate(UserLogInRequest $request)
     {
-        // grab credentials from the request
-        $credentials = Request::capture()->only('email', 'password');
-
         try {
             // attempt to verify the credentials and create a token for the user
-            if (!$token = JWTAuth::attempt($credentials)) {
+            if (!$token = JWTAuth::attempt($request->toArray())) {
                 return json_encode(['error' => 'invalid_credentials'], 401);
             }
         } catch (JWTException $e) {
@@ -36,14 +34,25 @@ class AuthenticateController extends Controller
         }
 
         // all good so return the token
-        return json_encode(compact('token'));
+        return response()->json([
+            'token' => $token,
+            'role'  => $this->repository->getRoleUserWithToken($token),
+            'email' => $this->repository->getEmailUserWithToken($token),
+            'id'    => $this->repository->getiDlUserWithToken($token)
+        ], 200);
     }
 
     public function getAuthenticatedUser()
     {
-        try {
+        return $this->getAUser(request()->header('token'));
+    }
 
-            if (!$user = JWTAuth::parseToken()->authenticate()) {
+    public function getAUser($token)
+    {
+        try {
+            JWTAuth::setToken($token);
+
+            if (!$user = JWTAuth::authenticate()) {
                 return response()->json(['user_not_found'], 404);
             }
 
@@ -72,6 +81,6 @@ class AuthenticateController extends Controller
 
     public function success()
     {
-        return response()->json(['message' => 'funciona']);
+        return response()->json(['message' => 'success'], 200);
     }
 }

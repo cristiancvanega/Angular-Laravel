@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Http\Requests\UserLogInRequest;
+use App\Obsan\Entities\User;
+use Illuminate\Support\Facades\Auth;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;

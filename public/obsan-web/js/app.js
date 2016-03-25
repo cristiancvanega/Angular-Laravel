@@ -24,6 +24,42 @@ app.config(["$routeProvider", function($routeProvider)
         controller: "GestionIntervencion",
         templateUrl: "views/intervencion.html"
     })
+    .when("/evaluacion", {
+        controller: "GestionEvaluacion",
+        templateUrl: "views/evaluacion.html"
+    }).
+    when("/intervenido/intervencion/:id", {
+        controller: "IntervencionxIntervenido",
+        templateUrl: "views/intervencion.html"
+    }).
+    when("/intervencion/evaluacion/:id", {
+        controller: "EvaluacionxIntervencion",
+        templateUrl: "views/evaluacion.html"
+    }).
+    when("/reportIntervened", {
+        controller:  "reportIntervened",
+        templateUrl: "views/reportIntervened.html"
+    }).
+    when("/reportEvaluation", {
+        controller:  "reportEvaluation",
+        templateUrl: "views/reportEvaluation.html"
+    }).
+    when("/reportIntervention", {
+        controller:  "reportIntervention",
+        templateUrl: "views/reportIntervention.html"
+    }).
+    when("/customReportEvaluation", {
+        controller:  "customReportEvaluation",
+        templateUrl: "views/customReportEvaluation.html"
+    }).
+    when("/customReportIntervened", {
+        controller:  "customReportIntervened",
+        templateUrl: "views/customReportIntervened.html"
+    }).
+    when("/customReportIntervention", {
+        controller:  "customReportIntervention",
+        templateUrl: "views/customReportIntervention.html"
+    })
     .otherwise({
         redirectTo: 'index.html'
     });

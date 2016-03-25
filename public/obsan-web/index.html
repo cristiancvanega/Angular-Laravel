@@ -1,80 +1,130 @@
 
 <!DOCTYPE html>
-<html lang="es" ng-app="obsan">
-    <head>        
-        <!-- META SECTION -->
-        <title>Obsan</title>            
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        
-        <!--END META SECTION -->
-        
-        <link rel="stylesheet" type="text/css" href="css/ngTable.css">
-        <!-- CSS INCLUDE --> 
-        <link rel="stylesheet" type="text/css" id="theme" href="css/theme-default.css"/>
-        <!-- EOF CSS INCLUDE -->    
+<html lang="es-ES" ng-app="obsan">
+<head>        
+    <!-- META SECTION -->
+    <title>Obsan</title>            
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    </head>
-    <body>
-        <!-- START PAGE CONTAINER -->
-        <div class="page-container">
-            
-            <!-- START PAGE SIDEBAR -->
-            <div class="page-sidebar">
-                <!-- START X-NAVIGATION -->
-                <ul class="x-navigation">
-                    <li class="xn-logo">
-                        <a href="#" class="logo" >OBSAN</a>
-                        <a href="#" class="x-navigation-control"></a>
+    <!--END META SECTION -->
+
+    <link rel="stylesheet" type="text/css" href="css/ngTable.css">
+    <!-- CSS INCLUDE --> 
+    <link rel="stylesheet" type="text/css" id="theme" href="css/theme-default.css"/>
+    <!-- EOF CSS INCLUDE -->    
+
+</head>
+<body>
+    <!-- START PAGE CONTAINER -->
+    <div class="page-container">
+
+        <!-- START PAGE SIDEBAR -->
+        <div class="page-sidebar">
+            <!-- START X-NAVIGATION -->
+            <ul class="x-navigation">
+                <li class="xn-logo">
+                    <a href="#" class="logo" >OBSAN</a>
+                    <a href="#" class="x-navigation-control"></a>
+                </li>
+                <div id="divobsanmenu" hidden="true">
+                    <li class="xn-openable">
+                        <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Opciones</span></a>
+                        <ul>
+                            <div id="usersdiv" hidden="true">
+                                <li >
+                                    <a href="#/usuarios"><span class="fa fa-users"></span> <span class="xn-text">Usuarios</span></a>
+                                </li>
+                            </div>
+
+                            <div id="divobsan" hidden="true">
+                                <div id="divLiAdmin" hidden="true">
+                                    <li>
+                                        <a href="#/entidades"><span class="fa fa-sitemap"></span> <span class="xn-text">Entidades</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="#/municipios"><span class="fa fa-map-marker"></span> <span class="xn-text">Municipios</span></a>
+                                    </li>
+                                </div>
+                                <li>
+                                    <a href="#/intervenidos"><span class="fa fa-users"></span> <span class="xn-text">Intervenidos</span></a>
+                                </li>
+                                <li>
+                                    <a href="#/intervencion"><span class="fa fa-file-text-o"></span> <span class="xn-text">Intervenciones</span></a>
+                                </li>
+                                <li>
+                                    <a href="#/evaluacion"><span class="fa fa-pencil-square-o"></span>
+                                        <span class="xn-text">Evaluaciones</span></a>
+                                </li>
+                            </div>
+                        </ul>
                     </li>
-                    <li class="xn-title">Opciones</li>
-                    <li >
-                        <a href="#/usuarios"><span class="fa fa-users"></span> <span class="xn-text">Usuarios</span></a>                        
-                    </li>  
-                    <li>
-                        <a href="#/entidades"><span class="fa fa-sitemap"></span> <span class="xn-text">Entidades</span></a>                        
-                    </li> 
-                    <li>
-                        <a href="#/municipios"><span class="fa fa-map-marker"></span> <span class="xn-text">Municipios</span></a>                        
-                    </li>   
-                    <li>
-                        <a href="#/intervenidos"><span class="fa fa-users"></span> <span class="xn-text">Intervenidos</span></a>                        
-                    </li> 
-                    <li>
-                        <a href="#/intervencion"><span class="fa fa-pencil-square-o"></span> <span class="xn-text">Intervención</span></a>                        
-                    </li>                                   
+                </div>
+                    <li class="xn-openable">
+                        <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Reportes</span></a>
+                        <ul>
+                            <li><a href="#/reportIntervened"><span class="fa fa-file-text-o"></span>Intervenidos</a>
+                            </li>
+                            <li><a href="#/reportIntervention"><span class="fa fa-pencil-square-o"></span>Intervenciones</a>
+                            </li>
+                            <li><a href="#/reportEvaluation"><span class="fa fa-pencil-square-o"></span>Evaluaciones</a>
+                            </li>
+                        </ul>
+                    </li>
+                <div id="usersdiv2" hidden="true">
+                    <li class="xn-openable">
+                            <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Reportes Personalizados</span></a>
+                            <ul>
+                                <li><a href="#/customReportIntervened"><span class="fa fa-file-text-o"></span>Intervenidos</a>
+                                </li>
+                                <li><a href="#/customReportIntervention"><span class="fa fa-pencil-square-o"></span>Intervenciones</a>
+                                </li>
+                                <li><a href="#/customReportEvaluation"><span class="fa fa-pencil-square-o"></span>Evaluaciones</a>
+                                </li>
+                            </ul>
+                    </li>
+                </div>
                 </ul>
+                <!--<button id="dPDF">Descargar Reporte</button>-->
                 <!-- END X-NAVIGATION -->
             </div>
             <!-- END PAGE SIDEBAR -->
-            
+
             <!-- PAGE CONTENT -->
             <div class="page-content">
-                
+
                 <!-- START X-NAVIGATION VERTICAL -->
-                <ul class="x-navigation x-navigation-horizontal x-navigation-panel">
+                <ul class="x-navigation x-navigation-horizontal x-navigation-panel" >
                     <!-- TOGGLE NAVIGATION -->
                     <li class="xn-icon-button">
                         <a href="#" class="x-navigation-minimize"><span class="fa fa-dedent"></span></a>
                     </li>
                     <!-- END TOGGLE NAVIGATION -->                  
                     <!-- POWER OFF -->
-                    <li class=" pull-right last">
-                        <a href="#" class="mb-control" data-box="#mb-signout"><span class="fa fa-sign-out"></span> Cerrar Sesión</a>
-                                               
-                    </li> 
-                    <!-- END POWER OFF -->                    
+                    <div id="btnSignout" hidden="true">
+                        <li class="pull-right" id="userEmail">
+                        </li>
+                        <li class=" pull-right last">
+                            <a href="#" class="mb-control" data-box="#mb-signout"><span class="fa fa-sign-out"></span> Cerrar Sesión</a>
+                        </li> 
+                    </div>
+                    <!-- END POWER OFF -->  
+                    <div id="btnSignin">
+                        <li class="pull-right">
+                            <a href="#" class="mb-control" data-box="#mb-signin"><span class="fa fa-sign-in"></span>Iniciar Sesión</a>
+                        </li>
+                    </div>                   
                 </ul>
                 <!-- END X-NAVIGATION VERTICAL -->                     
-                      
-                
-                <!-- PAGE CONTENT WRAPPER -->
-                <div class="page-content-wrap" ng-view>
 
-                
+
+                <!-- PAGE CONTENT WRAPPER -->
+                <div id="contentData" class="page-content-wrap" ng-view>
                     
-                    
+
+
+
                 </div>
                 <!-- END PAGE CONTENT WRAPPER -->                                
             </div>            
@@ -83,7 +133,7 @@
         <!-- END PAGE CONTAINER -->
 
         <!-- MESSAGE BOX-->
-        <div class="message-box animated fadeIn" data-sound="alert" id="mb-signout">
+        <div ng-controller="signout" class="message-box animated fadeIn" data-sound="alert" id="mb-signout">
             <div class="mb-container">
                 <div class="mb-middle">
                     <div class="mb-title"><span class="fa fa-sign-out"></span>Cerrar <strong>Sesión</strong> ?</div>
@@ -93,62 +143,107 @@
                     </div>
                     <div class="mb-footer">
                         <div class="pull-right">
-                            <a href="pages-login.html" class="btn btn-success btn-lg">Si</a>
+                            <a ng-click="signout()" class="btn btn-success btn-lg">Si</a>
                             <button class="btn btn-default btn-lg mb-control-close">No</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- END MESSAGE BOX-->                
-        
+
+
+        <div ng-controller="showsignin" class="message-box animated fadeIn" data-sound="alert" id="mb-signin">
+            <div class="mb-container">
+                <div class="mb-middle">
+                    <div class="mb-title"><span class="fa fa-sign-in"></span>Iniciar<strong>Sesión</strong></div>
+                    <div class="mb-content">
+                        <form class="form-horizontal col-xs-10" role="form" name="registroForm">
+                            <div class="form-group">
+                                <label>Email*</label>
+                                <input type="text" name="nombre" class="form-control"
+                                ng-model="email" autofocus="true">
+                            </div>
+                            <div class="form-group">
+                                <label>Contraseña*</label>
+                                <input type="password" name="nombre" class="form-control"
+                                ng-model="password">
+                            </div>
+                      </form> 
+                  </div>
+                  <div class="mb-footer">
+                    <div class="pull-right">
+                        <a href="#" ng-click="signin()" class="btn btn-success btn-lg mb-control-close">Confirmar</a>
+                        <button class="btn btn-default btn-lg mb-control-close">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END MESSAGE BOX-->
+    <!-- Start of messages of user -->
+    <div class="modal fade" id="showMessageUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title" id="labelShowMessageUser"></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of messages of user -->
+
+
     <!-- START SCRIPTS -->
-        <!-- START PLUGINS -->
-        <script type="text/javascript" src="js/plugins/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="js/plugins/jquery/jquery-ui.min.js"></script>
-        <script type="text/javascript" src="js/plugins/bootstrap/bootstrap.min.js"></script>        
-        <!-- END PLUGINS -->
-
-        
-
-        <!-- START THIS PAGE PLUGINS-->   
-
-          <!--  ANGULAR-->
-        <script src="js/lib/underscore-min.js"></script>
-        <script src="js/lib/angular.min.js"></script>
-        <script src="js/lib/angular-route.min.js"></script>
-        <script type="text/javascript" src="js/lib/ng-table.min.js"></script>
-
-        <script type='text/javascript' src='js/plugins/icheck/icheck.min.js'></script>        
-        <script type="text/javascript" src="js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
-        <script type="text/javascript" src="js/plugins/scrolltotop/scrolltopcontrol.js"></script>
-        
-        <script type="text/javascript" src="js/plugins/morris/raphael-min.js"></script>
-        <script type="text/javascript" src="js/plugins/morris/morris.min.js"></script>       
-        <script type="text/javascript" src="js/plugins/rickshaw/d3.v3.js"></script>
-        <script type="text/javascript" src="js/plugins/rickshaw/rickshaw.min.js"></script>
-        <script type='text/javascript' src='js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js'></script>
-        <script type='text/javascript' src='js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js'></script>                
-        <script type='text/javascript' src='js/plugins/bootstrap/bootstrap-datepicker.js'></script>                
-        <script type="text/javascript" src="js/plugins/owl/owl.carousel.min.js"></script>                 
-        
-        <script type="text/javascript" src="js/plugins/moment.min.js"></script>
-        <script type="text/javascript" src="js/plugins/daterangepicker/daterangepicker.js"></script>
-        <!-- END THIS PAGE PLUGINS-->         
+    <!-- START PLUGINS -->
+    <script type="text/javascript" src="js/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="js/plugins/jquery/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/plugins/bootstrap/bootstrap.min.js"></script>        
+    <!-- END PLUGINS -->
 
 
-        <!-- START TEMPLATE -->
-        <script type="text/javascript" src="js/settings.js"></script>
-        
-        <script type="text/javascript" src="js/plugins.js"></script>        
-        <script type="text/javascript" src="js/actions.js"></script>
 
-        <script type="text/javascript" src="js/app.js"></script>
-        <script type="text/javascript" src="js/services.js"></script>
-        <script type="text/javascript" src="js/controllers.js"></script>
-        
-        
-    </body>
+    <!-- START THIS PAGE PLUGINS-->   
+
+    <!--  ANGULAR-->
+    <script src="js/lib/underscore-min.js"></script>
+    <!--
+    <script src="js/lib/angular.min.js"></script>
+    -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="js/lib/angular-route.min.js"></script>
+    <script type="text/javascript" src="js/lib/ng-table.min.js"></script>
+
+    <script type='text/javascript' src='js/plugins/icheck/icheck.min.js'></script>        
+    <script type="text/javascript" src="js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
+    <script type="text/javascript" src="js/plugins/scrolltotop/scrolltopcontrol.js"></script>
+
+    <script type="text/javascript" src="js/plugins/morris/raphael-min.js"></script>
+    <script type="text/javascript" src="js/plugins/morris/morris.min.js"></script>       
+    <script type="text/javascript" src="js/plugins/rickshaw/d3.v3.js"></script>
+    <script type="text/javascript" src="js/plugins/rickshaw/rickshaw.min.js"></script>
+    <script type='text/javascript' src='js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js'></script>
+    <script type='text/javascript' src='js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js'></script>                
+    <script type='text/javascript' src='js/plugins/bootstrap/bootstrap-datepicker.js'></script>                
+    <script type="text/javascript" src="js/plugins/owl/owl.carousel.min.js"></script>                 
+
+    <script type="text/javascript" src="js/plugins/moment.min.js"></script>
+    <script type="text/javascript" src="js/plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- END THIS PAGE PLUGINS-->         
+
+
+    <!-- START TEMPLATE -->
+    <script type="text/javascript" src="js/settings.js"></script>
+
+    <script type="text/javascript" src="js/plugins.js"></script>        
+    <script type="text/javascript" src="js/actions.js"></script>
+
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/services.js"></script>
+    <script type="text/javascript" src="js/controllers.js"></script>
+
+
+</body>
 </html>
 
 

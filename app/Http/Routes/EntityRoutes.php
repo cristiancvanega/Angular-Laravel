@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['prefix' => 'entity'], function(){
+Route::group(['prefix' => 'entity', 'middleware' => 'admin'], function(){
 
     Route::get('','EntityController@all');
 
