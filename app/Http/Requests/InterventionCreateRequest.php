@@ -28,7 +28,7 @@ class InterventionCreateRequest extends Request
             'municipality_id'               => 'required|numeric|exists:municipalities,id',
             'name'                          => 'required|string',
             'start_date'                    => 'required|date',
-            'intervened_id'                 => 'required|numeric|exists:users,id',
+            'intervened_id'                 => 'numeric|exists:intervened,id',
             'end_date'                      => 'date',
             'description'                   => 'required|string',
             'evidencias_planeadas'          => 'required|string',
