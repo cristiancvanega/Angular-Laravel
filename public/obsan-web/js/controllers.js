@@ -416,6 +416,11 @@ app.controller("customReportIntervened", [
         $scope.registros = [],$scope.total=0, $scope.registroConsultarIntervenido={},$scope.recurso=""
             ,$scope.registroInterventions = [],$scope.url="/reportEvaluation";
 
+        $scope.testMessage = function () {
+            console.log('Test Message');
+            showMessage('error');
+        }
+
         $scope.getInterventions = function()
         {
             serviceHttp.consultar($scope, 'intervention');
