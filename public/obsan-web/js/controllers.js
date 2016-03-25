@@ -1,6 +1,6 @@
 var app = angular.module('obsan');
 
-var btnShow=false;
+var btnShow=true;
 
 app.controller('showsignin', ['$scope', 'serviceHttp', function($scope,serviceHttp) {
   $scope.recurso="auth/token";
@@ -246,7 +246,6 @@ app.controller("GestionIntervenido", [
         };
 
         $scope.showIntervention = function(registro){
-            btnShow=true;
             $location.path("/intervenido/intervencion/"+registro.id);
         };
 
@@ -254,8 +253,8 @@ app.controller("GestionIntervenido", [
 
 
 app.controller("GestionIntervencion", [
-    '$scope','serviceHttp',
-    function($scope,serviceHttp)
+    '$scope','serviceHttp','$location',
+    function($scope,serviceHttp,$location)
     {
         $('.datepicker').datepicker();
 
@@ -305,6 +304,10 @@ app.controller("GestionIntervencion", [
 
             $scope.recurso="intervention/add_intervened";
             serviceHttp.crear($scope,datos);
+        };
+
+        $scope.showEvaluation = function(registro){
+            $location.path("/intervencion/evaluacion/"+registro.id);
         };
 
     }]);
@@ -619,7 +622,6 @@ app.controller("IntervencionxIntervenido", [
         };
 
         $scope.showEvaluation = function(registro){
-            btnShow=true;
             $location.path("/intervencion/evaluacion/"+registro.id);
         };
 
@@ -696,6 +698,7 @@ app.controller("EvaluacionxIntervencion", [
                 user_email: localStorage.getItem('email'),
                 impacto: $scope.registroCrear.impacto,
                 description: $scope.registroCrear.description,
+                descripcion_evidencia: $scope.registroCrear.descripcion_evidencia,
                 estado_inicial: $scope.registroCrear.estado_inicial,
                 estado_final: $scope.registroCrear.estado_final,
                 recomendaciones: $scope.registroCrear.recomendaciones

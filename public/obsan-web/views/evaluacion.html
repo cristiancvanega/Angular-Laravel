@@ -11,7 +11,7 @@
             <tr ng-repeat="registro in $data">
               <td align="center" data-title="'Intervencion'" sortable="'intervention.name'">{{registro.intervention.name}}</td>
               <td align="center" data-title="'Usuario'" sortable="''">{{registro.user.name}}</td>
-              <td align="center" data-title="'Descripcion'" sortable="'descripcion'">{{registro.descripcion_evidencia}}</td>
+              <td align="center" data-title="'Descripcion Evidencia'" sortable="'descripcion_evidencia'">{{registro.descripcion_evidencia}}</td>
               <td align="center" data-title="'Impacto'" sortable="'impacto'">{{registro.impacto}}</td>
               <td align="center" data-title="'Estado inicial'" sortable="'estado_inicial'">{{registro.estado_inicial}}</td>
               <td align="center" data-title="'Estado final'" sortable="'estado_final'">{{registro.estado_final}}</td>
@@ -62,6 +62,11 @@
             <label>Estado Final</label>
             <select class="form-control" ng-options="item.label as item.label for item in estado" ng-model="registroEditar.estado_final">
             </select>
+          </div>
+          <div class="form-group">
+            <label>Descripción Evidencia</label>
+            <textarea rows="4" cols="50" type="text" name="descripcion_evidencia" class="form-control" ng-model="registroEditar.descripcion_evidencia">  
+            </textarea>
           </div>
           <div class="form-group">
             <label>Descripción</label>
@@ -122,6 +127,11 @@
               <option value="2">medio</option>
               <option value="3">ideal</option>
             </select>
+          </div>
+          <div class="form-group">
+            <label>Descripción Evidencia</label>
+            <textarea rows="4" cols="50" type="text" name="descripcion_evidencia" class="form-control" ng-model="registroCrear.descripcion_evidencia">  
+            </textarea>
           </div>
           <div class="form-group">
             <label>Descripción*</label>
