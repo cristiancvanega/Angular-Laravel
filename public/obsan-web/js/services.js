@@ -1,6 +1,6 @@
 var app = angular.module('obsan');
-var url = "http://obsan.app/";
-//var url = "http://obsan.eduagil.com/";
+//var url = "http://obsan.app/";
+var url = "http://obsan.eduagil.com/";
 showMenu();
 var messages = {
     created:    'Creado con éxito',
@@ -66,35 +66,44 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
             .success(function(data, status, headers, config)
             {
                 console.log(status);
+
+                if(status == 401){
+                    showMessage('relogin');
+                    relogin($http);
+                    return;
+                }
+
                 if(status != 200){
                     showMessage('error');
-                }else {
-                    switch ($scope.descripcion) {
-                        case "IntervencionxIntervenido":
-                            $scope.registros = $scope.registros.concat(data.interventions);
-                            break;
-                        case "EvaluacionxIntervencion":
-                            $scope.registros = $scope.registros.concat(data.evaluations);
-                            break;
-                        default:
-                            $scope.registros = $scope.registros.concat(data);
-                            break;
-                    }
-                    ;
-
-
-                    $scope.total = $scope.registros.length;
-                    $scope.tableParams = new ngTableParams({page: 1, count: 10, sorting: {name: 'asc'}}, {
-                        total: $scope.registros.length,
-                        getData: function ($defer, params) {
-                            TableService.getTable($defer, params, $scope.filter, $scope.registros);
-                        }
-                    });
-                    $scope.tableParams.reload();
-                    $scope.$watch("filter.$", function () {
-                        $scope.tableParams.reload();
-                    });
+                    return;
                 }
+
+                switch ($scope.descripcion) {
+                    case "IntervencionxIntervenido":
+                        $scope.registros = $scope.registros.concat(data.interventions);
+                        break;
+                    case "EvaluacionxIntervencion":
+                        $scope.registros = $scope.registros.concat(data.evaluations);
+                        break;
+                    default:
+                        $scope.registros = $scope.registros.concat(data);
+                        break;
+                }
+                ;
+
+
+                $scope.total = $scope.registros.length;
+                $scope.tableParams = new ngTableParams({page: 1, count: 10, sorting: {name: 'asc'}}, {
+                    total: $scope.registros.length,
+                    getData: function ($defer, params) {
+                        TableService.getTable($defer, params, $scope.filter, $scope.registros);
+                    }
+                });
+                $scope.tableParams.reload();
+                $scope.$watch("filter.$", function () {
+                    $scope.tableParams.reload();
+                });
+
             });
         },
 
@@ -339,4 +348,16 @@ function showMessage(message) {
             $('#labelShowMessageUser').text(messages.error).removeAttr('hide');
         }break;
     }
+}
+
+function relogin($http){
+    $http.post(url + 'auth/token/refresh',{
+            headers : {
+                'token' : localStorage.getItem('token')
+            }
+        })
+        .success(function(data, status, headers, config)
+        {
+            localStorage.setItem('token', headers.Authorization);
+        });
 }
