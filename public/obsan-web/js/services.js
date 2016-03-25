@@ -358,6 +358,7 @@ function relogin($http){
         })
         .success(function(data, status, headers, config)
         {
+            console.log(headers);
             localStorage.setItem('token', headers.Authorization);
         });
 }
