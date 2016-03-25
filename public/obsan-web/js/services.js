@@ -373,6 +373,9 @@ function showMessage(message) {
         case 'invalidC':{
             $('#labelShowMessageUser').text(messages.invalidC);
         }break;
+        case 'download':{
+            $('#labelShowMessageUser').text(messages.download);
+        }break;
     }
 }
 
