@@ -356,7 +356,6 @@ function showMenu(){
 
 function showMessage(message) {
     console.log(message);
-    console.log('ShowMessage, Hola mamasite');
     $('#showMessageUser').modal();
     switch (message){
         case 'created':{
