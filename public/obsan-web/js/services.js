@@ -11,7 +11,8 @@ var messages = {
     relogin:    'Hubo un inconveniente, por favor intente de nuevo',
     invalidC:   'El Email o la Contraseña son incorrectos',
     process:    'Estamos procesando su solicitud, por favor espere un momento',
-    download:   'Su descarga se ha iniciado'
+    download:   'Su descarga se ha iniciado',
+    alreadyIntervened:  'El Intervenido ya se encuentra en esta intervención'
 }
 
 
@@ -200,8 +201,12 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
                 $location.path($scope.url);
                 $route.reload();
             })
-            .error(function(error){
+            .error(function(error, status){
                 console.log(error);
+                if(status == 406){
+                    showMessage('alreadyIntervened');
+                    return;
+                }
                 showMessage('relogin');
                 relogin($http);
             });
@@ -378,6 +383,9 @@ function showMessage(message) {
         }break;
         case 'download':{
             $('#labelShowMessageUser').text(messages.download);
+        }break;
+        case 'alreadyIntervened':{
+            $('#labelShowMessageUser').text(messages.alreadyIntervened);
         }break;
     }
 }
