@@ -262,6 +262,7 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
                         localStorage.setItem('role', data.role);
                         localStorage.setItem('email', data.email);
                         localStorage.setItem('id', data.id);
+                        $scope.userId = data.id;
                         $scope.userEmail = data.email;
                         console.log($scope.userEmail);
                         $scope.signout=true;
@@ -344,6 +345,7 @@ function showMenu(){
             $('#btnSignin').attr('hidden',true);
             $('#btnSignout').removeAttr('hidden');
             $('#divobsanmenu').removeAttr('hidden');
+            $('#usersdiv2').removeAttr('hidden');
             break;
         case 'Admin':
             $('#btnSignin').attr('hidden',true);

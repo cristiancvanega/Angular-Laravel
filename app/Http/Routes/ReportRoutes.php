@@ -28,7 +28,7 @@ Route::group(['prefix' => 'report'], function(){
 
     });
 
-    Route::group(['prefix' => 'custom_report', 'middleware' => 'admin'], function(){
+    Route::group(['prefix' => 'custom_report', 'middleware' => 'obsan'], function(){
 
         Route::post('evaluation', 'EvaluationController@getCustomReport');
 

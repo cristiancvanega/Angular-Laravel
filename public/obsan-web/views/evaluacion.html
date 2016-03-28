@@ -17,8 +17,10 @@
               <td align="center" data-title="'Estado final'" sortable="'estado_final'">{{registro.estado_final}}</td>
               <td align="center" data-title="'Descripción'" sortable="'description'">{{registro.description}}</td>
               <td align="center" data-title="'Recomendaciones'" sortable="'recomendaciones'">{{registro.recomendaciones}}</td>
-              
-              <td align="center" data-title=""><button class="btn btn-primary" data-toggle="modal" ng-click= "showEdit(registro)" data-target="#editarregistro" ><i class="fa fa-pencil"></i>Editar</button></td>
+
+              <!--<div ng-if="$scope.userId == {{registro.user_id}}">-->
+              <!--</div>-->
+                <td align="center" data-title=""><button class="btn btn-primary" data-toggle="modal" ng-click= "showEdit(registro)" data-target="#editarregistro"><i class="fa fa-pencil">Editar</i></button></td>
 
             </tr>
           </tbody>
