@@ -33,6 +33,7 @@ class BaseRole
 
     protected function isAdmin()
     {
+        
         return $this->userRepository->getRoleUser() === 'Admin';
     }
 
