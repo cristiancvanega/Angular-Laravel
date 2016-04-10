@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Obsan\Repositories\UserRepository;
 use Closure;
+use Illuminate\Http\Request;
 
 class BaseRole
 {
@@ -31,9 +32,9 @@ class BaseRole
 
     }
 
-    protected function isAdmin()
+    protected function isAdmin($request)
     {
-        
+        $request->attributes->add(['user_id' => $this->userRepository->getIdUser()]);
         return $this->userRepository->getRoleUser() === 'Admin';
     }
 

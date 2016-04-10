@@ -15,7 +15,7 @@ class ObsanRole extends BaseRole
      */
     public function handle($request, Closure $next)
     {
-        if(!$this->isObsan() && !$this->isAdmin())
+        if(!$this->isObsan() && !$this->isAdmin($request))
             return response()->json([
                 'message' => 'You do no have permissions to access'
             ], 405);
