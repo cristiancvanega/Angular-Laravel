@@ -1,14 +1,23 @@
 <?php
 
-Route::group(['prefix' => 'entity', 'middleware' => 'admin'], function(){
+Route::group(['prefix' => 'entity'], function(){
 
-    Route::get('','EntityController@all');
+    Route::group(['middleware' => 'obsan'], function() {
 
-    Route::get('{id}','EntityController@find');
+        Route::get('', 'EntityController@all');
 
-    Route::post('','EntityController@create');
+    });
 
-    Route::put('{id}','EntityController@update');
+    Route::group(['middleware' => 'admin'], function(){
 
-    Route::delete('/{id}','EntityController@delete');
+        Route::get('{id}','EntityController@find');
+
+        Route::post('','EntityController@create');
+
+        Route::put('{id}','EntityController@update');
+
+        Route::delete('/{id}','EntityController@delete');
+
+    });
+
 });
