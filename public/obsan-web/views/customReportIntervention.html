@@ -18,7 +18,7 @@
             <div class="table-responsive">
                 <table  ng-table="tableParams" class="table table-bordered table-striped">
                     <tbody>
-                    <tr ng-repeat="registro in $data">
+                    <tr ng-repeat="registro in registros">
                         <td align="center" data-title="'Entidad'" sortable="'entity.name'">{{registro.entity.name}}</td>
                         <td align="center" data-title="'Municipio'" sortable="'municipality.name'">{{registro.municipality.name}}</td>
                         <td align="center" data-title="'Nombre'" sortable="'name'">{{registro.name}}</td>

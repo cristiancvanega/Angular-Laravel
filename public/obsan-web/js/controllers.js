@@ -437,10 +437,9 @@ app.controller("customReportIntervened", [
     function($scope,serviceHttp)
     {
         $scope.registros = [],$scope.total=0, $scope.registroConsultarIntervenido={},$scope.recurso=""
-            ,$scope.registroInterventions = [],$scope.url="/reportEvaluation";
+            ,$scope.registroInterventions = [],$scope.url="/customReportIntervened";
 
         $scope.testMessage = function () {
-            console.log('Test Message');
             showMessage('error');
         }
 
@@ -456,9 +455,9 @@ app.controller("customReportIntervened", [
             datos = {
                 intervention_id : $scope.registroConsultarIntervenido.id,
             };
-            console.log(datos.intervention_id);
             $scope.recurso="report/custom_report/intervened";
             serviceHttp.customReport($scope, datos);
+            
         };
         $scope.downloadFiles = function()
         {

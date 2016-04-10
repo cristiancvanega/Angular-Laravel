@@ -19,7 +19,7 @@
             <div class="table-responsive">
                 <table  ng-table="tableParams" class="table table-bordered table-striped">
                     <tbody>
-                    <tr ng-repeat="registro in $data">
+                    <tr ng-repeat="registro in registros">
                         <td align="center" data-title="'Nombre'" sortable="'name'">{{registro.name}}</td>
                         <td align="center" data-title="'Tipo Documento'" sortable="'document_type'">{{registro.document_type}}</td>
                         <td align="center" data-title="'Documento'" sortable="'document'">{{registro.document}}</td>

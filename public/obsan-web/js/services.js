@@ -5,7 +5,8 @@ var url = "http://obsan.eduagil.com/";
 showMenu();
 var messages = {
     created:    'Creado con éxito',
-    addIntervenido: 'El intervenido se ha vinculado correctamente', 
+    addIntervenido: 'El intervenido se ha vinculado correctamente',
+    noDatos: 'No hay datos para mostrar',  
     updated:    'Actualizado con éxito',
     droped:     'Borrado con éxito',
     error:      'Hubo un error al procesar su solicitud',
@@ -220,7 +221,10 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
                 })
                 .success(function(data, status, headers, config)
                 {
-                    $scope.registros = $scope.registros.concat(data);
+                    if(data.length==0){
+                        showMessage('noDatos');
+                    }
+                    $scope.registros = data;
                     $scope.total=$scope.registros.length;
                     $scope.tableParams = new ngTableParams({page:1, count:10, sorting: { name: 'asc'}}, {
                         total: $scope.registros.length,
@@ -231,12 +235,10 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
                     });
                     $scope.tableParams.reload();
                     $scope.$watch("filter.$", function () {
-                        $scope.tableParams.reload();
+                    $scope.tableParams.reload();
                     });
-                    console.log(status);
                 })
                 .error(function(error){
-                    console.log(error);
                     showMessage('relogin');
                     relogin($http);
                 });
@@ -383,6 +385,9 @@ function showMessage(message) {
         }break;
         case 'invalidC':{
             $('#labelShowMessageUser').text(messages.invalidC);
+        }break;
+        case 'noDatos':{
+            $('#labelShowMessageUser').text(messages.noDatos);
         }break;
         case 'download':{
             $('#labelShowMessageUser').text(messages.download);
