@@ -258,10 +258,10 @@ app.controller("GestionIntervencion", [
     {
         $('.datepicker').datepicker();
 
-        $scope.registros = [],$scope.total=0, $scope.registroEditar= {},$scope.AddIntervened_id,
+        $scope.registros = [],$scope.total=0, $scope.registroEditar= {},
         $scope.btnShow=false,$scope.registroBorrar ={},$scope.registroMunicipio =[],$scope.registroEntidad =[], 
         $scope.registroCrear={},$scope.recurso="",$scope.url="/intervencion",$scope.entidad
-        $scope.registroIntervenidos =[],$scope.AddInt_intervention_id;
+        $scope.registroIntervenidos =[],$scope.AddInt_intervention_id,$scope.AddIntervened_id;
 
         $scope.listar = function()
         {
@@ -320,7 +320,9 @@ app.controller("GestionEvaluacion", [
         $scope.registros = [],$scope.total=0, $scope.registroEditar= {},
         $scope.registroBorrar ={},$scope.registroIntervencion =[],$scope.registroUsuario =[], 
         $scope.registroCrear={},$scope.recurso="",$scope.url="/evaluacion",$scope.entidad;
+        $scope.us=localStorage.getItem('id');
 
+        console.log($scope.us);
 
         $scope.impacto=[
             {id:'1',label:'El impacto generado no presenta evidencias, el estado inicial es igual al estado final'},
@@ -344,12 +346,12 @@ app.controller("GestionEvaluacion", [
         {
             $scope.recurso="evaluation/with_iu";
             serviceHttp.listar($scope);
-            datosSelect("user");
+            datosSelect("user");            
             datosSelect("intervention");
             $scope.recurso="evaluation";
         };
         $scope.listar();
-        
+
         function datosSelect(recurso){
             serviceHttp.consultar($scope,recurso);
         };
@@ -564,7 +566,7 @@ app.controller("IntervencionxIntervenido", [
         $scope.registros = [],$scope.total=0, $scope.registroEditar= {},$scope.btnShow=btnShow,
         $scope.registroBorrar ={},$scope.registroMunicipio =[],$scope.registroEntidad =[], 
         $scope.registroCrear={},$scope.recurso="",$scope.url="",$scope.entidad,
-        $scope.descripcion="IntervencionxIntervenido";
+        $scope.descripcion="IntervencionxIntervenido",$scope.AddInt_intervention_id,$scope.AddIntervened_id;
         
         $('.datepicker').datepicker();
 
@@ -575,6 +577,7 @@ app.controller("IntervencionxIntervenido", [
             serviceHttp.listar($scope);
             datosSelect("municipality");
             datosSelect("entity");
+            datosSelect("intervened/id_names");
             $scope.recurso="intervention"
         };
         $scope.listar();
@@ -593,6 +596,22 @@ app.controller("IntervencionxIntervenido", [
             $scope.registroEditar.entity_id=$scope.registroEditar.entity.id;
             $scope.registroEditar.municipality_id=$scope.registroEditar.municipality.id;
             serviceHttp.editar($scope);
+        };
+
+        $scope.showAddInt = function(registro)
+        {
+            $scope.AddInt_intervention_id = registro.id;
+        };
+
+        $scope.AddIntervened = function()
+        {
+            datos={
+                interventions_id : $scope.AddInt_intervention_id,
+                intervened_id : $scope.AddIntervened_id
+            };
+
+            $scope.recurso="intervention/add_intervened";
+            serviceHttp.crear($scope,datos);
         };
 
         $scope.crear= function()
@@ -635,7 +654,7 @@ app.controller("EvaluacionxIntervencion", [
         $scope.registros = [],$scope.total=0, $scope.registroEditar= {},$scope.btnShow=btnShow,
         $scope.registroBorrar ={},$scope.registroIntervencion =[],$scope.registroUsuario =[], 
         $scope.registroCrear={},$scope.recurso="",$scope.url="",$scope.entidad,
-        $scope.descripcion="EvaluacionxIntervencion";
+        $scope.descripcion="EvaluacionxIntervencion",$scope.us=localStorage.getItem('id');
 
 
         $scope.impacto=[
