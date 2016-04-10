@@ -15,7 +15,7 @@ class AdminRole extends BaseRole
      */
     public function handle($request, Closure $next)
     {
-        if(!$this->isAdmin())
+        if(!$this->isAdmin($request))
             return response()->json([
                 'message' => 'You do no have permissions to access'
             ], 405);

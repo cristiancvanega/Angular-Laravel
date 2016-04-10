@@ -25,7 +25,6 @@ class EvaluationUpdateRequest extends Request
     {
         return [
             'intervention_id'       => 'numeric|exists:interventions,id',
-            'user_id'               => 'numeric|exists:users,id',
             'descripcion_evidencia' => 'string',
             'impacto'               => 'string',
             'estado_inicial'        => 'string',

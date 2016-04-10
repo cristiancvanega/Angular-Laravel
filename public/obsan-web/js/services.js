@@ -13,7 +13,8 @@ var messages = {
     relogin:    'Hubo un inconveniente, por favor intente de nuevo',
     invalidC:   'El Email o la Contraseña son incorrectos',
     process:    'Estamos procesando su solicitud, por favor espere un momento',
-    download:   'Su descarga se ha iniciado'
+    download:   'Su descarga se ha iniciado',
+    alreadyIntervened:  'El Intervenido ya se encuentra en esta intervención'
 }
 
 
@@ -206,8 +207,12 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
                 $location.path($scope.url);
                 $route.reload();
             })
-            .error(function(error){
+            .error(function(error, status){
                 console.log(error);
+                if(status == 406){
+                    showMessage('alreadyIntervened');
+                    return;
+                }
                 showMessage('relogin');
                 relogin($http);
             });
@@ -264,6 +269,7 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
                         localStorage.setItem('role', data.role);
                         localStorage.setItem('email', data.email);
                         localStorage.setItem('id', data.id);
+                        $scope.userId = data.id;
                         $scope.userEmail = data.email;
                         console.log($scope.userEmail);
                         $scope.signout=true;
@@ -346,6 +352,7 @@ function showMenu(){
             $('#btnSignin').attr('hidden',true);
             $('#btnSignout').removeAttr('hidden');
             $('#divobsanmenu').removeAttr('hidden');
+            $('#usersdiv2').removeAttr('hidden');
             break;
         case 'Admin':
             $('#btnSignin').attr('hidden',true);
@@ -391,6 +398,9 @@ function showMessage(message) {
         }break;
         case 'download':{
             $('#labelShowMessageUser').text(messages.download);
+        }break;
+        case 'alreadyIntervened':{
+            $('#labelShowMessageUser').text(messages.alreadyIntervened);
         }break;
     }
 }
