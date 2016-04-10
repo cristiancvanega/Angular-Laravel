@@ -16,7 +16,7 @@
             <div class="table-responsive">
                 <table   ng-table="tableParams" class="table table-bordered table-striped">
                     <tbody>
-                    <tr ng-repeat="registro in $data">
+                    <tr ng-repeat="registro in registros">
                         <td align="center" data-title="'Intervencion'" sortable="'intervention.name'">{{registro.intervention.name}}</td>
                         <td align="center" data-title="'Usuario'" sortable="''">{{registro.user.name}}</td>
                         <td align="center" data-title="'Descripcion Evidencia'" sortable="'descripcion_evidencia'">{{registro.descripcion_evidencia}}</td>
