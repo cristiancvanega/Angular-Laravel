@@ -5,6 +5,7 @@ var url = "http://obsan.eduagil.com/";
 showMenu();
 var messages = {
     created:    'Creado con éxito',
+    addIntervenido: 'El intervenido se ha vinculado correctamente', 
     updated:    'Actualizado con éxito',
     droped:     'Borrado con éxito',
     error:      'Hubo un error al procesar su solicitud',
@@ -194,8 +195,12 @@ app.service('serviceHttp', function ($http, $filter,$timeout,ngTableParams,$rout
                     }
                 })
             .success(function(data, status, headers, config)
-            {
-                showMessage('created');
+            {   
+                if($scope.recurso="intervention/add_intervened"){
+                    showMessage('addIntervenido');
+                }else{
+                    showMessage('created');
+                }
 
                 $location.path($scope.url);
                 $route.reload();
@@ -360,6 +365,9 @@ function showMessage(message) {
     switch (message){
         case 'created':{
             $('#labelShowMessageUser').text(messages.created);
+        }break;
+        case 'addIntervenido':{
+            $('#labelShowMessageUser').text(messages.addIntervenido);
         }break;
         case 'updated':{
             $('#labelShowMessageUser').text(messages.updated);
