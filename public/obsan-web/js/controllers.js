@@ -290,6 +290,21 @@ app.controller("GestionIntervencion", [
             $scope.registroEditar = registro;
         };
 
+        $scope.showAddInt = function(registro)
+        {
+            $scope.AddInt_intervention_id = registro.id;
+        };
+
+        $scope.AddIntervened = function()
+        {
+            datos={
+                interventions_id : $scope.AddInt_intervention_id,
+                intervened_id : $scope.AddIntervened_id
+            };
+
+            $scope.recurso="intervention/add_intervened";
+            serviceHttp.crear($scope,datos);
+        };
 
         $scope.showEvaluation = function(registro){
             $location.path("/intervencion/evaluacion/"+registro.id);
