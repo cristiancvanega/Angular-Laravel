@@ -26,10 +26,15 @@ class EvaluationController extends Controller
 
     public function update(EvaluationUpdateRequest $request, $id)
     {
-        $e = $this->repository->find($id);
-        if(is_null($e))
+        $evaluation = $this->repository->find($id);
+
+        if(is_null($evaluation))
             return response()->json(['Evaluation does not exist'], 400);
-        return response()->json($e->update($request->toArray()), 202);
+
+        if($evaluation->user_id != $request->get('user_id'))
+            return response()->json(['You do not have permission'], 405);
+
+        return response()->json($evaluation->update($request->toArray()), 202);
     }
 
     public function getReportData()
