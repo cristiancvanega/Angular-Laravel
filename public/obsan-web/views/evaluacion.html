@@ -10,17 +10,15 @@
           <tbody>
             <tr ng-repeat="registro in $data">
               <td align="center" data-title="'Intervencion'" sortable="'intervention.name'">{{registro.intervention.name}}</td>
-              <td align="center" data-title="'Usuario'" sortable="''">{{registro.user.name}}</td>
+              <td align="center" data-title="'Usuario'" sortable="'user.name'">{{registro.user.name}}</td>
               <td align="center" data-title="'Descripcion Evidencia'" sortable="'descripcion_evidencia'">{{registro.descripcion_evidencia}}</td>
               <td align="center" data-title="'Impacto'" sortable="'impacto'">{{registro.impacto}}</td>
               <td align="center" data-title="'Estado inicial'" sortable="'estado_inicial'">{{registro.estado_inicial}}</td>
               <td align="center" data-title="'Estado final'" sortable="'estado_final'">{{registro.estado_final}}</td>
               <td align="center" data-title="'Descripción'" sortable="'description'">{{registro.description}}</td>
               <td align="center" data-title="'Recomendaciones'" sortable="'recomendaciones'">{{registro.recomendaciones}}</td>
-
-              <!--<div ng-if="$scope.userId == {{registro.user_id}}">-->
-              <!--</div>-->
-                <td align="center" data-title=""><button class="btn btn-primary" data-toggle="modal" ng-click= "showEdit(registro)" data-target="#editarregistro"><i class="fa fa-pencil">Editar</i></button></td>
+              
+              <td ng-if="registro.user_id == us" align="center" data-title=""><button class="btn btn-primary" data-toggle="modal" ng-click= "showEdit(registro)" data-target="#editarregistro" ><i class="fa fa-pencil"></i>Editar</button></td>
 
             </tr>
           </tbody>
@@ -109,58 +107,58 @@
       <div class="modal-body">
         <form class="form-horizontal col-lg-8 col-md-8 col-xs-10" role="form" name="registroForm">
           <div class="form-group">
-          <div class="form-group">
-            <label>Seleccione Impacto*</label>
-            <select name="validate" class="form-control" ng-options="item.label as item.label for item in impacto" ng-model="registroCrear.impacto" required>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Estado Inicial*</label>
-            <select name="validate" class="form-control" ng-model="registroCrear.estado_inicial" required>
-              <option value="1">bajo</option>
-              <option value="2">medio</option>
-              <option value="3">ideal</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Estado Final*</label>
-            <select name="validate" class="form-control" ng-model="registroCrear.estado_final" required>
-              <option value="1">bajo</option>
-              <option value="2">medio</option>
-              <option value="3">ideal</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Descripción Evidencia</label>
-            <textarea rows="4" cols="50" type="text" name="descripcion_evidencia" class="form-control" ng-model="registroCrear.descripcion_evidencia">  
-            </textarea>
-          </div>
-          <div class="form-group">
-            <label>Descripción*</label>
-            <textarea rows="4" cols="50" type="text" name="validate" class="form-control" ng-model="registroCrear.description"  required>  
-            </textarea>
-          </div>
-          <div class="form-group">
-            <label>Recomendaciones</label>
-            <textarea rows="4" cols="50" type="text" name="recomendaciones" class="form-control" ng-model="registroCrear.recomendaciones" >  
-            </textarea>
-          </div>
-          <div class="form-group">
-            <span ng-show="!registroForm.$pristine && registroForm.validate.$error.required">Los campos con (*) son obligatorios.</span>
-          </div>
-          <div class="form-group"> 
-            <div class="col-sm-offset-2 col-sm-10">
-              <button type="submit" class="btn btn-success" 
-              data-dismiss="modal" ng-click="crear()" ng-disabled="!registroForm.$valid">Confirmar</button>
-
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+            <div class="form-group">
+              <label>Seleccione Impacto*</label>
+              <select name="validate" class="form-control" ng-options="item.label as item.label for item in impacto" ng-model="registroCrear.impacto" required>
+              </select>
             </div>
-          </div>
-        </form> 
-      </div>
-      <div class="modal-footer">
+            <div class="form-group">
+              <label>Estado Inicial*</label>
+              <select name="validate" class="form-control" ng-model="registroCrear.estado_inicial" required>
+                <option value="1">bajo</option>
+                <option value="2">medio</option>
+                <option value="3">ideal</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Estado Final*</label>
+              <select name="validate" class="form-control" ng-model="registroCrear.estado_final" required>
+                <option value="1">bajo</option>
+                <option value="2">medio</option>
+                <option value="3">ideal</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Descripción Evidencia</label>
+              <textarea rows="4" cols="50" type="text" name="descripcion_evidencia" class="form-control" ng-model="registroCrear.descripcion_evidencia">  
+              </textarea>
+            </div>
+            <div class="form-group">
+              <label>Descripción*</label>
+              <textarea rows="4" cols="50" type="text" name="validate" class="form-control" ng-model="registroCrear.description"  required>  
+              </textarea>
+            </div>
+            <div class="form-group">
+              <label>Recomendaciones</label>
+              <textarea rows="4" cols="50" type="text" name="recomendaciones" class="form-control" ng-model="registroCrear.recomendaciones" >  
+              </textarea>
+            </div>
+            <div class="form-group">
+              <span ng-show="!registroForm.$pristine && registroForm.validate.$error.required">Los campos con (*) son obligatorios.</span>
+            </div>
+            <div class="form-group"> 
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success" 
+                data-dismiss="modal" ng-click="crear()" ng-disabled="!registroForm.$valid">Confirmar</button>
+
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+              </div>
+            </div>
+          </form> 
+        </div>
+        <div class="modal-footer">
+        </div>
       </div>
     </div>
   </div>
-</div>
-<!-- end modal soft create evaluation -->
+  <!-- end modal soft create evaluation -->
